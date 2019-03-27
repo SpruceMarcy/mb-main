@@ -42,12 +42,12 @@ article{
 footer{
     background-color: black;
     color : white;
-    padding: 2vw 0;
+    padding: 2vw;
     bottom: 0;
     height: 1vw;
     left: 0;
     position: absolute;
-    width: 100vw;
+    width: 96vw;
 }
 
 span *{
