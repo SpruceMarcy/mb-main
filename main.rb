@@ -6,6 +6,6 @@ end
 get "/projects" do
     "project homepage"
 end
-get "/projects/"
+get "/projects/" do
     "project directory"
 end
