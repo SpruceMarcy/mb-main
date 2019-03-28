@@ -105,6 +105,10 @@ ul *{
     text-align:center;
 }
 .shadowed:hover{
-    border-radius:70%;
+    border-radius:100%;
     box-shadow: 1px 1px 20px #303030;
+}
+.shadowed:active{
+    border-radius:100%;
+    box-shadow: inset 1px 1px 20px #303030;
 }
