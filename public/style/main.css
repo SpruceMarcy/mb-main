@@ -55,7 +55,7 @@ footer{
     padding: 2vmax;
     bottom: 0;
     left: 0;
-    position: absolute;
+    position: relative;
     width: 96vmax;
 }
 
