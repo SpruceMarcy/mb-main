@@ -2,6 +2,7 @@ body{
 	font-family: "trebuchet MS", "helvetica neue", helvetica, arial, sans-serif;
 	background-color:lightgrey;
 	width:100vmax;
+    padding:0 0 5vmax 0;
 }
 
 header{
@@ -55,7 +56,7 @@ footer{
     bottom: 0;
     height: 1vmax;
     left: 0;
-    position: absolute;
+    position: fixed;
     width: 96vmax;
 }
 
