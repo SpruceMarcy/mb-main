@@ -1,16 +1,16 @@
 body{
 	font-family: "trebuchet MS", "helvetica neue", helvetica, arial, sans-serif;
 	background-color:lightgrey;
-	width:100vw;
+	width:100vmax;
 }
 
 header{
 	background-color:white;
 	color: blue;
 	position:static;
-	font-size: 4vw;
-	padding: 1vw;
-	width:98vw;
+	font-size: 4vmax;
+	padding: 1vmax;
+	width:98vmax;
 	box-shadow: 0px 4px 3px #606060;
 }
 	header img{
@@ -21,28 +21,28 @@ nav{
 	background-color:white;
 	color: blue;
 	position:static;
-	font-size: 2vw;
-	padding: 1vw;
-	margin:1vw 0 0 0;
-	width:96vw;
-	border-radius:1vw;
+	font-size: 2vmax;
+	padding: 1vmax;
+	margin:1vmax 0 0 0;
+	width:96vmax;
+	border-radius:1vmax;
 	box-shadow: 2px 2px 7px #303030;
 	text-align: center;
 }
 	nav a{
-		padding: 0 8vw;	
+		padding: 0 8vmax;	
 	}
                                             
 article{
 	background-color:white;
-	margin:1vw;
-	padding:1vw;
+	margin:1vmax;
+	padding:1vmax;
 	box-shadow: 2px 2px 7px #303030;
 }
 article.project{
-    width:48vw;
+    width:48vmax;
     min-height:128px;
-    margin-left:5vw;
+    margin-left:5vmax;
 }
 article.project img{
     width:128px;
@@ -51,12 +51,12 @@ article.project img{
 footer{
     background-color: black;
     color : white;
-    padding: 2vw;
+    padding: 2vmax;
     bottom: 0;
-    height: 1vw;
+    height: 1vmax;
     left: 0;
     position: absolute;
-    width: 96vw;
+    width: 96vmax;
 }
 
 span *{
