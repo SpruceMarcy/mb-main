@@ -101,8 +101,10 @@ ul *{
     margin-left:1em;
 }
 .third{
-    width:33%;
+    width:30%;
+    text-align:center;
 }
 .shadowed:hover{
-    box-shadow: 10px -10px #303030;
+    border-radius:50%;
+    box-shadow: 1px 1px 10px #303030;
 }
