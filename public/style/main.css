@@ -2,7 +2,9 @@ body{
 	font-family: "trebuchet MS", "helvetica neue", helvetica, arial, sans-serif;
 	background-color:lightgrey;
 	width:100vmax;
-    min-height:100vh;
+}
+div.antifooter{
+    min-height:90.5vh;
 }
 
 header{
@@ -52,11 +54,10 @@ article.project img{
 footer{
     background-color: black;
     color : white;
-    padding: 2vmax;
-    bottom: 0;
+    padding: 2vh 2vmax;
     left: 0;
-    position: relative;
     width: 96vmax;
+    box-shadow: 0px -3px 7px #606060;
 }
 
 span *{
@@ -72,6 +73,7 @@ article h2{
 }
 p{
     margin:0.3em 0;
+    font-family:"helvetica";
 }
 p.quote{
     padding:0.6em 4em;
@@ -101,14 +103,18 @@ ul *{
     margin-left:1em;
 }
 .third{
-    width:30%;
+    width:15vmax;
+    margin:0 8vmax;
+}
+.centered{
     text-align:center;
 }
-.shadowed:hover{
+.shadowed{
     border-radius:100%;
+}
+.shadowed:hover{
     box-shadow: 1px 1px 20px #303030;
 }
 .shadowed:active{
-    border-radius:100%;
-    box-shadow: inset 1px 1px 20px #303030;
+    box-shadow: inset 1px 1px 50px #303030;
 }
