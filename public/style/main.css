@@ -100,3 +100,9 @@ a:active{
 ul *{
     margin-left:1em;
 }
+.third{
+    width:33%;
+}
+.shadowed:hover{
+    box-shadow: 1px 1px 7px #303030;
+}
