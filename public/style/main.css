@@ -39,6 +39,15 @@ article{
 	padding:1vw;
 	box-shadow: 2px 2px 7px #303030;
 }
+article.project{
+    width:48vw;
+    min-height:128px;
+    margin-left:5vw;
+}
+article.project img{
+    width:128px;
+    float:left;
+}
 footer{
     background-color: black;
     color : white;
@@ -53,11 +62,26 @@ footer{
 span *{
     display: inline-block;
 }
+article h1{
+    font-size:2em;
+    font-weight:bold;
+}
+article h2{
+    font-size:1.3em;
+    font-weight:bold;
+}
+p{
+    margin:0.3em 0;
+}
+p.quote{
+    padding:0.6em 4em;
+    font-style:italic;
+}
 a{
 	text-decoration: none;
 	color:blue;
-	border:0.2vw;
-	border-radius:1vw;
+	border:0.1em;
+	border-radius:0.5em;
 	border-style:solid;
 	border-color:#0000;
 	transition: border 0.15s;
@@ -72,4 +96,7 @@ a:active{
 	background-color:#EEF;
 	border-style:solid;
 	border-color:lightblue;
+}
+ul *{
+    margin-left:1em;
 }

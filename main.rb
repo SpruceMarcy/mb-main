@@ -4,9 +4,18 @@ require 'sinatra'
 get "/" do
     erb :index
 end
+get "/tools" do
+    erb :tools
+end
+get "/tools/" do
+    erb :toolsdirectory
+end
 get "/projects" do
-    "project homepage"
+    erb :projects
 end
 get "/projects/" do
-    "project directory"
+    erb :projectsdirectory
+end
+get "/about" do
+    erb :about
 end
