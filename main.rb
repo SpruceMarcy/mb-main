@@ -24,6 +24,7 @@ post '/auth/:name/callback' do
     if @authentication.nil?
       @authentication = Authentication.create_with_omniauth(auth)
     end 
+    redirect ""
 end
 
 
