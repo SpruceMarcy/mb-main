@@ -13,10 +13,10 @@
 			<span>
 				<a href="/"><img src="/images/mco.png"/></a>
 				<h1>MB - Marcy Brook</h1>
-                <%if false%>
+                <%if session[:debug]%>
                 <span class="code">
                     <div>
-                        <p>Status: online</p>
+                        <p>Debug: <%=session[:debug]%></p>
                         <p>Account: none</p>
                         <p>Property: null</p>
                     </div>

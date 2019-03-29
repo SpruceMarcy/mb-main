@@ -42,6 +42,10 @@ article{
 	padding:1vmax;
 	box-shadow: 2px 2px 7px #303030;
 }
+article.tool{
+    width:48vmax;
+    margin-left:5vmax;
+}
 article.project{
     width:48vmax;
     min-height:128px;

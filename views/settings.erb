@@ -1,0 +1,19 @@
+<%=erb :header%>
+		<article>
+			<h1>Admin Settings</h1>
+            <h2>SMTP Settings</h2>
+			<form method="post" action="/tools/settings/admin">
+                <p>SMTP Password</p>
+                <input type="password" name="password" placeholder="Password"/>
+                <input type="submit"/>
+            </form>
+		</article>
+		<article>
+			<h1>Session Settings</h1>
+			<form method="post" action="/tools/settings/session">
+                <p>Debug mode enabled?</p>
+                <input type="checkbox" name="debug" value="true" <%if session[:debug]%>checked<%end%>/>
+                <input type="submit"/>
+            </form>
+		</article>
+<%=erb :footer%>
