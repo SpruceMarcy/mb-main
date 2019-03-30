@@ -1,5 +1,6 @@
 require 'net/smtp'
 require 'omniauth'
+require 'omniauth-azure-oauth2'
 require 'sinatra'
     set :bind, '0.0.0.0'
 
@@ -8,23 +9,31 @@ config = {
     :consumer_key => "2479916b-8035-4981-b2e2-3b48b883ebe8",
     :consumer_secret => "d!?>O|6$_};&})**{{>.>Z;#.^/}^&^^(={;?!*})^_?^/$)J{({}.",
     }
-Rails.application.config.middleware.use OmniAuth::Builder do
-  provider :azure, config[:consumer_key], config[:consumer_secret]
+
+use OmniAuth::Builder do
+  provider :azure_oauth2,
+    {
+      client_id: config[:consumer_key],
+      client_secret: config[:consumer_secret]
+      #tenant_id: ENV['AZURE_TENANT_ID']
+    }
 end
 
 enable :sessions
 set :session_secret, 'key goes here'
 
 get "/login" do
-    erb :login
+    redirect '/auth/azure_oauth2'
 end
 post '/auth/:name/callback' do
     auth = request.env['omniauth.auth']
-    @authentication = Authentication.find_with_omniauth(auth)
-    if @authentication.nil?
-      @authentication = Authentication.create_with_omniauth(auth)
-    end 
-    redirect ""
+    puts auth
+    #@authentication = Authentication.find_with_omniauth(auth)
+    #if @authentication.nil?
+    #  @authentication = Authentication.create_with_omniauth(auth)
+    #end 
+    #session[:uid]=auth.uid
+    redirect "/"
 end
 
 
