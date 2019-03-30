@@ -1,6 +1,6 @@
 require 'net/smtp'
 require 'omniauth'
-require 'omniauth-azure-oauth2'
+require 'omniauth-microsoft-live'
 require 'sinatra'
     set :bind, '0.0.0.0'
 
@@ -11,19 +11,16 @@ config = {
     }
 
 use OmniAuth::Builder do
-  provider :azure_oauth2,
-    {
-      client_id: config[:consumer_key],
-      client_secret: config[:consumer_secret]
+  provider :microsoft_live, config[:consumer_key], config[:consumer_secret]
       #tenant_id: ENV['AZURE_TENANT_ID']
-    }
+    #}
 end
 
 enable :sessions
 set :session_secret, 'key goes here'
 
 get "/login" do
-    redirect '/auth/azure_oauth2'
+    redirect '/auth/microsoft_live'
 end
 post '/auth/:name/callback' do
     auth = request.env['omniauth.auth']
