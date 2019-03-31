@@ -28,7 +28,7 @@ set :session_secret, 'key goes here'
 get "/login" do
     redirect '/auth/microsoft_live'
 end
-get '/auth/:name/callback' do
+post '/auth/:name/callback' do
     auth = request.env["omniauth.auth"]#["rack.session.unpacked_cookie_data"]
     #puts "=========================="
     #puts "This is auth:"
