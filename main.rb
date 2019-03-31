@@ -3,8 +3,8 @@ require 'httparty'
 require 'sinatra'
     set :bind, '0.0.0.0'
 
-password=''
-adminuid="SpruceMarcy"
+password=ENV["master_password"]
+adminuid=ENV["master_name"]
 
 config = {
     :consumer_key => ENV["consumer_key"],
@@ -79,11 +79,11 @@ get "/contact" do
 end
 post "/contact" do
     message = params[:message]
-    msg="From: MB-Main <mdr.brook@gmail.com>\nTo: Marcy Brook <mdr.brook@gmail.com>\nSubject: A Message from a Site Visitor.\n\n" + message + "\n\n"
+    msg="From: MB-Main <"+ENV["master_email"]+">\nTo: Marcy Brook <"+ENV["master_email"]+">\nSubject: A Message from a Site Visitor.\n\n" + message + "\n\n"
     smtp = Net::SMTP.new 'smtp.gmail.com', 587
     smtp.enable_starttls
-    smtp.start('localhost', "mdr.brook@gmail.com", password, :login) do
-        smtp.send_message(msg, '', "mdr.brook@gmail.com")
+    smtp.start('localhost', ENV["master_email"], password, :login) do
+        smtp.send_message(msg, '', ENV["master_email"])
     end
     redirect "/"
 end
