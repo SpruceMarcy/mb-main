@@ -33,6 +33,10 @@ get '/auth/:name/callback' do
     puts "This is auth:"
     puts auth
     puts "=========================="
+    outstring=""
+    auth.each do |key, value|
+        outstring=outstring + " & " key.to_s + ' : ' + value.to_s
+    end
     #session[:uid] = auth[:uid]
     redirect '/'+auth
 end
