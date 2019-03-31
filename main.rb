@@ -27,8 +27,8 @@ get "/login" do
     redirect '/auth/microsoft_live'
 end
 get '/auth/:name/callback' do
-    auth = request.env["omniauth.auth"]["uid"]
-    session[:uid] = auth
+    auth = request.env["omniauth.auth"]
+    session[:uid] = auth["uid"]
     redirect '/'
 end
 get "/logout" do
