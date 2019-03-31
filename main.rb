@@ -28,7 +28,7 @@ get "/login" do
     redirect '/auth/microsoft_live'
 end
 get '/auth/:name/callback' do
-    auth = request.env["rack.session.unpacked_cookie_data"]["omniauth.state"]
+    auth = request.env["rack.session.unpacked_cookie_data"]["omniauth.auth"]
     #puts "=========================="
     #puts "This is auth:"
     #puts auth
