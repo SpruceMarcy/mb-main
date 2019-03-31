@@ -10,7 +10,7 @@ module OmniAuth
         :site => 'https://login.live.com',
         :authorize_url => '/oauth20_authorize.srf',
         :token_url => '/oauth20_token.srf',
-        :redirect_uri => 'https://mb-main-test.herokuapp.com/'
+        :redirect_uri => 'https://mb-main-test.herokuapp.com/auth/azure_oauth2/callback'
       }
 
       option :authorize_params, {

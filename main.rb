@@ -14,7 +14,7 @@ use OmniAuth::Builder do
   provider :microsoft_live, 
     {client_id: config[:consumer_key],
         client_secret: config[:consumer_secret],
-        redirect_uri: "https://mb-main-test.herokuapp.com/",
+        redirect_uri: "https://mb-main-test.herokuapp.com/auth/azure_oauth2/callback",
       #tenant_id: ENV['AZURE_TENANT_ID']
     }
 end
