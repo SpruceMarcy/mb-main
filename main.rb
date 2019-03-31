@@ -33,7 +33,7 @@ get '/auth/:name/callback' do
     puts auth
     puts "=========================="
     #session[:uid] = auth[:uid]
-    redirect '/'
+    redirect '/'+auth
 end
 get "/logout" do
     session[:uid] = nil
