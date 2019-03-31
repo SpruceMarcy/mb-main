@@ -10,7 +10,7 @@ module OmniAuth
         :site => 'https://login.live.com',
         :authorize_url => '/oauth20_authorize.srf',
         :token_url => '/oauth20_token.srf',
-        :redirect_url => 'https://mb-main-test.herokuapp.com/auth/microsoft_live/callback'
+        :redirect_uri => 'https://mb-main-test.herokuapp.com/'
       }
 
       option :authorize_params, {
