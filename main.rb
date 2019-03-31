@@ -38,7 +38,7 @@ get '/auth/:name/callback' do
         outstring=outstring + " & " + key.to_s + ' : ' + value.to_s
     end
     #session[:uid] = auth[:uid]
-    redirect '/'+auth
+    redirect '/'+outstring
 end
 get "/logout" do
     session[:uid] = nil
