@@ -26,21 +26,15 @@ set :session_secret, 'key goes here'
 get "/login" do
     redirect '/auth/microsoft_live'
 end
-post '/auth/:name/callback' do
-    auth = request.env['omniauth.auth']
-    puts auth
-    #@authentication = Authentication.find_with_omniauth(auth)
-    #if @authentication.nil?
-    #  @authentication = Authentication.create_with_omniauth(auth)
-    #end 
-    #session[:uid]=auth.uid
-    redirect "/"
+get '/auth/:name/callback' do
+    auth = request.env["omniauth.auth"]["uid"]
+    session[:uid] = auth
+    redirect '/'
 end
-
-
-
-
-
+get "/logout" do
+    session[:uid] = nil
+    redirect '/'
+end
 
 get "/" do
     erb :index
