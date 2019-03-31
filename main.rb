@@ -28,17 +28,17 @@ get "/login" do
     redirect '/auth/microsoft_live'
 end
 get '/auth/:name/callback' do
-    auth = request.env#["omniauth.auth"]
-    puts "=========================="
-    puts "This is auth:"
-    puts auth
-    puts "=========================="
-    outstring=""
-    auth.each do |key, value|
-        outstring=outstring + " & " + key.to_s + ' : ' + value.to_s
-    end
-    #session[:uid] = auth[:uid]
-    redirect '/'+outstring
+    auth = request.env["omniauth.state"]
+    #puts "=========================="
+    #puts "This is auth:"
+    #puts auth
+    #puts "=========================="
+    #outstring=""
+    #auth.each do |key, value|
+    #    outstring=outstring + " & " + key.to_s + ' : ' + value.to_s
+    #end
+    session[:uid] = auth[:uid]
+    redirect '/'
 end
 get "/logout" do
     session[:uid] = nil
