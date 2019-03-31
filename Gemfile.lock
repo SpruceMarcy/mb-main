@@ -1,6 +1,6 @@
 GIT
-  remote: git://github.com/jdrago999/omniauth-microsoft-live.git
-  revision: c60b8c6111cc7d666e4dd6bff63b24a8d8d07f31
+  remote: git://github.com/9peso/omniauth-microsoft-live.git
+  revision: beff67252bdc13f844b966032a2292549ffbeb23
   specs:
     omniauth-microsoft-live (0.1.0)
       multi_json (>= 1.0.3)
