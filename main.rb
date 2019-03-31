@@ -15,7 +15,7 @@ enable :sessions
 set :session_secret, 'key goes here'
 
 get "/login" do
-    redirect 'https://github.com/login/oauth/authorize?client_id='+config[:consumer_key]+'&redirect_uri=http://respect-emerald-4567.codio.io/callback' 
+    redirect 'https://github.com/login/oauth/authorize?client_id='+config[:consumer_key]+'&redirect_uri=http://mxmbrook.co.uk/callback' 
 end
 get '/callback' do
     userinformation = HTTParty.get('https://api.github.com/user?access_token='+HTTParty.post('https://github.com/login/oauth/access_token',:query => {
