@@ -1,48 +1,23 @@
 require 'net/smtp'
-require 'omniauth'
-require 'omniauth-microsoft-live'
 require 'sinatra'
     set :bind, '0.0.0.0'
 
 password=''
 config = {
-    :consumer_key => "2479916b-8035-4981-b2e2-3b48b883ebe8",
-    :consumer_secret => "d!?>O|6$_};&})**{{>.>Z;#.^/}^&^^(={;?!*})^_?^/$)J{({}.",
+    :consumer_key => ,
+    :consumer_secret => ,
     }
 
-use OmniAuth::Builder do
-  provider :microsoft_live, 
-    {client_id: config[:consumer_key],
-        client_secret: config[:consumer_secret],
-        redirect_uri:"https://mb-main-test.herokuapp.com/auth/azure_oauth2/callback",
-        callback_path: "https://mb-main-test.herokuapp.com/auth/azure_oauth2/callback",
-        scope: "https://graph.microsoft.com/User.Read",
-      #tenant_id: ENV['AZURE_TENANT_ID']
-    }
-end
-
-use Rack::Session::Cookie
 enable :sessions
-enable :run
 set :session_secret, 'key goes here'
 
 get "/login" do
-    redirect '/auth/microsoft_live'
-end
-get '/auth/:name/callback' do
-    auth = session["omniauth.auth"]#["rack.session.unpacked_cookie_data"]
-    #puts "=========================="
-    #puts "This is auth:"
-    #puts auth
-    #puts "=========================="
-    #outstring=""
-    #params.each do |key, value|
-    #    outstring=outstring + " & " + key.to_s + ' : ' + value.to_s
-    #end
-    #outstring=request.env["omniauth.state"]
-    session[:uid] = auth["uid"]
     redirect '/'
 end
+get '/auth/:name/callback' do
+    redirect '/'
+end
+
 get "/logout" do
     session[:uid] = nil
     redirect '/'
