@@ -15,7 +15,7 @@ use OmniAuth::Builder do
     {client_id: config[:consumer_key],
         client_secret: config[:consumer_secret],
         redirect_uri: "https://mb-main-test.herokuapp.com/auth/azure_oauth2/callback",
-        scope: "https://graph.microsoft.com/.default",
+        scope: "https://graph.microsoft.com/User.Read",
       #tenant_id: ENV['AZURE_TENANT_ID']
     }
 end
