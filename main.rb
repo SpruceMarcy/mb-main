@@ -28,7 +28,7 @@ get "/login" do
     redirect '/auth/microsoft_live'
 end
 get '/auth/:name/callback' do
-    auth = request.env["omniauth.state"]
+    auth = env["omniauth.auth"]
     #puts "=========================="
     #puts "This is auth:"
     #puts auth
