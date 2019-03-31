@@ -23,6 +23,7 @@ end
 
 use Rack::Session::Cookie
 enable :sessions
+enable :run
 set :session_secret, 'key goes here'
 
 get "/login" do
