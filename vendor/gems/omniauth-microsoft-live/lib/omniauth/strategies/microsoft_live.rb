@@ -9,7 +9,7 @@ module OmniAuth
       option :client_options, {
         :site => 'https://login.live.com',
         :authorize_url => '/oauth20_authorize.srf',
-        :token_url => '/oauth20_token.srf'
+        :token_url => '/oauth20_token.srf',
         :redirect_uri => '/auth/microsoft_live/callback'
       }
 
