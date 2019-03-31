@@ -1,6 +1,5 @@
 require 'net/smtp'
 require 'omniauth'
-require 'openid/store/filesystem'
 require 'omniauth-microsoft-live'
 require 'sinatra'
     set :bind, '0.0.0.0'
