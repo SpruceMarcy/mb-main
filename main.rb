@@ -7,8 +7,8 @@ password=''
 adminuid="SpruceMarcy"
 
 config = {
-    :consumer_key => "fd4ba4aa4b93a88b2584",
-    :consumer_secret => "3c02b3e9246021582832cd24679295243517d3de",
+    :consumer_key => ENV["consumer_key"],
+    :consumer_secret => ENV["consumer_secret"],
     }
 
 enable :sessions
