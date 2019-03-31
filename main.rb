@@ -34,9 +34,10 @@ get '/auth/:name/callback' do
     #puts auth
     #puts "=========================="
     #outstring=""
-    params.each do |key, value|
-        outstring=outstring + " & " + key.to_s + ' : ' + value.to_s
-    end
+    #params.each do |key, value|
+    #    outstring=outstring + " & " + key.to_s + ' : ' + value.to_s
+    #end
+    outstring=request.env["omniauth.state"]
     #session[:uid] = auth["uid"]
     redirect '/'+outstring
 end
