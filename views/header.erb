@@ -13,12 +13,21 @@
 			<span>
 				<a href="/"><img src="/images/mco.png"/></a>
 				<h1>MB - Marcy Brook</h1>
+                <%if session[:logged_in]%>
+                <span class="headround">
+                    <a href="/logout"><img src="<%=session[:logo]%>" title="Click to log out"/></a>
+                </span>
+                <%else%>
+                <span class="headround">
+                    <p><a href="/login">login with github </a></p>
+                </span>
+                <%end%>
                 <%if session[:debug]%>
-                <span class="code">
+                <span class="headround code">
                     <div>
                         <p>Debug: <%=session[:debug]%></p>
                         <p>Account ID: <%=session[:uid]%></p>
-                        <p>Property: null</p>
+                        <p>Admin: <%=@isadmin%></p>
                     </div>
                     <div>
                         <p>Property: null</p>

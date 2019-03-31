@@ -1,25 +1,40 @@
 require 'net/smtp'
+require 'httparty'
 require 'sinatra'
     set :bind, '0.0.0.0'
 
 password=''
+adminuid="SpruceMarcy"
+
 config = {
-    :consumer_key => ,
-    :consumer_secret => ,
+    :consumer_key => "fd4ba4aa4b93a88b2584",
+    :consumer_secret => "3c02b3e9246021582832cd24679295243517d3de",
     }
 
 enable :sessions
 set :session_secret, 'key goes here'
 
 get "/login" do
-    redirect '/'
+    redirect 'https://github.com/login/oauth/authorize?client_id='+config[:consumer_key]+'&redirect_uri=http://respect-emerald-4567.codio.io/callback' 
 end
-get '/auth/:name/callback' do
-    redirect '/'
+get '/callback' do
+    userinformation = HTTParty.get('https://api.github.com/user?access_token='+HTTParty.post('https://github.com/login/oauth/access_token',:query => {
+        :client_id=>config[:consumer_key],
+        :client_secret=>config[:consumer_secret],
+        :code=>params[:code],
+        }, :headers=>{
+        "Accept" => "application/json"
+        })["access_token"])
+    session[:uid]=userinformation["login"]
+    session[:logo]=userinformation["avatar_url"]
+    session[:logged_in]=true
+    redirect "/"
 end
 
 get "/logout" do
     session[:uid] = nil
+    session[:logo] = nil
+    session[:logged_in] = false
     redirect '/'
 end
 
@@ -42,12 +57,15 @@ get "/about" do
     erb :about
 end
 get "/tools/settings" do
+    @isadmin= session[:uid]==adminuid
     erb :settings
 end
 
 post "/tools/settings/admin" do
-   if !params[:password].nil?
-       password=params[:password] 
+   if session[:uid]==adminuid
+       if !params[:password].nil?
+           password=params[:password] 
+       end
    end
    redirect "/tools/"
 end
