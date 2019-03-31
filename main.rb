@@ -28,17 +28,17 @@ get "/login" do
     redirect '/auth/microsoft_live'
 end
 get '/auth/:name/callback' do
-    auth = request.env["rack.session.unpacked_cookie_data"]["omniauth.auth"]
+    #auth = request.env["rack.session.unpacked_cookie_data"]["omniauth.auth"]
     #puts "=========================="
     #puts "This is auth:"
     #puts auth
     #puts "=========================="
-    #outstring=""
-    #auth.each do |key, value|
-    #    outstring=outstring + " & " + key.to_s + ' : ' + value.to_s
-    #end
-    session[:uid] = auth["uid"]
-    redirect '/'
+    outstring=""
+    params.each do |key, value|
+        outstring=outstring + " & " + key.to_s + ' : ' + value.to_s
+    end
+    #session[:uid] = auth["uid"]
+    redirect '/'+outstring
 end
 get "/logout" do
     session[:uid] = nil
