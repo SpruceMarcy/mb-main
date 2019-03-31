@@ -1,4 +1,4 @@
-gem "./omniauth-microsoft-live-0.1.0.gem"
+gem "omniauth-microsoft-live", :path => "vendor/gems/omniauth-microsoft-live/"
 gem 'sinatra', source: 'https://rubygems.org'
 gem 'omniauth', source: 'https://rubygems.org'
 

@@ -1,6 +1,5 @@
-GIT
-  remote: git://github.com/9peso/omniauth-microsoft-live.git
-  revision: beff67252bdc13f844b966032a2292549ffbeb23
+PATH
+  remote: vendor/gems/omniauth-microsoft-live/
   specs:
     omniauth-microsoft-live (0.1.0)
       multi_json (>= 1.0.3)
