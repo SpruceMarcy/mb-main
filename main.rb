@@ -21,6 +21,7 @@ use OmniAuth::Builder do
     }
 end
 
+use Rack::Session::Cookie
 enable :sessions
 set :session_secret, 'key goes here'
 
