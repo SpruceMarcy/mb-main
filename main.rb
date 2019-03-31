@@ -28,7 +28,7 @@ get "/login" do
 end
 get '/auth/:name/callback' do
     auth = request.env["omniauth.auth"]
-    session[:uid] = auth["uid"]
+    session[:uid] = auth[:uid]
     redirect '/'
 end
 get "/logout" do
