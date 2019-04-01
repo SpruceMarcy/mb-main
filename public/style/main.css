@@ -157,6 +157,7 @@ form.contact textarea{
 }
 .shadowed{
     border-radius:100%;
+    background-color:grey;
 }
 .shadowed:hover{
     box-shadow: 1px 1px 20px #303030;
