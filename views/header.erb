@@ -14,8 +14,8 @@
 				<a href="/"><img src="/images/mco.png"/></a>
 				<h1>Marcy Brook</h1>
                 <%if session[:logged_in]%>
-                <span class="headround unround">
-                    <a href="/logout"><img src="<%=session[:logo]%>" title="Click to log out"/></a>
+                <span class="headround">
+                    <a href="/logout" class="unround"><img src="<%=session[:logo]%>" title="Click to log out"/></a>
                 </span>
                 <%else%>
                 <span class="headround">
