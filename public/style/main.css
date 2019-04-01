@@ -1,7 +1,6 @@
 body{
 	font-family: "trebuchet MS", "helvetica neue", helvetica, arial, sans-serif;
 	background-color:lightgrey;
-	width:100vmax;
 }
 div.antifooter{
     min-height:90.5vh;
@@ -10,10 +9,10 @@ div.antifooter{
 header{
 	background-color:white;
 	color: blue;
-    font-size: 4vmax;
+    font-size: 4vw;
 	position:static;
-	padding: 1vmax;
-	width:98vmax;
+	padding: 1vw;
+	width:98vw;
 	box-shadow: 0px 4px 3px #606060;
 }
 
@@ -22,39 +21,39 @@ header{
 		width:1em;
 	}
     header p{
-        font-size:1vmax;
+        font-size:1vw;
     }
 nav{
 	background-color:white;
 	color: blue;
 	position:static;
-	font-size: 2vmax;
-	padding: 1vmax;
-	margin:1vmax 0 0 0;
-	width:96vmax;
-	border-radius:5vmax;
+	font-size: 2vw;
+	padding: 1vw;
+	margin:1vw 0 0 0;
+	width:96vw;
+	border-radius:5vw;
 	box-shadow: 2px 2px 7px #303030;
 	text-align: center;
 }
 	nav a{
-		padding: 0 8vmax;	
+		padding: 0 8vw;	
         /*box-shadow: 2px 2px 7px #303030;*/
 	}
                                             
 article{
 	background-color:white;
-	margin:1vmax;
-	padding:1vmax;
+	margin:1vw;
+	padding:1vw;
 	box-shadow: 2px 2px 7px #303030;
 }
 article.tool{
-    width:48vmax;
-    margin-left:5vmax;
+    width:48vw;
+    margin-left:5vw;
 }
 article.project{
-    width:48vmax;
+    width:48vw;
     min-height:128px;
-    margin-left:5vmax;
+    margin-left:5vw;
 }
 article.project img{
     width:128px;
@@ -63,9 +62,9 @@ article.project img{
 footer{
     background-color: black;
     color : #404040;
-    padding: 2vh 2vmax;
+    padding: 2vh 2vw;
     left: 0;
-    width: 96vmax;
+    width: 96vw;
     box-shadow: 0px -3px 7px #606060;
 }
 footer:hover{
@@ -129,12 +128,12 @@ ul *{
 }
 header span.headround{
     float:right;
-    max-height:4vmax;
-    margin-right:3vmax;
+    max-height:4vw;
+    margin-right:3vw;
 }
 span.headround{
-    border-radius:1.5vmax;
-    padding:0.3vmax 1vmax;
+    border-radius:1.5vw;
+    padding:0.3vw 1vw;
 }
 span.code {
     background-color:grey;
@@ -146,14 +145,14 @@ span.code *{
     vertical-align:top;
 }
 form.contact textarea{
-    min-width:96vmax;
-    max-width:96vmax;
-    min-height:20vmax;
+    min-width:96vw;
+    max-width:96vw;
+    min-height:20vw;
     font-size:1.5em;
 }
 .third{
-    width:15vmax;
-    margin:0 8vmax;
+    width:15vw;
+    margin:0 8vw;
 }
 .shaded{
     background-color:#F9F9FB;
