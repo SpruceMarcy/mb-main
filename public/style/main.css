@@ -74,7 +74,13 @@ footer:hover{
 span > *{
     display: inline-block;
 }
-
+article figure{
+    margin-top:0.5em;
+    margin-bottom:0.5em;    
+}
+article figure figcaption{
+    margin-top:0.2em;
+}
 article h1{
     font-size:2em;
     font-weight:bold;
@@ -87,8 +93,8 @@ article h2{
     font-size:0.2em;
 }
 .br::after{
-        color:transparent;
-        content:"lorem ipsum";
+    color:transparent;
+    content:"lorem ipsum";
 }
 p{
     margin:0.3em 0;
@@ -155,8 +161,15 @@ form.contact textarea{
 .centered{
     text-align:center;
 }
-.shadowed{
+.transparent{
+    background-color:lightgrey;
+    box-shadow: inset 1px 1px 7px #303030;
+}
+.fullradius{
     border-radius:100%;
+}
+.shadowed{
+    
     background-color:grey;
 }
 .shadowed:hover{
