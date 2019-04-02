@@ -80,7 +80,7 @@ get "/tools/wordrand" do
 end
 get "/tools/yourand" do
     queryword=randword()
-    searchresults =HTTParty.get("https://www.googleapis.com/youtube/v3/search?key=AIzaSyCUHpzHUUucAtyAMM-zEAibLASmEjJB75Q&part=snippet&q="+queryword)
+    searchresults =HTTParty.get("https://www.googleapis.com/youtube/v3/search?key="+ENV["you_key"]+"&part=snippet&q="+queryword)
     videos = searchresults["items"]
     videos.reverse.each do |video|
         if video["id"]["kind"]=="youtube#video"
