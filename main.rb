@@ -87,7 +87,7 @@ post "/contact" do
         })["success"])
     
         message = params[:message]
-        if message.strip=="" or request.ip=="31.205.128.102"
+        if message.strip==""
            redirect "/botfailure" 
         end
         msg="From: MB-Main <"+ENV["master_email"]+">\nTo: Marcy Brook <"+ENV["master_email"]+">\nSubject: A Message from a Site Visitor ("+request.ip+").\n\n" + message + "\n\n"
