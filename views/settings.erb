@@ -7,7 +7,7 @@
 			<form method="post" action="/tools/settings/admin">
                 <p>SMTP Password</p>
                 <input type="password" name="password" placeholder="Password"/>
-                <input type="submit"/>
+                <input type="submit"  class="shadowed"/>
             </form>
 		</article>
         <%end%>
@@ -16,7 +16,7 @@
 			<form method="post" action="/tools/settings/session">
                 <p>Debug mode enabled?</p>
                 <input type="checkbox" name="debug" value="true" <%if session[:debug]%>checked<%end%>/>
-                <input type="submit"/>
+                <input type="submit"  class="shadowed"/>
             </form>
 		</article>
 <%=erb :footer%>
