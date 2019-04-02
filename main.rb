@@ -1,4 +1,5 @@
 require 'net/smtp'
+require 'zip'
 require 'httparty'
 require 'sinatra'
     set :bind, '0.0.0.0'
@@ -60,18 +61,22 @@ get "/tools/settings" do
     @isadmin= session[:uid]==adminuid
     erb :settings
 end
-
 post "/tools/settings/admin" do
-   if session[:uid]==adminuid
-       if !params[:password].nil?
-           password=params[:password] 
-       end
-   end
-   redirect "/tools/"
+    if session[:uid]==adminuid
+        if !params[:password].nil?
+            password=params[:password] 
+        end
+    end
+    redirect "/tools/"
 end
 post "/tools/settings/session" do
-   session[:debug]=!params[:debug].nil?
-   redirect "/tools/"
+    session[:debug]=!params[:debug].nil?
+    redirect "/tools/"
+end
+
+get "/tools/wordrand" do
+    @randword=randword()
+    erb :wordrand
 end
 
 get "/contact" do
@@ -99,5 +104,13 @@ post "/contact" do
         redirect "/"
     else
         redirect "/botfailure"
+    end
+end
+
+def randword()
+    Zip::File.open('public/words_alpha.zip') do |zip_file|
+        entry = zip_file.glob('*.txt').first
+        content = entry.get_input_stream.read 
+        content.split("\n").sample
     end
 end
