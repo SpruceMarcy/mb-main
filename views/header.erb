@@ -3,6 +3,9 @@
 	<head>
 		<meta charset="utf-8">
 		<title><%=@pagetitle%></title>
+        <%if @botprot%>
+        <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+        <%end%>
 		<link rel="stylesheet" href="/style/reset.css">
 		<link rel="stylesheet" href="/style/main.css">
 		<link rel="icon" href="/images/mco.png">

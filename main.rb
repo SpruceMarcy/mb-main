@@ -78,12 +78,24 @@ get "/contact" do
     erb :contact
 end
 post "/contact" do
-    message = params[:message]
-    msg="From: MB-Main <"+ENV["master_email"]+">\nTo: Marcy Brook <"+ENV["master_email"]+">\nSubject: A Message from a Site Visitor.\n\n" + message + "\n\n"
-    smtp = Net::SMTP.new 'smtp.gmail.com', 587
-    smtp.enable_starttls
-    smtp.start('smtp.gmail.com', ENV["master_email"], password, :login) do
-        smtp.send_message(msg, '', ENV["master_email"])
+    responsetoken=params["g-recaptcha-response"]
+    
+    
+    if (HTTParty.post('https://www.google.com/recaptcha/api/siteverify',:query => {
+        :secret=>ENV["reCAPTCHA_secret"],
+        :response=>responsetoken
+        })["success"])
+    
+    
+        message = params[:message]
+        msg="From: MB-Main <"+ENV["master_email"]+">\nTo: Marcy Brook <"+ENV["master_email"]+">\nSubject: A Message from a Site Visitor.\n\n" + message + "\n\n"
+        smtp = Net::SMTP.new 'smtp.gmail.com', 587
+        smtp.enable_starttls
+        smtp.start('smtp.gmail.com', ENV["master_email"], password, :login) do
+            smtp.send_message(msg, '', ENV["master_email"])
+        end
+        redirect "/"
+    else
+        redirect "/botfailure"
     end
-    redirect "/"
 end
