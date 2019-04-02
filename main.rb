@@ -86,12 +86,11 @@ post "/contact" do
         :response=>responsetoken
         })["success"])
     
-    
         message = params[:message]
         if message.strip==""
            redirect "/botfailure" 
         end
-        msg="From: MB-Main <"+ENV["master_email"]+">\nTo: Marcy Brook <"+ENV["master_email"]+">\nSubject: A Message from a Site Visitor.\n\n" + message + "\n\n"
+        msg="From: MB-Main <"+ENV["master_email"]+">\nTo: Marcy Brook <"+ENV["master_email"]+">\nSubject: A Message from a Site Visitor ("+request.ip+").\n\n" + message + "\n\n"
         smtp = Net::SMTP.new 'smtp.gmail.com', 587
         smtp.enable_starttls
         smtp.start('smtp.gmail.com', ENV["master_email"], password, :login) do
