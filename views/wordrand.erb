@@ -1,0 +1,10 @@
+<%@pagetitle="Random Word"%>
+<%=erb :header%>
+		<article>
+			<h1>Random Word Generator</h1>
+            <p>Every time you refresh this page, it will generate a random word from <a href="https://github.com/dwyl/english-words/blob/master/words_alpha.zip">this list</a>.</p>
+            <div class="br"></div>
+            <p>Your random word:</p>
+            <h2><%=@randword%></h2>
+		</article>
+<%=erb :footer%>
