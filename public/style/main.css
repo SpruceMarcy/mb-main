@@ -149,6 +149,7 @@ form.contact textarea{
     max-width:96vw;
     min-height:20vw;
     font-size:1.5em;
+    margin-top:1vw;
 }
 input[type="submit"]{
     font-size: 1.4em;
@@ -156,9 +157,11 @@ input[type="submit"]{
     border-style:none;
     border-radius:1vw;
     background-color:white;
-}
-input[type="submit"]{
     outline:0;
+}
+em{
+    font-weight:bold;
+    color:red;
 }
 .third{
     width:15vw;
