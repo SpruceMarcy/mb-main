@@ -150,6 +150,16 @@ form.contact textarea{
     min-height:20vw;
     font-size:1.5em;
 }
+input[type="submit"]{
+    font-size: 1.4em;
+    padding: 0.6vw 1.4vw;
+    border-style:none;
+    border-radius:1vw;
+    background-color:white;
+}
+input[type="submit"]{
+    outline:0;
+}
 .third{
     width:15vw;
     margin:0 8vw;
@@ -167,15 +177,11 @@ form.contact textarea{
 .fullradius{
     border-radius:100%;
 }
-.shadowed{
-    
-    background-color:grey;
-}
 .shadowed:hover{
     box-shadow: 1px 1px 20px #303030;
 }
 .shadowed:active{
-    box-shadow: inset 1px 1px 50px #303030;
+    box-shadow: inset 1px 1px 20px #303030;
 }
 .unround{
     border-radius:0;
