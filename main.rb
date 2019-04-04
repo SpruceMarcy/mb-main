@@ -1,6 +1,7 @@
 require 'net/smtp'
 require 'zip'
 require 'httparty'
+require 'pg'
 require 'sinatra'
     set :bind, '0.0.0.0'
 
@@ -11,6 +12,7 @@ config = {
     :consumer_key => ENV["consumer_key"],
     :consumer_secret => ENV["consumer_secret"],
     }
+conn = PG.connect("ec2-54-75-230-253.eu-west-1.compute.amazonaws.com", 5432,"","", "d11hc43cj4nptk", "gnwolwiiioiuqg", "32a08f6419e9ca49e69dd51f38373121570f08975f86f316f6f98b322087cad2")
 
 enable :sessions
 set :session_secret, 'key goes here'
@@ -58,7 +60,6 @@ get "/about" do
     erb :about
 end
 get "/tools/settings" do
-    @isadmin= session[:uid]==adminuid
     erb :settings
 end
 post "/tools/settings/admin" do
@@ -88,13 +89,30 @@ get "/tools/yourand" do
         end
     end
 end
+get "/blog" do
+    @isadmin=session[:uid]==adminuid
+    @entries=conn.exec("SELECT * FROM Blog;")
+    erb :blog
+end
+get "/blog/delete" do
+    result=conn.exec("DELETE FROM Blog WHERE id=#{params["id"]};")
+end 
+get "/blog/add" do
+    if session[:uid]==adminuid
+        erb :blogadd
+    end
+end
+post "/blog/add" do
+    if session[:uid]==adminuid
+        result=conn.exec("INSERT INTO Blog(id, date, title, content) VALUES (0, TIMESTAMP \'#{conn.exec("SELECT NOW();")[0]["now"]}\', \'#{params{:title}}\', \'#{params[:content]}\');")
+        redirect "/blog"
+    end
+end
 get "/contact" do
     erb :contact
 end
 post "/contact" do
     responsetoken=params["g-recaptcha-response"]
-    
-    
     if (HTTParty.post('https://www.google.com/recaptcha/api/siteverify',:query => {
         :secret=>ENV["reCAPTCHA_secret"],
         :response=>responsetoken
