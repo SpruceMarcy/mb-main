@@ -166,7 +166,9 @@ post "/contact" do
         redirect "/botfailure"
     end
 end
-
+get "/sitemap.xml" do
+    send_file "sitemap.xml"
+end
 def getindex(conn)
     highest=0
     conn.exec("SELECT id FROM Blog;").each do |entry|
