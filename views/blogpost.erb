@@ -1,0 +1,16 @@
+<%@pagetitle="Blog"%>
+<%=erb :header%>
+		<article>
+			<h1>Blog</h1>
+        </article>
+        <div class="blogfeed">
+        <article class="blog">
+            <h1><%=@entry["title"]%></h1>
+            <%if @isadmin%>
+            <p><a href="/blog/delete?id=<%=@entry["id"]%>">Delete</a></p>
+            <%end%>
+            <p class="note adj">Published <%=@entry["date"]%> UTC</p>
+            <p class="adj"><%=@entry["content"]%></p>
+        </article>
+        </div>
+<%=erb :footer%>

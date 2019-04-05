@@ -1,0 +1,10 @@
+<%@pagetitle="Blog"%>
+<%=erb :header%>
+		<article>
+			<form method="post" class="contact">
+                <input type="text" name="title" placeholder="title" required/>
+                <textarea type="text" name="content" placeholder="Enter your entry here, then press submit." required></textarea>
+                <input type="submit" class="shadowed"/>
+            </form>
+		</article>
+<%=erb :footer%>

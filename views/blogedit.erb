@@ -1,0 +1,12 @@
+<%@pagetitle="Blog"%>
+<%=erb :header%>
+		<article>
+			<form method="post" class="contact">
+                <input type="hidden" name="id" value="<%=@entry["id"]%>" />
+                <input type="hidden" name="date" value="<%=@entry["date"]%>" />
+                <input type="text" name="title" placeholder="title" value="<%=@entry["title"]%>" required/>
+                <textarea type="text" name="content" placeholder="Enter your new version here, then press submit." required></textarea>
+                <input type="submit" class="shadowed"/>
+            </form>
+		</article>
+<%=erb :footer%>

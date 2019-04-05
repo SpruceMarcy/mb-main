@@ -1,0 +1,18 @@
+<%@pagetitle="Blog"%>
+<%=erb :header%>
+		<article>
+			<h1>Blog</h1>
+        </article>
+        <%@entries.each do |entry|%>
+        <article class="blog">
+            <h1><%=entry["title"]%></h1>
+            <%if @isadmin%>
+            <p><a href="/blog/delete?id=<%=entry["id"]%>">Delete</a></p>
+            <%end%>
+            <p class="note adj">Published <%=entry["date"]%> UTC</p>
+            <p class="adj"><%=entry["content"][0..255]%>...</p>
+            <p><a href="/blog/<%=entry["id"]%>">Continue Reading ─></a></p>
+        </article>
+        <%end%>
+		
+<%=erb :footer%>
