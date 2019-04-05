@@ -1,59 +1,76 @@
+html{
+    text-align:center;
+}
 body{
 	font-family: "trebuchet MS", "helvetica neue", helvetica, arial, sans-serif;
 	background-color:lightgrey;
+    font-size:16px;
+    max-width:1920px;
+    margin:auto;
+    text-align:left;
 }
 div.antifooter{
-    min-height:90.5vh;
+    min-height:92.4vh;
 }
 
 header{
 	background-color:white;
 	color: blue;
-    font-size: 4vw;
+    font-size: 3.5rem;
 	position:static;
-	padding: 1vw;
-	width:98vw;
+	padding: 1%;
+	width:98%;
 	box-shadow: 0px 4px 3px #606060;
 }
-
 	header img{
 		vertical-align:top;
-		width:1em;
+		width:3rem;
 	}
     header p{
-        font-size:1vw;
+        font-size:1rem;
     }
 nav{
 	background-color:white;
 	color: blue;
 	position:static;
-	font-size: 2vw;
-	padding: 1vw;
-	margin:1vw 0 0 0;
-	width:96vw;
-	border-radius:5vw;
+	font-size: 2rem;
+	padding: 0.8rem 1rem;
+	margin:1% 0 0 0;
+	width:98%;
+	border-radius:1000px;
 	box-shadow: 2px 2px 7px #303030;
 	text-align: center;
 }
 	nav a{
-		padding: 0 6vw
+        display:inline-block;
+		width:18%;
+        padding:0.2rem 0;
         /*box-shadow: 2px 2px 7px #303030;*/
 	}
                                             
 article{
 	background-color:white;
-	margin:1vw;
-	padding:1vw;
+	margin:15px;
+	padding:15px;
 	box-shadow: 2px 2px 7px #303030;
 }
 article.tool{
-    width:48vw;
-    margin-left:5vw;
+    width:68%;
+    margin-left:5%;
+}
+div.blogfeed{
+    text-align:center;
+}
+article.blog{
+    text-align:left;
+    width:60%;
+    margin-left:auto;
+    margin-right:auto;
 }
 article.project{
-    width:48vw;
+    width:68%;
     min-height:128px;
-    margin-left:5vw;
+    margin-left:5%;
 }
 article.project img{
     width:128px;
@@ -61,10 +78,11 @@ article.project img{
 }
 footer{
     background-color: black;
-    color : #404040;
-    padding: 2vh 2vw;
+    color : #282830;
+    padding: 2vh 2%;
+    font-size:2.2vh;
     left: 0;
-    width: 96vw;
+    width: 96%;
     box-shadow: 0px -3px 7px #606060;
 }
 footer:hover{
@@ -72,6 +90,10 @@ footer:hover{
 }
 span > *{
     display: inline-block;
+    vertical-align:top;
+}
+span article{
+    margin-top:0;
 }
 article figure{
     margin-top:0.5em;
@@ -96,8 +118,16 @@ article h2{
     content:"lorem ipsum";
 }
 p{
+    line-height:1.25rem;
+    font-size:1.2rem;
     margin:0.3em 0;
     font-family:"helvetica";
+}
+p ~ p, li{
+    margin-top:1.2rem;
+}
+p.adj{
+    margin-top:0;
 }
 p.quote{
     padding:0.6em 4em;
@@ -128,12 +158,12 @@ ul *{
 }
 header span.headround{
     float:right;
-    max-height:4vw;
-    margin-right:3vw;
+    max-height:4rem;
+    margin-right:3%;
 }
 span.headround{
-    border-radius:1.5vw;
-    padding:0.3vw 1vw;
+    border-radius:1.5rem;
+    padding:0.3rem 1rem;
 }
 span.code {
     background-color:grey;
@@ -145,33 +175,43 @@ span.code *{
     vertical-align:top;
 }
 form.contact textarea{
-    min-width:96vw;
-    max-width:96vw;
-    min-height:20vw;
-    font-size:1.5em;
-    margin-top:1vw;
+    min-width:99%;
+    max-width:99%;
+    min-height:15rem;
+    font-size:1.5rem;
+    margin-top:1rem;
+}
+form.contact input[type="submit"]{
+    margin-top:0.5rem;
 }
 input[type="submit"]{
     font-size: 1.4em;
-    padding: 0.6vw 1.4vw;
+    padding: 0.6rem 1.4rem;
     border-style:none;
-    border-radius:1vw;
+    border-radius:1rem;
     background-color:white;
     outline:0;
 }
-em{
+em.important{
     font-weight:bold;
     color:red;
 }
+ol{ 
+    margin-left:2rem;
+    list-style-type:decimal;
+}
 .third{
-    width:15vw;
-    margin:0 8vw;
+    width:33%;
+}
+figure.third img{
+    width:50%
 }
 .shaded{
     background-color:#F9F9FB;
 }
 .centered{
     text-align:center;
+    width:100%;
 }
 .transparent{
     background-color:lightgrey;
@@ -179,6 +219,10 @@ em{
 }
 .fullradius{
     border-radius:100%;
+}
+.note{
+    font-size:0.6em;
+    color:darkgrey;
 }
 .shadowed:hover{
     box-shadow: 1px 1px 20px #303030;

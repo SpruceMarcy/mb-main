@@ -12,7 +12,13 @@ config = {
     :consumer_key => ENV["consumer_key"],
     :consumer_secret => ENV["consumer_secret"],
     }
-conn = PG.connect("ec2-54-75-230-253.eu-west-1.compute.amazonaws.com", 5432,"","", "d11hc43cj4nptk", "gnwolwiiioiuqg", "32a08f6419e9ca49e69dd51f38373121570f08975f86f316f6f98b322087cad2")
+#connectinfo=ENV["DATABASE_URL"]
+conndomain=ENV["data_dom"]
+connport=ENV["data_port"].to_i
+conndata=ENV["data_data"]
+connuser=ENV["data_user"]
+connpass=ENV["data_pass"]
+conn = PG.connect(conndomain, connport,"","",conndata, connuser, connpass)
 
 enable :sessions
 set :session_secret, 'key goes here'
@@ -42,6 +48,7 @@ get "/logout" do
 end
 
 get "/" do
+    @entry=conn.exec("SELECT * FROM Blog WHERE id=#{getindex(conn)};")[0]
     erb :index
 end
 get "/tools" do
@@ -60,6 +67,7 @@ get "/about" do
     erb :about
 end
 get "/tools/settings" do
+    @isadmin=session[:uid]==adminuid
     erb :settings
 end
 post "/tools/settings/admin" do
@@ -94,8 +102,24 @@ get "/blog" do
     @entries=conn.exec("SELECT * FROM Blog;")
     erb :blog
 end
+get "/blog/edit" do
+    if session[:uid]==adminuid
+        @entry=conn.exec("SELECT * FROM Blog WHERE id=#{params[:id]};")[0]
+        erb :blogedit
+    end
+end 
+post "/blog/edit" do
+    if session[:uid]==adminuid
+        puts params[:content].gsub("'","''")
+        result=conn.exec("UPDATE Blog SET content='#{params[:content].gsub("'","''")}' WHERE id=#{params[:id].to_i};")
+        redirect "/blog"
+    end
+end
 get "/blog/delete" do
-    result=conn.exec("DELETE FROM Blog WHERE id=#{params["id"]};")
+    if session[:uid]==adminuid
+        result=conn.exec("DELETE FROM Blog WHERE id=#{params["id"]};")
+        redirect "/blog"
+    end
 end 
 get "/blog/add" do
     if session[:uid]==adminuid
@@ -104,9 +128,18 @@ get "/blog/add" do
 end
 post "/blog/add" do
     if session[:uid]==adminuid
-        result=conn.exec("INSERT INTO Blog(id, date, title, content) VALUES (0, TIMESTAMP \'#{conn.exec("SELECT NOW();")[0]["now"]}\', \'#{params{:title}}\', \'#{params[:content]}\');")
+        puts params[:content].gsub("'","''")
+        result=conn.exec("INSERT INTO Blog(id, date, title, content) VALUES (#{getindex(conn)+1}, TIMESTAMP \'#{conn.exec("SELECT NOW();")[0]["now"]}\', \'#{params[:title]}\', \'#{params[:content].gsub("'","''")}\');")
         redirect "/blog"
     end
+end
+get "/blog/:id" do
+    redirect "/blog/#{params[:id]}/#{conn.exec("SELECT title FROM Blog WHERE id=#{params[:id]};")[0]["title"]}"
+end
+get "/blog/:id/:name" do
+    @isadmin=session[:uid]==adminuid
+    @entry=conn.exec("SELECT * FROM Blog WHERE id=#{params[:id]};")[0]
+    erb :blogpost
 end
 get "/contact" do
     erb :contact
@@ -134,6 +167,16 @@ post "/contact" do
     end
 end
 
+def getindex(conn)
+    highest=0
+    conn.exec("SELECT id FROM Blog;").each do |entry|
+        testhigh=entry["id"].to_i
+        if testhigh>highest
+            highest=testhigh
+        end
+    end
+    return highest
+end
 def randword()
     Zip::File.open('public/words_alpha.zip') do |zip_file|
         entry = zip_file.glob('*.txt').first
