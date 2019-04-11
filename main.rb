@@ -18,6 +18,7 @@ connport=ENV["data_port"].to_i
 conndata=ENV["data_data"]
 connuser=ENV["data_user"]
 connpass=ENV["data_pass"]
+
 conn = PG.connect(conndomain, connport,"","",conndata, connuser, connpass)
 
 enable :sessions
@@ -96,6 +97,9 @@ get "/tools/yourand" do
              redirect "https://youtu.be/"+video["id"]["videoId"]
         end
     end
+end
+get "/tools/wordgen" do
+    `java tools/WordGenerator/AnalysisRunner`
 end
 get "/blog" do
     @isadmin=session[:uid]==adminuid
