@@ -99,7 +99,7 @@ get "/tools/yourand" do
     end
 end
 get "/tools/wordgen" do
-    `java -classpath tools/WordGenerator -jar wordgen.jar "/app/tools/WordGenerator/words_alpha.txt"`
+    `java -jar tools/WordGenerator/wordgen.jar "/app/tools/WordGenerator/words_alpha.txt"`
 end
 get "/blog" do
     @isadmin=session[:uid]==adminuid
