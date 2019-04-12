@@ -99,7 +99,8 @@ get "/tools/yourand" do
     end
 end
 get "/tools/wordgen" do
-    `java -jar tools/WordGenerator/wordgen.jar "/app/tools/WordGenerator/words_alpha.txt"`
+    @randword=`java -jar tools/WordGenerator/wordgen.jar "/app/tools/WordGenerator/words_alpha.txt"`
+    erb :wordgen
 end
 get "/blog" do
     @isadmin=session[:uid]==adminuid
