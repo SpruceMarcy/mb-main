@@ -79,9 +79,13 @@ post "/tools/settings/admin" do
     end
     redirect "/tools/"
 end
-post "/tools/settings/session" do
+post "/tools/settings/session/debug" do
     session[:debug]=!params[:debug].nil?
-    redirect "/tools/"
+    redirect "/tools/settings"
+end
+post "/tools/settings/session/dyslexic" do
+    session[:dyslexic]=!params[:dyslexic].nil?
+    redirect "/tools/settings"
 end
 
 get "/tools/wordrand" do
