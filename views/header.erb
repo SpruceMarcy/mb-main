@@ -9,9 +9,13 @@
         <script src="https://www.google.com/recaptcha/api.js" async defer></script>
         <%end%>
 		<link rel="stylesheet" href="/style/reset.css">
-		<link rel="stylesheet" href="/style/main.css">
+        <%if session[:pretentious]%>
+        <link rel="stylesheet" href="/style/pretense.css">
+        <%else%>
+        <link rel="stylesheet" href="/style/main.css">
+        <%end%>
         <%if session[:dyslexic]%>
-            <link rel="stylesheet" href="/style/dyslexic.css">
+        <link rel="stylesheet" href="/style/dyslexic.css">
         <%end%>
 		<link rel="icon" href="/images/mco.png">
 	</head>
