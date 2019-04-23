@@ -9,33 +9,34 @@
         <script src="https://www.google.com/recaptcha/api.js" async defer></script>
         <%end%>
 		<link rel="stylesheet" href="/style/reset.css">
-        <%if session[:pretentious]%>
-        <link rel="stylesheet" href="/style/pretense.css">
-        <%else%>
         <link rel="stylesheet" href="/style/main.css">
-        <%end%>
         <%if session[:dyslexic]%>
         <link rel="stylesheet" href="/style/dyslexic.css">
         <%end%>
 		<link rel="icon" href="/images/mco.png">
 	</head>
 	<body>
-        <div class="antifooter">
 		<header>
 			<span>
 				<a href="/"><img src="/images/mco.png"/></a>
 				<h1>Marcy Brook</h1>
-                <%if session[:logged_in]%>
-                <span class="headround">
+                <span>
+                    <nav>
+                        <a href="/">Home</a>
+                        <a href="/tools">Tools</a>
+                        <a href="/blog">Blog</a>
+                        <a href="/projects">Projects</a>
+                        <a href="/about">About</a>
+                    <%if session[:logged_in]%>
+                    </nav>
                     <a href="/logout" class="unround"><img src="<%=session[:logo]%>" title="Click to log out"/></a>
+                    <%else%>
+                        <a class="rec" href="/login">Log in with Github </a>
+                    </nav>
+                    <%end%>
                 </span>
-                <%else%>
-                <span class="headround">
-                    <p><a href="/login">login with github </a></p>
-                </span>
-                <%end%>
                 <%if session[:debug]%>
-                <span class="headround code">
+                <span class=" code">
                     <div>
                         <p>Debug: <%=session[:debug]%></p>
                         <p>Account ID: <%=session[:uid]%></p>
@@ -48,12 +49,5 @@
                     </div>
                 </span>
                 <%end%>
-			</span>
-			<nav>
-				<a href="/" c>Home</a>
-				<a href="/tools">Tools</a>
-                <a href="/blog">Blog</a>
-				<a href="/projects">Projects</a>
-				<a href="/about">About</a>
-			</nav>
+            </span>
 		</header>

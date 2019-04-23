@@ -87,11 +87,6 @@ post "/tools/settings/session/dyslexic" do
     session[:dyslexic]=!params[:dyslexic].nil?
     redirect "/tools/settings"
 end
-post "/tools/settings/session/pretense" do
-    session[:pretentious]=!params[:pretense].nil?
-    redirect "/tools/settings"
-end
-
 get "/tools/wordrand" do
     @randword=randword()
     erb :wordrand

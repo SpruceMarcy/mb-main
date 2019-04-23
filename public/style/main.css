@@ -2,57 +2,57 @@ html{
     text-align:center;
 }
 body{
-	font-family: "trebuchet MS", "helvetica neue", helvetica, arial, sans-serif;
-	background-color:lightgrey;
+	font-family: "helvetica neue", helvetica, arial, sans-serif;
+	background-color:whitesmoke;
     font-size:16px;
-    max-width:1920px;
+    max-width:1024px;
+    min-width:1024px;
     margin:auto;
     text-align:left;
 }
-div.antifooter{
-    min-height:92.4vh;
-}
 
 header{
-	background-color:white;
-	color: blue;
-    font-size: 3.5rem;
+    font-size: 1.1rem;
+    box-shadow:1px 1px 5px #d7d7d7;
 	position:static;
-	padding: 1%;
-	width:98%;
-	box-shadow: 0px 4px 3px #606060;
+	margin: 1%;
+    padding:2% 1%;
+	width:96%;
+    background-color:white;
 }
 	header img{
 		vertical-align:top;
-		width:3rem;
+		width:2rem;
 	}
-    header p{
-        font-size:1rem;
-    }
+header h1{
+    font-size: 2rem;
+    font-weight:bold;
+}
+header span *{
+        vertical-align:middle;
+}
+header span span{
+    width:75%;
+    text-align:right;
+}
+header span span *{
+    vertical-align:middle;
+}
 nav{
-	background-color:white;
-	color: blue;
-	position:static;
-	font-size: 2rem;
-	padding: 0.8rem 1rem;
-	margin:1% 0 0 0;
-	width:98%;
-	border-radius:1000px;
-	box-shadow: 2px 2px 7px #303030;
+	width:60%;
 	text-align: center;
 }
 	nav a{
         display:inline-block;
-		width:18%;
+		width:15%;
         padding:0.2rem 0;
-        /*box-shadow: 2px 2px 7px #303030;*/
 	}
                                             
 article{
+    box-shadow:1px 1px 5px #e7e7e7;
 	background-color:white;
-	margin:15px;
-	padding:15px;
-	box-shadow: 2px 2px 7px #303030;
+	margin:10px 25px;
+	padding:10px;
 }
 article.tool{
     width:68%;
@@ -77,16 +77,14 @@ article.project img{
     float:left;
 }
 footer{
-    background-color: black;
-    color : #282830;
+    color : #585860;
     padding: 2vh 2%;
-    font-size:2.2vh;
+    border-top-color:#585860;
+    border-top:1px;
+    border-top-style:solid;
+    font-size:1rem;
     left: 0;
     width: 96%;
-    box-shadow: 0px -3px 7px #606060;
-}
-footer:hover{
-    color:lightgray;
 }
 span > *{
     display: inline-block;
@@ -103,11 +101,11 @@ article figure figcaption{
     margin-top:0.2em;
 }
 article h1{
-    font-size:2em;
+    font-size:1.7em;
     font-weight:bold;
 }
 article h2{
-    font-size:1.3em;
+    font-size:1.2em;
     font-weight:bold;
 }
 .br{
@@ -121,7 +119,6 @@ p{
     line-height:1.25rem;
     font-size:1.2rem;
     margin:0.3em 0;
-    font-family:"helvetica";
 }
 p ~ p, li{
     margin-top:1.2rem;
@@ -136,34 +133,24 @@ p.quote{
 a{
 	text-decoration: none;
 	color:blue;
-	border:0.1em;
-	border-radius:0.5em;
-	border-style:solid;
-	border-color:#0000;
-	transition: border 0.15s;
 }
 a:hover{
 	color:darkblue;
-	background-color:#DDF;
-	border-style:solid;
-	border-color:darkblue;
+    text-decoration:underline;
+
 }
 a:active{
 	background-color:#EEF;
-	border-style:solid;
-	border-color:lightblue;
+}
+header a{
+    color:black;
+}
+header a:hover{
+    background-color:#DDF;
+    text-decoration:none;
 }
 ul *{
     margin-left:1em;
-}
-header span.headround{
-    float:right;
-    max-height:4rem;
-    margin-right:3%;
-}
-span.headround{
-    border-radius:1.5rem;
-    padding:0.3rem 1rem;
 }
 span.code {
     background-color:grey;
@@ -187,7 +174,6 @@ form.contact input[type="submit"]{
 input[type="submit"]{
     font-size: 1.4em;
     padding: 0.6rem 1.4rem;
-    border-style:none;
     border-radius:1rem;
     background-color:white;
     outline:0;
@@ -215,7 +201,6 @@ figure.third img{
 }
 .transparent{
     background-color:lightgrey;
-    box-shadow: inset 1px 1px 7px #303030;
 }
 .fullradius{
     border-radius:100%;
@@ -224,8 +209,20 @@ figure.third img{
     font-size:0.6em;
     color:darkgrey;
 }
+.rec{
+    border-radius:10px;
+    box-shadow:1px 1px 5px #303030
+}
+.rec:active{
+    box-shadow: inset 1px 1px 5px #303030
+}
+.shadowed{
+    border-style:solid;
+    border-color:white;
+}
 .shadowed:hover{
-    box-shadow: 1px 1px 20px #303030;
+    border-style:solid;
+    border-color:lightgrey;
 }
 .shadowed:active{
     box-shadow: inset 1px 1px 20px #303030;

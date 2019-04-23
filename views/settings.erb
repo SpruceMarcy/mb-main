@@ -23,10 +23,5 @@
                 <input type="checkbox" name="dyslexic" value="true" <%if session[:dyslexic]%>checked<%end%>/>
                 <input type="submit"  class="shadowed"/>
             </form>
-            <form method="post" action="/tools/settings/session/pretense">
-                <p>Pretentious styling mode enabled?</p>
-                <input type="checkbox" name="pretense" value="true" <%if session[:pretentious]%>checked<%end%>/>
-                <input type="submit"  class="shadowed"/>
-            </form>
 		</article>
 <%=erb :footer%>
