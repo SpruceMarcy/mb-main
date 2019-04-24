@@ -49,6 +49,7 @@ get "/logout" do
 end
 
 get "/" do
+    @isadmin=session[:uid]==adminuid
     @entry=conn.exec("SELECT * FROM Blog WHERE id=#{getindex(conn)};")[0]
     erb :index
 end
@@ -148,6 +149,27 @@ get "/blog/:id/:name" do
     @isadmin=session[:uid]==adminuid
     @entry=conn.exec("SELECT * FROM Blog WHERE id=#{params[:id]};")[0]
     erb :blogpost
+end
+get "/admin" do
+    if session[:uid]==adminuid
+        erb :admin
+    else
+        redirect "/"
+    end
+end
+get "/admin/todo" do
+    if session[:uid]==adminuid
+        @entries=conn.exec("SELECT * FROM TodoList;")
+        erb :todo
+    else
+        redirect "/"
+    end
+end
+post "/admin/todo" do
+    if session[:uid]==adminuid
+        result=conn.exec("INSERT INTO TodoList(task, color, notes, importance, notif) VALUES (\'#{params[:task].gsub("'","''")}\', \'#{params[:color]}\', \'#{params[:notes].gsub("'","''")}\', \'#{params[:importance].gsub("'","''")}\', \'#{params[:notif]}\');")
+        redirect "/admin/todo"
+    end
 end
 get "/contact" do
     erb :contact

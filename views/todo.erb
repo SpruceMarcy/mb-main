@@ -1,0 +1,29 @@
+<%@pagetitle="To-do list"%>
+<%=erb :header%>
+		<article>
+			<h1>To do</h1>
+        </article>
+        <%@entries.each do |entry|%>
+        <article class="blog" style="background-color: <%=entry["color"]%>">
+            <h1><%=entry["task"]%></h1>
+            <p class="note adj black">Deadline: <%=entry["notif"]%> UTC</p>
+            <p><a href="/todo/<%=entry["id"]%>">View ─></a></p>
+        </article>
+        <%end%>
+		<article class="blog">
+            <h2>Add New Entry</h2>
+            <form method="post">
+                <label for="task"><p>Task (Title)</p></label>
+                <textarea type="text" name="task" placeholder="Enter Task Here" required></textarea>
+                <label for="notes"><p>Additional Information</p></label>
+                <textarea type="text" name="notes" placeholder="Enter Notes Here" required></textarea>
+                <label for="importance"><p>Goal/Importance of task</p></label>
+                <textarea type="text" name="importance" placeholder="Enter Importance Here" required></textarea>
+                <label for="notif"><p>Date of next update</p></label>
+                <input type="date" name="notif" placeholder="Enter Deadline Here" required/>
+                <label for="color"><p>Colour</p></label>
+                <input type="color" name="color" placeholder="Enter Colour Here" required/>
+                <input type="submit" class="shadowed"/>
+            </form>
+        </article>
+<%=erb :footer%>

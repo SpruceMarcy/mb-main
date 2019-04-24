@@ -4,6 +4,9 @@
 			<h1>Welcome!</h1>
 			<p>Hi! I'm Marcy, and this is my website.</p>
             <p class="adj">For all information, please visit the <a href="/about">about page</a>.</p>
+            <%if @isadmin%>
+            <p class="adj">You are logged in as an admin. <a href="/admin">Click here for admin pages</a></p>
+            <%end%>
 		</article>
         <span>
         <article>
