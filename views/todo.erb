@@ -5,11 +5,13 @@
         </article>
         <%@entries.each do |entry|%>
         <article class="blog" style="background-color: <%=entry["color"]%>">
-            <h1><%=entry["task"]%></h1>
+            <h2><%=entry["task"]%></h2>
             <p class="note adj black">Deadline: <%=entry["notif"]%> UTC</p>
+            <p class="adj"><%=entry["notes"]%></p>
             <p><a href="/todo/<%=entry["id"]%>">View ─></a></p>
         </article>
         <%end%>
+        <p class="br"/>
 		<article class="blog">
             <h2>Add New Entry</h2>
             <form method="post">

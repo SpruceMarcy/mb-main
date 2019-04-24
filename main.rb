@@ -171,6 +171,20 @@ post "/admin/todo" do
         redirect "/admin/todo"
     end
 end
+get "/todo/:id" do
+    if session[:uid]==adminuid
+        @entry=conn.exec("SELECT * FROM TodoList WHERE id=#{params[:id]};")[0]
+        erb :todopost
+    else
+        redirect "/"
+    end
+end
+post "/todo/:id" do
+    if session[:uid]==adminuid
+        result=conn.exec("UPDATE TodoList SET task='#{params[:task].gsub("'","''")}', color='#{params[:color]}', notes='#{params[:notes].gsub("'","''")}',importance='#{params[:importance].gsub("'","''")}',notif='#{params[:notif]}' WHERE id=#{params[:id].to_i};")
+        redirect "/todo"
+    end
+end
 get "/contact" do
     erb :contact
 end
