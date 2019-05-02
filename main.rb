@@ -106,6 +106,9 @@ get "/tools/wordgen" do
     @randword=`java -jar tools/WordGenerator/wordgen.jar "/app/tools/WordGenerator/words_alpha.txt"`
     erb :wordgen
 end
+get "/tools/alpaca" do
+    erb :alpaca
+end
 get "/blog" do
     @isadmin=session[:uid]==adminuid
     @entries=conn.exec("SELECT * FROM Blog;")
