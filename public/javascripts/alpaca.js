@@ -1,4 +1,4 @@
-//Written by Marcus Brook 180171394
+//Written by Marcy Brook
 
 //Calls all other drawing functions in the correct position and order
 //x,y: the coordinates of the center of the bottom of the body
