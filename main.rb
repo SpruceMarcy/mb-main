@@ -102,6 +102,16 @@ get "/tools/wordgen" do
     @randword=`java -jar tools/WordGenerator/wordgen.jar "/app/tools/WordGenerator/words_alpha.txt"`
     erb :wordgen
 end
+get "/tools/redrand" do
+    sub=["tihi","tili"].sample
+    redditposts=HTTParty.get("https://www.reddit.com/r/#{sub}/top/.json?t=month",:headers => {"User-agent" =>"Top post getter for tihi/tili roulette"})
+    if redditposts["message"].nil? then
+        @redpost=redditposts["data"]["children"].sample
+    else
+        @redtext=redditposts["message"]
+    end
+    erb :redrand
+end
 get "/tools/alpaca" do
     erb :alpaca
 end
