@@ -17,37 +17,34 @@
 	</head>
 	<body>
 		<header>
-			<span>
-				<a href="/" class="fullradius"><img src="/images/mco.png"/></a>
-				<h1>Marcy Brook</h1>
-                <span>
-                    <nav>
-                        <a href="/">Home</a>
-                        <a href="/tools">Tools</a>
-                        <a href="/blog">Blog</a>
-                        <a href="/projects">Projects</a>
-                        <a href="/about">About</a>
-                    <%if session[:logged_in]%>
-                    </nav>
-                    <a href="/logout" class="unround"><img src="<%=session[:logo]%>" title="Click to log out"/></a>
-                    <%else%>
-                        <a class="rec" href="/login">Log in with Github </a>
-                    </nav>
-                    <%end%>
-                </span>
-                <%if session[:debug]%>
-                <span class=" code">
-                    <div>
-                        <p>Debug: <%=session[:debug]%></p>
-                        <p>Account ID: <%=session[:uid]%></p>
-                        <p>Admin: <%=@isadmin%></p>
-                    </div>
-                    <div>
-                        <p>Property: null</p>
-                        <p>Property: null</p>
-                        <p>Property: null</p>
-                    </div>
-                </span>
-                <%end%>
+            <a href="/" class="fullradius"><img src="/images/mco.png"/></a>
+            <h1>Marcy Brook</h1>
+            <nav>
+                <a href="/">Home</a>
+                <a href="/tools">Tools</a>
+                <a href="/blog">Blog</a>
+                <a href="/projects">Projects</a>
+                <a href="/about">About</a>
+            <%if session[:logged_in]%>
+            </nav>
+            <a href="/logout" class="unround"><img src="<%=session[:logo]%>" title="Click to log out"/></a>
+            <%else%>
+                <a class="rec" href="/login">Log in with Github </a>
+            </nav>
+            <%end%>
+            <%if session[:debug]%>
+            <span class=" code">
+                <div>
+                    <p>Debug: <%=session[:debug]%></p>
+                    <p>Account ID: <%=session[:uid]%></p>
+                    <p>Admin: <%=@isadmin%></p>
+                </div>
+                <div>
+                    <p>Property: null</p>
+                    <p>Property: null</p>
+                    <p>Property: null</p>
+                </div>
             </span>
+            <%end%>
 		</header>
+        <div class="content">

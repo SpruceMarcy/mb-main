@@ -5,54 +5,67 @@ body{
 	font-family: "helvetica neue", helvetica, arial, sans-serif;
 	background-color:whitesmoke;
     font-size:16px;
-    max-width:1024px;
-    min-width:1024px;
+
     margin:auto;
     text-align:left;
 }
-
+div.content{
+    max-width:1024px;
+    min-width:1024px;
+    margin:auto;
+}
 header{
+    display:flex;
     font-size: 1.1rem;
-    box-shadow:1px 1px 5px #d7d7d7;
-	position:static;
-	margin: 1%;
-    padding:2% 1%;
-	width:96%;
+    box-shadow:1px 1px 7px #d7d7d7;
+    top:0;
+	position: sticky;
+	margin: 0 auto;
+    padding:1.2rem 1%;
+	width:98%;
+    min-width:983px;
+    max-width:2048px;
     background-color:white;
 }
 header img{
     vertical-align:top;
 	width:2rem;
+    height:2rem;
     margin:5px;
 }
-header h1{
+header>h1{
     font-size: 2rem;
     font-weight:bold;
 }
-header span *{
-        vertical-align:middle;
-}
-header span span{
-    width:75%;
-    text-align:right;
-}
-header span span *{
+header>*{
+    margin: auto 0;
+    display:inline-block;
     vertical-align:middle;
 }
+
+nav>*{
+    display:inline-block;
+    vertical-align:middle;
+}
+
 nav{
-	width:60%;
+    position:relative;
+    margin-left:auto;
+    margin-right:2%;
+    max-width:442px;
+    min-width:442px;
 	text-align: center;
 }
-	nav a{
-        display:inline-block;
-		width:15%;
-        padding:0.2rem 0;
-	}
+nav>a{
+    display:inline-block;
+    width:15%;
+    padding:0.2rem 0;
+}
                                             
 article{
     box-shadow:1px 1px 5px #e7e7e7;
 	background-color:white;
-	margin:10px 25px;
+	margin:14px 25px;
 	padding:10px;
 }
 article.tool{
@@ -77,9 +90,14 @@ article.project img{
     width:128px;
     float:left;
 }
+article.stick {
+    position:sticky;
+    top:110px;
+}
 footer{
     color : #585860;
     padding: 2vh 2%;
+    margin-top:2.5rem;
     border-top-color:#585860;
     border-top:1px;
     border-top-style:solid;
