@@ -2,35 +2,53 @@
 <%=erb :header%>
 		<article>
 			<h1>Web Tools</h1>
+			<p>These "Tools" are applications that can be run in-browser. Each page will have a form or interface to use the tool, no download required.</p>
+            <p class="adj">Unlike my <a href="/projects/">Projects</a>, in most cases the source code will not be readily downloadable, and may be integrated into the site itself. You can try searching through the repository for this site if you want to see how something works.</p>
 		</article>
         <article class="tool">
             <h2>Server Settings</h2>
             <p>This page will allow you to customise your experience on this site by creating session cookies.</p>
             <p><a href="/tools/settings">Server Settings</a></p>
         </article>
-        <article class="tool">
-            <h2>Random Word Selector</h2>
-            <p>This page will show you a randomly selected word.</p>
-            <p><a href="/tools/wordrand">Random Word Selector</a></p>
+        <article>
+            <h1>Linguistics</h1>
+            <p>Tools for messing around with words and text.</p>
+            <input type="checkbox" class="expand">
+            <article class="tool">
+                <h2>Random Word Selector</h2>
+                <p>This page will show you a randomly selected word.</p>
+                <p><a href="/tools/wordrand">Random Word Selector</a></p>
+            </article>
+            <article class="tool">
+                <h2>Random Word Generator</h2>
+                <p>This page will show you a randomly generated word.</p>
+                <p><a href="/tools/wordgen">Random Word Generator</a></p>
+            </article>
         </article>
-        <article class="tool">
-            <h2>Random Video Finder</h2>
-            <p>This will redirect you to an obscure youtube video based on a random word.</p>
-            <p><a href="/tools/yourand">Random Video Finder</a></p>
+        <article>
+            <h1>Web Content</h1>
+            <p>Tools for interacting with other sites.</p>
+            <input type="checkbox" class="expand">
+            <article class="tool">
+                <h2>Random Video Finder</h2>
+                <p>This will redirect you to an obscure youtube video based on a random word.</p>
+                <p><a href="/tools/yourand">Random Video Finder</a></p>
+            </article>
         </article>
-        <article class="tool">
-            <h2>Random Word Generator</h2>
-            <p>This page will show you a randomly generated word.</p>
-            <p><a href="/tools/wordgen">Random Word Generator</a></p>
-        </article>
-        <article class="tool">
-            <h2>JavaScript Alpaca</h2>
-            <p>An old assignment.</p>
-            <p><a href="/tools/alpaca">JavaScript Alpaca</a></p>
-        </article>
-        <article class="tool">
-            <h2>JavaScript Cells</h2>
-            <p>An experiment in mathematical representation of cell shapes. Work in progress.</p>
-            <p><a href="/tools/cells">JavaScript Cells</a></p>
+        
+        <article>
+            <h1>Canvases</h1>
+            <p>Tools that use the javascript canvas.</p>
+            <input type="checkbox" class="expand">
+            <article class="tool">
+                <h2>JavaScript Alpaca</h2>
+                <p>An old assignment.</p>
+                <p><a href="/tools/alpaca">JavaScript Alpaca</a></p>
+            </article>
+            <article class="tool">
+                <h2>JavaScript Cells</h2>
+                <p>An experiment in mathematical representation of cell shapes. Work in progress.</p>
+                <p><a href="/tools/cells">JavaScript Cells</a></p>
+            </article>
         </article>
 <%=erb :footer%>

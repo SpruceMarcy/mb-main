@@ -65,8 +65,8 @@ nav>a{
 article{
     box-shadow:1px 1px 5px #e7e7e7;
 	background-color:white;
-	margin:14px 25px;
-	padding:10px;
+	margin:8px 25px;
+	padding:15px;
 }
 article.tool{
     width:68%;
@@ -126,6 +126,28 @@ article h1{
 article h2{
     font-size:1.2em;
     font-weight:bold;
+}
+.expand:not(:checked) ~ article{
+    display:none;
+}
+.expand{
+    display:inline-block;
+    border-radius:7px;
+    -webkit-appearance:none;
+    background-color:lightgray;
+    width:5rem;
+    outline:0;
+}
+.expand:not(:active):hover{
+    background-color:whitesmoke;
+}
+.expand:not(:checked):before{
+    content:'expand ▼';
+    padding-left:12px;
+}
+.expand:checked:after{
+    content:'hide ▲';
+    padding-left:20px;
 }
 .br{
     font-size:0.2em;

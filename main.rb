@@ -54,16 +54,11 @@ get "/" do
     @entry=conn.exec("SELECT * FROM Blog WHERE id=#{getindex(conn)};")[0]
     erb :index
 end
-get "/tools" do
-    erb :tools
-end
-get "/tools/" do
+get "/tools/?" do
     erb :toolsdirectory
 end
-get "/projects" do
-    erb :projects
-end
-get "/projects/" do
+
+get "/projects/?" do
     erb :projectsdirectory
 end
 get "/about" do
