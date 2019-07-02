@@ -1,0 +1,25 @@
+<%@pagetitle="Randomly Selected Word"%>
+<%=erb :header%>
+		<article>
+			<h1>Vic-20 Character Generator</h1>
+            <p>Select the boxes below to draw an image. Click "Generate" to turn the image into a series of 8 8-bit numbers.</p>
+            <div class="br"></div>
+            <table class="pixelart">
+            <%for y in 0...8%>
+                <tr>
+                <%for x in 0...8%>
+                    <td>
+                        <input type="checkbox" id="<%=x.to_s+y.to_s%>" value="Apple">
+                    </td>
+                <%end%>
+                </tr>
+            <%end%>
+            </table>
+            <div class="br"></div>
+            <button id="generate">Generate</button>
+            <div class="br"></div>
+            <input type="text" id="output">
+
+            <script src="/javascripts/vic.js"></script>
+		</article>
+<%=erb :footer%>

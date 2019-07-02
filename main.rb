@@ -118,6 +118,9 @@ end
 get "/tools/cells" do
     erb :cells
 end
+get "/tools/vic" do
+    erb :vic
+end
 get "/blog" do
     @isadmin=session[:uid]==adminuid
     @entries=conn.exec("SELECT * FROM Blog;")

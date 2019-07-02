@@ -47,12 +47,12 @@ function drawAll(){
         context.beginPath();
         context.arc(cell.x,cell.y,4,0,2*Math.PI);
         context.stroke();
-        for (let cell2 of cells){
-            if(!cell.equals(cell2)){
-               
-               drawMiddleLine(cell, cell2)
-            }
-        }
+        //for (let cell2 of cells){
+        //    if(!cell.equals(cell2)){
+        //       
+        //       drawMiddleLine(cell, cell2)
+        //    }
+        //}
     }
 }
 
