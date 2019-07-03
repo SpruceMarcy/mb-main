@@ -287,9 +287,22 @@ img.redimg{
     background-color:#F9F9FB;
 }
 
-.centered{
+span.centered{
     text-align:center;
     width:100%;
+}
+textarea.centered{
+    min-width:99%;
+    max-width:99%;
+    min-height:4rem;
+    text-align:left;
+    
+}
+button.centered{
+    width:15rem;
+    height:3rem;
+    display:block;
+    margin:auto auto;
 }
 .transparent{
     background-color:lightgrey;
