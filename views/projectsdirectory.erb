@@ -6,6 +6,15 @@
             <p class="adj">Unless otherwise stated, these projects are under the effects of the <a href="https://unlicense.org/">Unlicense</a>.</p>
             <p class="quote">"Information wants to be free" - Stewart Brand, 1984</p>
 		</article>
+        <%if session[:uid]=="SpruceMarcy" or session[:uid]=="TomKeeble" or session[:uid]=="freddyheppell"%>
+        <article class="project">
+            <img src="/images/github.png"/>
+            <h2>DogBot</h2>
+            <p>This is a bot for social media chats (namely, facebook). I contributed to it by adding a module that mirrors the functionality of my <a href="/tools/uwu">UwU Translator</a></p>
+            <p class="adj">It is in a private repository, it requires multiple parts, and it is still a work in progress.</p>
+            <p class="adj"><a href="https://github.com/TomKeeble/Dogbot3/">Link to Github</a></p>
+        </article>
+        <%end%>
         <article class="project">
             <img src="/images/github.png"/>
             <h2>Spruce</h2>
