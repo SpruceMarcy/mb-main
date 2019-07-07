@@ -301,7 +301,6 @@ textarea.centered{
 button.centered{
     width:15rem;
     height:3rem;
-    display:block;
     margin:auto auto;
 }
 .transparent{

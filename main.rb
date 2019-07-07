@@ -19,7 +19,6 @@ conndata=ENV["data_data"]
 connuser=ENV["data_user"]
 connpass=ENV["data_pass"]
 
-
 conn = PG.connect(conndomain, connport,"","",conndata, connuser, connpass)
 
 enable :sessions
