@@ -4,7 +4,7 @@ function uwuify(str){
     r.push([/[rl]/gi,"w"])
     r.push([/youw/gi,"ur"])
     r.push([/you/gi,"u"])
-    r.push([/awe /gi,"r "])
+    r.push([/awe(?![a-z])/gi,"r"])
     r.push([/ove/gi,"uv"])
     r.push([/(n)([aeiou])/gi,"$1y$2"])
     for(var pair in r) {
