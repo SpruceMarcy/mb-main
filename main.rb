@@ -90,6 +90,7 @@ end
 
 get "/tools/younew" do
     searchresults=HTTParty.get("https://www.googleapis.com/youtube/v3/search?key="+ENV["you_key"]+"&part=snippet&order=date&publishedAfter=#{(Time.now-60).to_datetime.rfc3339}")
+    puts (Time.now-60).to_datetime.rfc3339
     videos = searchresults["items"]
     videos.each do |video|
         if video["id"]["kind"]=="youtube#video"
