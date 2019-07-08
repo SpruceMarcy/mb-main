@@ -244,6 +244,9 @@ end
 get "/sitemap.xml" do
     send_file "sitemap.xml"
 end
+get "/robots.txt" do
+    send_file "robots.txt"
+end
 def getindex(conn)
     highest=0
     conn.exec("SELECT id FROM Blog;").each do |entry|
