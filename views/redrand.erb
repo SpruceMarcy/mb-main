@@ -1,4 +1,5 @@
 <%@pagetitle="TILI/TIHI Roulette"%>
+<%@pagedesc="Take a gamble at getting an image either from /r/TILI or /r/TIHI."%>
 <%=erb :header%>
 		<article>
 			<h1>TILI/TIHI Roulette</h1>
@@ -9,7 +10,7 @@
             <p class="collapse adj">Original Post: <a href="https://www.reddit.com<%=@redpost["data"]["permalink"]%>"><%=@redpost["data"]["title"]%></a></p>
             <p class="collapse adj">Subreddit: <%=@redpost["data"]["subreddit_name_prefixed"]%></p>
             <div class="br"></div>
-            <img src="<%=@redpost["data"]["url"]%>" class="redimg"/>
+            <img src="<%=@redpost["data"]["url"]%>" alt="random image" class="redimg"/>
             <p><a href="<%=@redpost["data"]["url"]%>">Direct link (click here if it's not displaying correctly)</a></p>
 		</article>
 <%=erb :footer%>
