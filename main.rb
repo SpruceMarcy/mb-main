@@ -19,7 +19,7 @@ conndata=ENV["data_data"]
 connuser=ENV["data_user"]
 connpass=ENV["data_pass"]
 
-
+include ERB::Util
 conn = PG.connect(conndomain, connport,"","",conndata, connuser, connpass)
 
 enable :sessions
