@@ -4,7 +4,7 @@
 		<meta charset="utf-8">
         <meta name="msvalidate.01" content="7BFAB72892EDD0271CC0CC7B89664F3B" />
         <meta name="google-site-verification" content="UOouO-FLDXINpgkCqGnVZtDeWC7nNwW6GEq6n9fWFhA" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=1.0, maximum-scale=500, minimum-scale=0">
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=1.0, maximum-scale=10, minimum-scale=0">
 		<title><%=@pagetitle%></title>
         <%if @botprot%>
         <script src="https://www.google.com/recaptcha/api.js" async defer></script>
@@ -14,12 +14,14 @@
         <%if session[:dyslexic]%>
         <link rel="stylesheet" href="/style/dyslexic.css">
         <%end%>
+        <link rel="stylesheet" media="(max-width: 768px)" href="/style/mobile.css">
 		<link rel="icon" href="/images/mco.png">
 	</head>
 	<body>
 		<header>
             <a href="/" class="fullradius"><img src="/images/mco.png"/></a>
             <h1>Marcy Brook</h1>
+            <input type="checkbox" class="nav mobonly">
             <nav>
                 <a href="/">Home</a>
                 <a href="/tools">Tools</a>
@@ -27,6 +29,7 @@
                 <a href="/projects">Projects</a>
                 <a href="/about">About</a>
             <%if session[:logged_in]%>
+            
             </nav>
             <a href="/logout" class="unround"><img src="<%=session[:logo]%>" title="Click to log out"/></a>
             <%else%>
