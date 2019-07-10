@@ -1,53 +1,23 @@
 html{
-    text-align:center;
     font-size:20px;
 }
 body{
-	font-family: "helvetica neue", helvetica, arial, sans-serif;
-	background-color:whitesmoke;
     font-size:inherit;
     width:100%;
-    margin:auto;
-    text-align:left;
 }
 div.content{
     max-width:100%;
     min-width:0px;
-    margin:auto;
 }
 header{
-    display:flex;
-    font-size: 1.1rem;
-    box-shadow:1px 1px 7px #d7d7d7;
-    top:0;
-	position: sticky;
-	margin: 0 auto;
     padding:0 5%;
 	width:90%;
     min-width:0;
     max-width:none;
-    background-color:white;
-}
-header img{
-    vertical-align:top;
-	width:2rem;
-    height:2rem;
-    margin:5px;
 }
 header>h1{
     display:none;
 }
-header>*{
-    margin: auto 0;
-    display:inline-block;
-    vertical-align:middle;
-}
-
-nav>*{
-    display:inline-block;
-    vertical-align:middle;
-}
-
 header input{
     position:relative;
     margin-left:auto;
@@ -65,25 +35,15 @@ nav{
     border-bottom-left-radius:10px;
     border-bottom-right-radius:10px;
     position:absolute;
-    margin-left:auto;
     left:5%;
     top:50px;
     margin-right:0;
     max-width:90%;
     min-width:90%;
-	text-align: center;
 }
 nav>a{
     display:block;
     width:100%;
-    padding:0.2rem 0;
-}
-                                            
-article{
-    box-shadow:1px 1px 5px #e7e7e7;
-	background-color:white;
-	margin:8px 25px;
-	padding:15px;
 }
 article.tool{
     width:initial;
@@ -92,108 +52,21 @@ article.tool{
 article article.tool{
     margin:8px 10px;
 }
-div.blogfeed{
-    text-align:center;
-}
 article.blog, article.project{
     text-align:left;
     width:initial;
     margin-left:auto;
     margin-right:auto;
 }
-article.project img{
-    width:128px;
-    float:left;
-}
 article.stick {
     display:none;
-}
-footer{
-    color : #585860;
-    padding: 2vh 2%;
-    margin-top:2.5rem;
-    border-top-color:#585860;
-    border-top:1px;
-    border-top-style:solid;
-    font-size:1rem;
-    left: 0;
-    width: 96%;
-}
-span > *{
-    display: inline-block;
-    vertical-align:top;
 }
 span textarea.centered{
     min-width:96%;
     max-width:96%;
-    height:30rem;
-}
-span article{
-    margin-top:0;
-}
-article figure{
-    margin-top:0.5em;
-    margin-bottom:0.5em;    
 }
 article figure figcaption{
     display:none;
-}
-article h1{
-    font-size:1.7em;
-    font-weight:bold;
-}
-article h2{
-    font-size:1.2em;
-    font-weight:bold;
-}
-table.pixelart{
-    border-collapse: collapse;
-    border:1px solid black;
-}
-table.pixelart tr{
-    line-height:16px;
-    height:16px
-}
-table.pixelart td{
-    line-height:16px;
-    height:16px;
-    border:1px solid black;
-
-}
-table.pixelart td input{
-    margin:0px;
-    -webkit-appearance:none;
-    background-color:lightgray;
-    width:1rem;
-    height:1rem;
-    outline:0;
-    display:block;
-}
-table.pixelart td input:checked{
-    background-color:black;
-}
-
-.expand:not(:checked) ~ .collapse{
-    display:none;
-}
-.expand{
-    display:inline-block;
-    border-radius:7px;
-    -webkit-appearance:none;
-    background-color:lightgray;
-    width:5rem;
-    outline:0;
-}
-.expand:not(:active):hover{
-    background-color:whitesmoke;
-}
-.expand:not(:checked):before{
-    content:'expand ▼';
-    padding-left:12px;
-}
-.expand:checked:after{
-    content:'hide ▲';
-    padding-left:20px;
 }
 .nav{
     animation-duration:0.5s;
@@ -227,101 +100,14 @@ table.pixelart td input:checked{
     content:'X';
     padding-left:9px;
 }
-.br{
-    font-size:0.2em;
-}
-.br::after{
-    color:transparent;
-    content:"lorem ipsum";
-}
-p{
-    line-height:1.25rem;
-    font-size:1.2rem;
-    margin:0.3em 0;
-}
-p ~ p, li{
-    margin-top:1.2rem;
-}
-p.adj{
-    margin-top:0;
-}
 p.quote{
     padding:0.6em 1em;
-    font-style:italic;
-}
-a{
-	text-decoration: none;
-	color:blue;
-}
-a:hover{
-	color:darkblue;
-    text-decoration:underline;
-
-}
-a:active{
-	background-color:#EEF;
-}
-header a{
-    color:black;
-}
-header a:hover{
-    background-color:#DDF;
-    text-decoration:none;
 }
 ul *{
     margin-left:0.1rem;
 }
-span.code {
-    background-color:grey;
-    box-shadow: inset 0px 0px 20px #202020;
-}
-span.code *{
-    font-family:monospace;
-    color:white;
-    vertical-align:top;
-}
-form textarea{
-    min-width:99%;
-    max-width:99%;
-    min-height:10em;
-}
 form.contact textarea{
     font-size:1rem;
-    margin-top:1rem;
-}
-form.contact input[type="submit"]{
-    margin-top:0.5rem;
-}
-textarea.invisible{
-    background-color:transparent;
-    min-height:5rem;
-    border:none;
-    font-size:1.2rem;
-    outline:0;
-    font-family: "helvetica neue", helvetica, arial, sans-serif;
-}
-input[type="submit"], .mocsubmit{
-    font-size: 1.4em;
-    padding: 0.6rem 1.4rem;
-    height:100%;
-    border-width:2px;
-    border-radius:1rem;
-    background-color:white;
-    outline:0;
-    font-family: "helvetica neue", helvetica, arial, sans-serif;
-    line-height:normal;
-}
-article.blog form>input[type="submit"], article.blog form>span{
-    margin:1rem;
-    display: block;
-}
-em.important{
-    font-weight:bold;
-    color:red;
-}
-ol{ 
-    margin-left:2rem;
-    list-style-type:decimal;
 }
 .third{
     width:30%;
@@ -329,65 +115,10 @@ ol{
 figure.third img{
     width:80%
 }
-img.redimg{
-    width:512px;
-    border-width:5px;
-    border-style:solid;
-}
-.shaded{
-    background-color:#F9F9FB;
-}
-
-span.centered{
-    text-align:center;
-    width:100%;
-}
-textarea.centered{
-    min-width:99%;
-    max-width:99%;
-    min-height:4rem;
-    text-align:left;
-    
-}
 button.centered{
     width:50%;
     height:2rem;
-    margin:auto auto;
 }
 .mobonly{
     display:initial;
-}
-.transparent{
-    background-color:lightgrey;
-}
-.fullradius{
-    border-radius:100%;
-}
-.note{
-    font-size:0.6em;
-    color:darkgrey;
-}
-.rec{
-    border-radius:10px;
-    box-shadow:1px 1px 5px #303030
-}
-.rec:active{
-    box-shadow: inset 1px 1px 5px #303030
-}
-.shadowed{
-    border-style:solid;
-    border-color:white;
-}
-.shadowed:hover{
-    border-style:solid;
-    border-color:lightgrey;
-}
-.shadowed:active{
-    box-shadow: inset 1px 1px 20px #303030;
-}
-.unround{
-    border-radius:0;
-}
-.black{
-    color:black;
 }
