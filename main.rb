@@ -138,6 +138,9 @@ end
 get "/tools/uwu" do
     erb :uwu
 end
+get "/tools/css-streamliner" do
+    erb :cssstreamline
+end
 get "/blog" do
     @isadmin=session[:uid]==adminuid
     @entries=conn.exec("SELECT * FROM Blog;")
@@ -175,7 +178,7 @@ post "/blog/add" do
     end
 end
 get "/blog/:id" do
-    redirect "/blog/#{params[:id]}/#{conn.exec("SELECT title FROM Blog WHERE id=#{params[:id]};")[0]["title"]}"
+    redirect "/blog/#{params[:id]}/#{url_encode(conn.exec("SELECT title FROM Blog WHERE id=#{params[:id]};")[0]["title"])}"
 end
 get "/blog/:id/:name" do
     @isadmin=session[:uid]==adminuid

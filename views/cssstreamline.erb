@@ -1,0 +1,24 @@
+<%@pagetitle="CSS Intersection Finder"%>
+<%@pagedesc="This is a tool to help remove duplicate CSS rules across multiple style sheets."%>
+<%=erb :header%>
+		<article>
+			<h1>CSS Intersection Finder</h1>
+            <p>Enter one style sheet into the first box and another into the second, then click "compare". The output will display all rules that belong to both style sheets, allowing you to remove them from one of them if you have multiple sheets that apply to the same page, for example.</p>
+            <p class="adj">This uses a primative CSS parser that I wrote, and as a result it cannot handle media queries and anything else more complicated than selectors and rule declarations. It also separates comma-separated lists of selectors into their own set of rules in order to compare rules that are delared differently, but are empirically the same. On the bright side, if you enter the same css text into both boxes it will auto-format it for you.</p>
+            <div class="br"></div>
+            <span>
+                <textarea id="input1" placeholder="First CSS" class="centered"></textarea>
+                <textarea id="input2" placeholder="Second CSS" class="centered"></textarea>
+            </span>
+            <div class="br"></div>
+            <span class="centered" style="display:inline-block">
+                <button id="compare" class="centered">Compare</button>
+            </span>
+            <div class="br"></div>
+            <span>
+                <textarea id="output" placeholder="Output CSS" class="centered"></textarea>
+            </span>
+            
+            <script src="/javascripts/cssstreamline.js"></script>
+		</article>
+<%=erb :footer%>

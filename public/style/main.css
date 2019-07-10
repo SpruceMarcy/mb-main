@@ -109,6 +109,12 @@ span > *{
     display: inline-block;
     vertical-align:top;
 }
+span textarea.centered{
+    min-width:48%;
+    max-width:48%;
+    height:30rem;
+}
+
 span article{
     margin-top:0;
 }
