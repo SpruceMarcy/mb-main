@@ -86,22 +86,20 @@ article{
 	padding:15px;
 }
 article.tool{
-    width:68%;
-    margin-left:5%;
+    width:initial;
+    margin:8px 25px;
+}
+article article.tool{
+    margin:8px 10px;
 }
 div.blogfeed{
     text-align:center;
 }
-article.blog{
+article.blog, article.project{
     text-align:left;
     width:initial;
     margin-left:auto;
     margin-right:auto;
-}
-article.project{
-    width:68%;
-    min-height:128px;
-    margin-left:5%;
 }
 article.project img{
     width:128px;
@@ -125,6 +123,11 @@ span > *{
     display: inline-block;
     vertical-align:top;
 }
+span textarea.centered{
+    min-width:96%;
+    max-width:96%;
+    height:30rem;
+}
 span article{
     margin-top:0;
 }
@@ -133,7 +136,7 @@ article figure{
     margin-bottom:0.5em;    
 }
 article figure figcaption{
-    margin-top:0.2em;
+    display:none;
 }
 article h1{
     font-size:1.7em;
@@ -243,7 +246,7 @@ p.adj{
     margin-top:0;
 }
 p.quote{
-    padding:0.6em 4em;
+    padding:0.6em 1em;
     font-style:italic;
 }
 a{
@@ -266,7 +269,7 @@ header a:hover{
     text-decoration:none;
 }
 ul *{
-    margin-left:1em;
+    margin-left:0.1rem;
 }
 span.code {
     background-color:grey;
@@ -283,7 +286,7 @@ form textarea{
     min-height:10em;
 }
 form.contact textarea{
-    font-size:1.5rem;
+    font-size:1rem;
     margin-top:1rem;
 }
 form.contact input[type="submit"]{
@@ -321,10 +324,10 @@ ol{
     list-style-type:decimal;
 }
 .third{
-    width:33%;
+    width:30%;
 }
 figure.third img{
-    width:50%
+    width:80%
 }
 img.redimg{
     width:512px;
@@ -347,8 +350,8 @@ textarea.centered{
     
 }
 button.centered{
-    width:15rem;
-    height:3rem;
+    width:50%;
+    height:2rem;
     margin:auto auto;
 }
 .mobonly{
