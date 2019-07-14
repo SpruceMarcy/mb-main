@@ -297,12 +297,19 @@ span.centered{
     text-align:center;
     width:100%;
 }
+span.checkboxes{
+    margin-top:0.4rem;
+    margin-bottom:0.8rem;
+    display:inline-block;
+}
+span.checkboxes label~label{
+    margin-left:4rem;
+}
 textarea.centered{
     min-width:99%;
     max-width:99%;
     min-height:4rem;
     text-align:left;
-    
 }
 button.centered{
     width:15rem;
