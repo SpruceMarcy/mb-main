@@ -65,6 +65,12 @@ span textarea.centered{
     min-width:96%;
     max-width:96%;
 }
+span.checkboxes{
+    text-align:left;
+}
+span.checkboxes label~label{
+    margin-left:0;
+}
 article figure figcaption{
     display:none;
 }
