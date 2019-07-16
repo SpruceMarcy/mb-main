@@ -138,6 +138,9 @@ end
 get "/tools/uwu" do
     erb :uwu
 end
+get "/tools/crytyper" do
+    erb :crytyper
+end
 get "/tools/css-streamliner" do
     erb :cssstreamline
 end
