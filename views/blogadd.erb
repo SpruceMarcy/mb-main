@@ -2,9 +2,15 @@
 <%@pagedesc="You should not be able to see this. For Admin use only."%>
 <%=erb :header%>
 		<article>
-			<form method="post" class="contact">
+			<form method="post" class="contact" onsubmit='copyContent()'>
                 <input type="text" name="title" placeholder="title" required/>
-                <textarea type="text" name="content" placeholder="Enter your entry here, then press submit." required></textarea>
+                <p type="text" id="editable_p"contenteditable>Enter your entry here, then press submit.</p>
+                <textarea type="text "id="content" class="hidden" name="content"></textarea>
+                <script>
+                    function copyContent () {
+                        document.getElementById("content").innerHTML=document.getElementById("editable_p").innerHTML;
+                    }
+                </script>
                 <input type="submit" class="shadowed"/>
             </form>
 		</article>

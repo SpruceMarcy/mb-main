@@ -10,6 +10,18 @@
                 <input type="password" name="password" placeholder="Password"/>
                 <input type="submit"  class="shadowed"/>
             </form>
+            <h2>Get tester</h2>
+			<form method="get" action="#" target="_blank" onsubmit='copyContent()'>
+                <p>Get tester</p>
+                <p type="text" id="editable_p"contenteditable>content here</p>
+                <textarea id="editable_hta" class="hidden" name="editable"></textarea>
+                <input type="submit"  class="shadowed"/>
+                <script>
+                    function copyContent () {
+                        document.getElementById("editable_hta").innerHTML=document.getElementById("editable_p").innerHTML;
+                    }
+                </script>
+            </form>
 		</article>
         <%end%>
 		<article>

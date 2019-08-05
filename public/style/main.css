@@ -319,6 +319,9 @@ button.centered{
 .mobonly{
     display:none;
 }
+.hidden{
+    display:none;
+}
 .transparent{
     background-color:lightgrey;
 }
