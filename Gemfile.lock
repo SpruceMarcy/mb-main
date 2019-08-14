@@ -28,7 +28,7 @@ PLATFORMS
 DEPENDENCIES
   httparty!
   pg!
-  rack-ssl-enforcer!
+  rack-ssl-enforcer
   rubyzip!
   sinatra!
 
