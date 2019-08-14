@@ -4,6 +4,8 @@ require 'httparty'
 require 'pg'
 require 'sinatra'
     set :bind, '0.0.0.0'
+require 'rack/ssl-enforcer'
+use Rack::SslEnforcer
 
 password=ENV["master_password"]
 adminuid=ENV["master_name"]
@@ -25,8 +27,9 @@ conn = PG.connect(conndomain, connport,"","",conndata, connuser, connpass)
 enable :sessions
 set :session_secret, 'key goes here'
 
+
 get "/login" do
-    redirect 'https://github.com/login/oauth/authorize?client_id='+config[:consumer_key]+'&redirect_uri=http://mxmbrook.co.uk/callback' 
+    redirect 'https://github.com/login/oauth/authorize?client_id='+config[:consumer_key]+'&redirect_uri=https://mxmbrook.co.uk/callback' 
 end
 get '/callback' do
     userinformation = HTTParty.get('https://api.github.com/user?access_token='+HTTParty.post('https://github.com/login/oauth/access_token',:query => {
