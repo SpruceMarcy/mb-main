@@ -257,6 +257,9 @@ end
 get "/robots.txt" do
     send_file "robots.txt"
 end
+not_found do
+    erb :"404"
+end
 def getindex(conn)
     highest=0
     conn.exec("SELECT id FROM Blog;").each do |entry|
