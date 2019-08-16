@@ -174,7 +174,10 @@ end
 get "/blog/add" do
     if session[:uid]==adminuid
         erb :blogadd
+    else
+        status 404
     end
+
 end
 post "/blog/add" do
     if session[:uid]==adminuid
