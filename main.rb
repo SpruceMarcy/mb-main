@@ -144,6 +144,9 @@ end
 get "/tools/crytyper" do
     erb :crytyper
 end
+get "/tools/sarcasm" do
+    erb :sarcasm
+end
 get "/tools/css-streamliner" do
     erb :cssstreamline
 end
