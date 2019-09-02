@@ -246,6 +246,7 @@ post "/contact" do
         if message.strip==""
            redirect "/botfailure" 
         end
+        message=params[:browser]+"\n"+message
         msg="From: MB-Main <"+ENV["master_email"]+">\nTo: Marcy Brook <"+ENV["master_email"]+">\nSubject: A Message from a Site Visitor ("+request.ip+").\n\n" + message + "\n\n"
         smtp = Net::SMTP.new 'smtp.gmail.com', 587
         smtp.enable_starttls
