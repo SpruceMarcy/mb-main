@@ -57,6 +57,9 @@ get "/" do
     @entry=conn.exec("SELECT * FROM Blog WHERE id=#{getindex(conn)};")[0]
     erb :index
 end
+get "/tools/abc" do
+   redirect "https://www.youtube.com/watch?v=j9jbdgZidu8" 
+end
 get "/tools/?" do
     erb :toolsdirectory
 end
