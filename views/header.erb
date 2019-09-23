@@ -10,8 +10,10 @@
         <%if @botprot%>
         <script src="https://www.google.com/recaptcha/api.js" async defer></script>
         <%end%>
+        <%if @maincss!="dotcom"%>
 		<link rel="stylesheet" href="/style/reset.css">
-        <link rel="stylesheet" href="/style/main.css">
+        <%end%>
+        <link rel="stylesheet" href="/style/<%=@maincss%>.css">
         <%if session[:dyslexic]%>
         <link rel="stylesheet" href="/style/dyslexic.css">
         <%end%>

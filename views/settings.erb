@@ -32,9 +32,26 @@
                 <input type="submit"  class="shadowed"/>
             </form>
             <form method="post" action="/tools/settings/session/dyslexic">
-                <p>Dyslexia Support mode enabled?</p>
+                <p>Use OpenDyslexic font?</p>
                 <input type="checkbox" name="dyslexic" value="true" <%if session[:dyslexic]%>checked<%end%>/>
                 <input type="submit"  class="shadowed"/>
             </form>
+		</article>
+		<article>
+			<h1>Future-Proofing</h1>
+			<form method="post" action="/tools/settings/session/style">
+                <p>Thanks to advances in serverside technology, we here at mxmbrook.co.uk have developed multiple CSSs so that science can still be done, even in the event of environmental, social, economic, or structural collapse.</p>
+                <p class="adj">If, for some reason, sleek monotone aesthetics with cards and box-shadows do not remain stylish into the future, then please select one of the following styles so that browsing can continue in a modern manner.</p>
+                <div>
+                    <input type="radio" name="selected" id="cssmain" value="main" <%if @maincss=="main"%>checked<%end%>/>
+                    <label for="cssmain">2019</label>
+                </div>
+                <div>
+                    <input type="radio" name="selected" id="cssdotc" value="dotcom" <%if @maincss=="dotcom"%>checked<%end%>/>
+                    <label for="cssdotc">Another dotcom boom</label>
+                </div>
+                <input type="submit"  class="shadowed"/>
+            </form>
+
 		</article>
 <%=erb :footer%>

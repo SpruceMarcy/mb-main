@@ -27,6 +27,16 @@ conn = PG.connect(conndomain, connport,"","",conndata, connuser, connpass)
 enable :sessions
 set :session_secret, 'key goes here'
 
+get '*' do
+    if !session[:style].nil? then
+        @maincss=session[:style]
+    else
+        @maincss="main"
+    end
+    pass
+end
+
+
 
 get "/login" do
     redirect 'https://github.com/login/oauth/authorize?client_id='+config[:consumer_key]+'&redirect_uri=https://mxmbrook.co.uk/callback' 
@@ -88,6 +98,10 @@ post "/tools/settings/session/debug" do
 end
 post "/tools/settings/session/dyslexic" do
     session[:dyslexic]=!params[:dyslexic].nil?
+    redirect "/tools/settings"
+end
+post "/tools/settings/session/style" do
+    session[:style]=params[:selected]
     redirect "/tools/settings"
 end
 get "/tools/wordrand" do
