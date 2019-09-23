@@ -36,7 +36,7 @@ nav {
     border-top-width:8px;
 }
 footer{
-    border:2px solid blue;
+    border:2px solid #C0C0C0;
     border-top-width:8px;
     margin-bottom:10px
 }
@@ -55,6 +55,9 @@ p{
 }
 footer *{
     margin:0;
+}
+footer:after{
+    content:url("\\images\\ieget.gif");
 }
 article > article{
     margin-left:30px;
