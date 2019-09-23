@@ -10,7 +10,7 @@
         <%if @botprot%>
         <script src="https://www.google.com/recaptcha/api.js" async defer></script>
         <%end%>
-        <%if @maincss!="dotcom"%>
+        <%if @maincss=="main"%>
 		<link rel="stylesheet" href="/style/reset.css">
         <%end%>
         <link rel="stylesheet" href="/style/<%=@maincss%>.css">

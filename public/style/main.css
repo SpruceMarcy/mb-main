@@ -159,16 +159,21 @@ table.pixelart td input{
 table.pixelart td input:checked{
     background-color:black;
 }
-
+input[type=radio], input[type=checkbox]{
+    border: 0px;
+    width: 1rem;
+    height: 1rem;
+}
 .expand:not(:checked) ~ .collapse{
     display:none;
 }
-.expand{
+input[type=checkbox].expand{
     display:inline-block;
     border-radius:7px;
     -webkit-appearance:none;
     background-color:lightgray;
     width:5rem;
+    height: 1rem;
     outline:0;
 }
 .expand:not(:active):hover{
@@ -269,11 +274,6 @@ input[type="submit"], .mocsubmit{
 article.blog form>input[type="submit"], article.blog form>span{
     margin:1rem;
     display: block;
-}
-input[type=radio], input[type=checkbox]{
-    border: 0px;
-    width:1rem;
-    height: 1rem;
 }
 em.important{
     font-weight:bold;
