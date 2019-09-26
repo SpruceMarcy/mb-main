@@ -5,11 +5,11 @@
 			<h1>To do</h1>
         </article>
         <%@entries.each do |entry|%>
-        <article class="blog" style="background-color: <%=entry["color"]%>">
+        <article class="blog" style="background-image: linear-gradient(180deg,<%=entry["color"]%>,<%=entry["color"]%> 92%, #0000FF88)">
             <h2><%=entry["task"]%></h2>
             <p class="note adj black">Deadline: <%=entry["notif"]%> UTC</p>
             <p class="adj"><%=entry["notes"]%></p>
-            <p><a href="/todo/<%=entry["id"]%>">View ─></a></p>
+            <p><a href="admin/todo/<%=entry["id"]%>">View ─></a></p>
         </article>
         <%end%>
         <p class="br"/>

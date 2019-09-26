@@ -2,7 +2,7 @@
 <%@pagedesc="You should not be able to see this. For Admin use only."%>
 <%=erb :header%>
         <div class="blogfeed">
-        <article class="blog" style="background-color: <%=@entry["color"]%>">
+        <article class="blog" style="background-image: linear-gradient(180deg,<%=@entry["color"]%>,<%=@entry["color"]%> 92%, #0000FF88)">
             <form method="post">
                 <label for="task"><h2>Task (Title)</h2></label>
                 <textarea type="text" class="invisible" name="task" placeholder="Enter Task Here" required><%=@entry["task"]%></textarea>

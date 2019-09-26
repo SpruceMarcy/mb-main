@@ -1,0 +1,23 @@
+<%@pagetitle="Database Interface"%>
+<%@pagedesc="You should not be able to see this. For Admin use only."%>
+<%=erb :header%>
+        <article>
+            <h1>Database Interface</h1>
+            <form method="post">
+                <label for="input">Query</label>
+                <input type="text" name="input" id="input" placeholder="Enter Query Here" required/>
+                <input type="submit" class="shadowed" value="Submit Query"/>
+                <a href="/admin" class="mocsubmit shadowed">Back</a>
+                <a href="" class="mocsubmit shadowed">Reload</a>
+            </form>
+            <%if !@result.nil?%>
+                <%if @result.respond_to? :each%>
+                    <%@result.each do |res|%>
+            <%=html_escape(res)%>
+                    <%end%>
+                <%else%>
+            <%=html_escape(@result.to_s)%>
+                <%end%>
+            <%end%>
+        </article>
+<%=erb :footer%>

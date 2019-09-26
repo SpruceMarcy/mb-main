@@ -14,6 +14,9 @@
 		<link rel="stylesheet" href="/style/reset.css">
         <%end%>
         <link rel="stylesheet" href="/style/<%=@maincss%>.css">
+        <%if @isadmin%>
+        <link rel="stylesheet" href="/style/admin.css">
+        <%end%>
         <%if session[:dyslexic]%>
         <link rel="stylesheet" href="/style/dyslexic.css">
         <%end%>

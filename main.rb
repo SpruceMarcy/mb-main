@@ -28,6 +28,7 @@ enable :sessions
 set :session_secret, 'key goes here'
 
 get '*' do
+    @isadmin=session[:uid]==adminuid
     if !session[:style].nil? then
         @maincss=session[:style]
     else
@@ -35,7 +36,15 @@ get '*' do
     end
     pass
 end
-
+post '*' do
+    @isadmin=session[:uid]==adminuid
+    if !session[:style].nil? then
+        @maincss=session[:style]
+    else
+        @maincss="main"
+    end
+    pass
+end
 
 
 get "/login" do
@@ -63,7 +72,6 @@ get "/logout" do
 end
 
 get "/" do
-    @isadmin=session[:uid]==adminuid
     @entry=conn.exec("SELECT * FROM Blog WHERE id=#{getindex(conn)};")[0]
     erb :index
 end
@@ -81,16 +89,7 @@ get "/about" do
     erb :about
 end
 get "/tools/settings" do
-    @isadmin=session[:uid]==adminuid
     erb :settings
-end
-post "/tools/settings/admin" do
-    if session[:uid]==adminuid
-        if !params[:password].nil?
-            password=params[:password] 
-        end
-    end
-    redirect "/tools/"
 end
 post "/tools/settings/session/debug" do
     session[:debug]=!params[:debug].nil?
@@ -108,19 +107,6 @@ get "/tools/wordrand" do
     @randword=randword()
     erb :wordrand
 end
-
-#get "/tools/younew" do
-#    
-#    searchresults=HTTParty.get("https://www.googleapis.com/youtube/v3/search?key="+ENV["you_key"]+"&part=snippet&order=date&publishedAfter=#{(Time.now-3600).to_datetime.rfc3339}")
-#    puts (Time.now-3600).to_datetime.rfc3339
-#    puts "======================================="
-#    videos = searchresults["items"]
-#    videos.each do |video|
-#        if video["id"]["kind"]=="youtube#video"
-#             redirect "https://youtu.be/"+video["id"]["videoId"]
-#        end#
-#    end
-#end
 
 get "/tools/yourand" do
     queryword=randword()
@@ -171,7 +157,6 @@ get "/tools/css-streamliner" do
     erb :cssstreamline
 end
 get "/blog" do
-    @isadmin=session[:uid]==adminuid
     @entries=conn.exec("SELECT * FROM Blog;")
     erb :blog
 end
@@ -179,6 +164,8 @@ get "/blog/edit" do
     if session[:uid]==adminuid
         @entry=conn.exec("SELECT * FROM Blog WHERE id=#{params[:id]};")[0]
         erb :blogedit
+    else
+        status 404
     end
 end 
 post "/blog/edit" do
@@ -186,12 +173,16 @@ post "/blog/edit" do
         puts params[:content].gsub("'","''")
         result=conn.exec("UPDATE Blog SET content='#{params[:content].gsub("'","''")}' WHERE id=#{params[:id].to_i};")
         redirect "/blog"
+    else
+        status 404
     end
 end
 get "/blog/delete" do
     if session[:uid]==adminuid
         result=conn.exec("DELETE FROM Blog WHERE id=#{params["id"]};")
         redirect "/blog"
+    else
+        status 404
     end
 end 
 get "/blog/add" do
@@ -200,57 +191,62 @@ get "/blog/add" do
     else
         status 404
     end
-
 end
 post "/blog/add" do
     if session[:uid]==adminuid
         puts params[:content].gsub("'","''")
         result=conn.exec("INSERT INTO Blog(id, date, title, content) VALUES (#{getindex(conn)+1}, TIMESTAMP \'#{conn.exec("SELECT NOW();")[0]["now"]}\', \'#{params[:title]}\', \'#{params[:content].gsub("'","''")}\');")
         redirect "/blog"
+    else
+        status 404
     end
 end
 get "/blog/:id" do
     redirect "/blog/#{params[:id]}/#{url_encode(conn.exec("SELECT title FROM Blog WHERE id=#{params[:id]};")[0]["title"])}"
 end
 get "/blog/:id/:name" do
-    @isadmin=session[:uid]==adminuid
     @entry=conn.exec("SELECT * FROM Blog WHERE id=#{params[:id]};")[0]
     erb :blogpost
 end
-get "/admin" do
+get "/admin*" do
     if session[:uid]==adminuid
-        erb :admin
+        pass
     else
-        redirect "/"
+        status 404
     end
+end
+post "/admin*" do
+    if session[:uid]==adminuid
+        pass
+    else
+        status 404
+    end
+end
+get "/admin" do
+    erb :admin
+end
+get "/admin/database" do
+    erb :database
+end
+post "/admin/database" do
+    @result=conn.exec(params["input"])
+    erb :database
 end
 get "/admin/todo" do
-    if session[:uid]==adminuid
-        @entries=conn.exec("SELECT * FROM TodoList;")
-        erb :todo
-    else
-        redirect "/"
-    end
+    @entries=conn.exec("SELECT * FROM TodoList;")
+    erb :todo
 end
 post "/admin/todo" do
-    if session[:uid]==adminuid
-        result=conn.exec("INSERT INTO TodoList(task, color, notes, importance, notif) VALUES (\'#{params[:task].gsub("'","''")}\', \'#{params[:color]}\', \'#{params[:notes].gsub("'","''")}\', \'#{params[:importance].gsub("'","''")}\', \'#{params[:notif]}\');")
-        redirect "/admin/todo"
-    end
+    result=conn.exec("INSERT INTO TodoList(task, color, notes, importance, notif) VALUES (\'#{params[:task].gsub("'","''")}\', \'#{params[:color]}\', \'#{params[:notes].gsub("'","''")}\', \'#{params[:importance].gsub("'","''")}\', \'#{params[:notif]}\');")
+    redirect "/admin/todo"
 end
-get "/todo/:id" do
-    if session[:uid]==adminuid
-        @entry=conn.exec("SELECT * FROM TodoList WHERE id=#{params[:id]};")[0]
-        erb :todopost
-    else
-        redirect "/"
-    end
+get "/admin/todo/:id" do
+    @entry=conn.exec("SELECT * FROM TodoList WHERE id=#{params[:id]};")[0]
+    erb :todopost
 end
-post "/todo/:id" do
-    if session[:uid]==adminuid
-        result=conn.exec("UPDATE TodoList SET task='#{params[:task].gsub("'","''")}', color='#{params[:color]}', notes='#{params[:notes].gsub("'","''")}',importance='#{params[:importance].gsub("'","''")}',notif='#{params[:notif]}' WHERE id=#{params[:id].to_i};")
-        redirect "/todo"
-    end
+post "/admin/todo/:id" do
+    result=conn.exec("UPDATE TodoList SET task='#{params[:task].gsub("'","''")}', color='#{params[:color]}', notes='#{params[:notes].gsub("'","''")}',importance='#{params[:importance].gsub("'","''")}',notif='#{params[:notif]}' WHERE id=#{params[:id].to_i};")
+    redirect "/todo"
 end
 get "/contact" do
     erb :contact

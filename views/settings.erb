@@ -4,12 +4,6 @@
         <%if @isadmin%>
 		<article>
 			<h1>Admin Settings</h1>
-            <h2>SMTP Settings</h2>
-			<form method="post" action="/tools/settings/admin">
-                <p>SMTP Password</p>
-                <input type="password" name="password" placeholder="Password"/>
-                <input type="submit"  class="shadowed"/>
-            </form>
             <h2>Get tester</h2>
 			<form method="get" action="#" target="_blank" onsubmit='copyContent()'>
                 <p>Get tester</p>
