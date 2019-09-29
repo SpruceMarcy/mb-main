@@ -37,6 +37,7 @@ get '*' do
     pass
 end
 post '*' do
+    @adminstyle=false
     @isadmin=session[:uid]==adminuid
     if !session[:style].nil? then
         @maincss=session[:style]
@@ -210,6 +211,7 @@ get "/blog/:id/:name" do
 end
 get "/admin*" do
     if session[:uid]==adminuid
+        @adminstyle=true
         pass
     else
         status 404
@@ -217,6 +219,7 @@ get "/admin*" do
 end
 post "/admin*" do
     if session[:uid]==adminuid
+        @adminstyle=true
         pass
     else
         status 404
@@ -226,9 +229,11 @@ get "/admin" do
     erb :admin
 end
 get "/admin/database" do
+    @entries=getTables(conn)
     erb :database
 end
 post "/admin/database" do
+    @entries=getTables(conn)
     @result=conn.exec(params["input"])
     erb :database
 end
@@ -245,8 +250,12 @@ get "/admin/todo/:id" do
     erb :todopost
 end
 post "/admin/todo/:id" do
-    result=conn.exec("UPDATE TodoList SET task='#{params[:task].gsub("'","''")}', color='#{params[:color]}', notes='#{params[:notes].gsub("'","''")}',importance='#{params[:importance].gsub("'","''")}',notif='#{params[:notif]}' WHERE id=#{params[:id].to_i};")
-    redirect "/todo"
+    if !params["setstatus"].nil? then
+        result=conn.exec("UPDATE TodoList SET status='#{params["setstatus"]}' WHERE id=#{params[:id].to_i};")
+    else
+        result=conn.exec("UPDATE TodoList SET task='#{params[:task].gsub("'","''")}', color='#{params[:color]}', notes='#{params[:notes].gsub("'","''")}',importance='#{params[:importance].gsub("'","''")}',notif='#{params[:notif]}' WHERE id=#{params[:id].to_i};")
+    end
+    redirect "/admin/todo"
 end
 get "/contact" do
     erb :contact
@@ -299,4 +308,11 @@ def randword()
         content = entry.get_input_stream.read 
         content.split("\n").sample
     end
+end
+def getTables(conn)
+    returnval=Hash.new
+    conn.exec("SELECT table_name FROM information_schema.tables WHERE table_schema='public' ORDER BY table_name;").each do |table_name|
+        returnval[table_name["table_name"]]=conn.exec("SELECT * FROM #{table_name["table_name"]};")
+    end
+    return returnval
 end

@@ -4,11 +4,11 @@
         <article>
             <h1>Database Interface</h1>
             <form method="post">
-                <label for="input">Query</label>
-                <input type="text" name="input" id="input" placeholder="Enter Query Here" required/>
-                <input type="submit" class="shadowed" value="Submit Query"/>
-                <a href="/admin" class="mocsubmit shadowed">Back</a>
-                <a href="" class="mocsubmit shadowed">Reload</a>
+                <label for="input">Query:</label>
+                <input type="text" name="input" id="input" class="adminquery" placeholder="Enter Query Here" required/>
+                <input type="submit" class="adminbutton" value="Submit Query"/>
+                <a href="/admin" class="adminbutton">Back</a>
+                <a href="" class="adminbutton">Reload</a>
             </form>
             <%if !@result.nil?%>
                 <%if @result.respond_to? :each%>
@@ -18,6 +18,20 @@
                 <%else%>
             <%=html_escape(@result.to_s)%>
                 <%end%>
+            <%end%>
+            <%@entries.each do |name, entry|%>
+            <h2><%=name%></h2>
+            <table>
+                <%entry.each do |record|%>
+                <tr>
+                    <%record.each do |field|%>
+                    <td>
+                    <%=html_escape(field[1])%>
+                    </td>
+                    <%end%>
+                <tr>
+                <%end%>
+            </table>
             <%end%>
         </article>
 <%=erb :footer%>

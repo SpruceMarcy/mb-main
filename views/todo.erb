@@ -5,12 +5,21 @@
 			<h1>To do</h1>
         </article>
         <%@entries.each do |entry|%>
-        <article class="blog" style="background-image: linear-gradient(180deg,<%=entry["color"]%>,<%=entry["color"]%> 92%, #0000FF88)">
+        <%if entry["status"]!="completed"%>
+        <article class="blog" style="background-image: linear-gradient(180deg,<%=entry["color"]%>,<%=entry["color"]%> calc(100% - 15px), #0000FF88)">
             <h2><%=entry["task"]%></h2>
             <p class="note adj black">Deadline: <%=entry["notif"]%> UTC</p>
             <p class="adj"><%=entry["notes"]%></p>
-            <p><a href="admin/todo/<%=entry["id"]%>">View ─></a></p>
+            <br/>
+            <span>
+                <a href="/admin/todo/<%=entry["id"]%>" class="adminbutton">View ─></a>
+                <form action="/admin/todo/<%=entry["id"]%>" method="post" class="discrete">
+                    <input type="hidden" name="setstatus" value="completed">
+                    <input type="submit" class="adminbutton" value="Mark as completed"/>
+                </form>
+            </span>
         </article>
+        <%end%>
         <%end%>
         <p class="br"/>
 		<article class="blog">
@@ -29,4 +38,21 @@
                 <input type="submit" class="shadowed"/>
             </form>
         </article>
+        <%@entries.each do |entry|%>
+        <%if entry["status"]=="completed"%>
+        <article class="blog" style="background-image: linear-gradient(180deg,<%=entry["color"]%>,#888888 15px, #888888)">
+            <h2><%=entry["task"]%></h2>
+            <p class="note adj black">Deadline: <%=entry["notif"]%> UTC</p>
+            <p class="adj"><%=entry["notes"]%></p>
+            <br/>
+            <span>
+                <a href="/admin/todo/<%=entry["id"]%>" class="adminbutton">View ─></a>
+                <form action="/admin/todo/<%=entry["id"]%>" method="post" class="discrete">
+                    <input type="hidden" name="setstatus" value="active">
+                    <input type="submit" class="adminbutton" value="Reactivate"/>
+                </form>
+            </span>
+        </article>
+        <%end%>
+        <%end%>
 <%=erb :footer%>
