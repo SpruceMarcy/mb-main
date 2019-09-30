@@ -10,7 +10,7 @@
         <%if @botprot%>
         <script src="https://www.google.com/recaptcha/api.js" async defer></script>
         <%end%>
-        <%if @maincss=="main"%>
+        <%if @maincss=="main" or @maincss=="gradients2"%>
 		<link rel="stylesheet" href="/style/reset.css">
         <%end%>
         <link rel="stylesheet" href="/style/<%=@maincss%>.css">
@@ -48,11 +48,6 @@
                     <p>Debug: <%=session[:debug]%></p>
                     <p>Account ID: <%=session[:uid]%></p>
                     <p>Admin: <%=@isadmin%></p>
-                </div>
-                <div>
-                    <p>Property: null</p>
-                    <p>Property: null</p>
-                    <p>Property: null</p>
                 </div>
             </span>
             <%end%>
