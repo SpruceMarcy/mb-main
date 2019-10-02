@@ -267,6 +267,7 @@ textarea.invisible{
 input[type="submit"], .mocsubmit{
     font-size: 1.4em;
     padding: 0.6rem 1.4rem;
+    cursor:pointer;
     height:100%;
     border-width:2px;
     border-radius:1rem;
