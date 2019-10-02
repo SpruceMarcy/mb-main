@@ -101,7 +101,8 @@ article.project img{
 }
 article.stick {
     position:sticky;
-    top:110px;
+    top:88px;
+    margin-right:8px;
 }
 footer{
     color : #585860;
