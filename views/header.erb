@@ -10,7 +10,7 @@
         <%if @botprot%>
         <script src="https://www.google.com/recaptcha/api.js" async defer></script>
         <%end%>
-        <%if @maincss=="main" or @maincss=="gradients2"%>
+        <%if !@maincss.nil? and @maincss[0]=="m"%>
 		<link rel="stylesheet" href="/style/reset.css">
         <%end%>
         <link rel="stylesheet" href="/style/<%=@maincss%>.css">
