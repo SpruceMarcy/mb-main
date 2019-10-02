@@ -51,7 +51,7 @@ nav>*{
 nav{
     position:relative;
     margin-left:auto;
-    margin-right:2%;
+    margin-right:0;
     max-width:442px;
     min-width:442px;
 	text-align: center;
@@ -60,6 +60,10 @@ nav>a{
     display:inline-block;
     width:15%;
     padding:0.2rem 0;
+}
+a.tight{
+    padding:0;
+    width:auto;
 }
                                             
 article{

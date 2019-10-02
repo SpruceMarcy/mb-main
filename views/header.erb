@@ -35,7 +35,7 @@
                 <a href="/projects">Projects</a>
                 <a href="/about">About</a>
             <%if session[:logged_in]%>
-                <a href="/logout" class="unround"><img src="<%=session[:logo]%>" title="Click to log out"/></a>
+                <a href="/logout" class="unround tight"><img src="<%=session[:logo]%>" title="Click to log out"/></a>
             <%else%>
                 <a class="rec" href="/login">Log in with Github </a>
             <%end%>
