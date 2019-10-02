@@ -5,7 +5,6 @@ body{
 	font-family: "helvetica neue", helvetica, arial, sans-serif;
 	background-color:whitesmoke;
     font-size:16px;
-
     margin:auto;
     text-align:left;
 }
@@ -54,12 +53,18 @@ nav{
     margin-right:0;
     max-width:442px;
     min-width:442px;
+    height:42px;
+    max-height:42px;
 	text-align: center;
+    display:flex;
 }
 nav>a{
+    vertical-align:middle;
     display:inline-block;
     width:15%;
     padding:0.2rem 0;
+    margin-top:auto;
+    margin-bottom:auto;
 }
 a.tight{
     padding:0;
@@ -343,11 +348,20 @@ button.centered{
     color:darkgrey;
 }
 .rec{
-    border-radius:10px;
-    box-shadow:1px 1px 5px #303030
+    border-radius:7px;
+    box-shadow:1px 1px 5px #303030;
+    padding:3px;
+    padding-top:4px;
+    display:flex;
 }
 .rec:active{
     box-shadow: inset 1px 1px 5px #303030
+}
+a.rec *{
+    display:inline-block;
+}
+a.rec * ~ *{
+    padding-left:2px;
 }
 .shadowed{
     border-style:solid;
