@@ -142,6 +142,9 @@ end
 get "/tools/dither" do
     erb :dither
 end
+get "/tools/lavalamp" do
+    erb :lavalamp
+end
 get "/tools/vic" do
     erb :vic
 end
