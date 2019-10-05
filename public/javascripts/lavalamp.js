@@ -112,7 +112,7 @@ var colour = "#00AA00";
 new Lava(canvas)
 
 function fullscreen(){
-           var el = document.getElementById('canvas1');
+           var el = document.getElementById('canvasbounds');
  
            if(el.webkitRequestFullScreen) {
                el.webkitRequestFullScreen();
