@@ -110,3 +110,16 @@ var width = canvas.width;
 var height = canvas.height;
 var colour = "#00AA00";
 new Lava(canvas)
+
+function fullscreen(){
+           var el = document.getElementById('canvas1');
+ 
+           if(el.webkitRequestFullScreen) {
+               el.webkitRequestFullScreen();
+           }
+          else {
+             el.mozRequestFullScreen();
+          }            
+}
+ 
+canvas.addEventListener("click",fullscreen)
