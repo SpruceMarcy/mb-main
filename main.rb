@@ -1,4 +1,5 @@
 require 'net/smtp'
+require "base64"
 require 'zip'
 require 'httparty'
 require 'pg'
@@ -259,6 +260,24 @@ post "/admin/todo/:id" do
         result=conn.exec("UPDATE TodoList SET task='#{params[:task].gsub("'","''")}', color='#{params[:color]}', notes='#{params[:notes].gsub("'","''")}',importance='#{params[:importance].gsub("'","''")}',notif='#{params[:notif]}' WHERE id=#{params[:id].to_i};")
     end
     redirect "/admin/todo"
+end   
+get "/admin/photoview/:id" do
+    erb :photoview
+end
+get "/admin/photoupload" do
+    erb :photoupload
+end
+post "/admin/photoupload" do
+    test = params[:photo][:tempfile]
+    result=conn.exec("INSERT INTO photos(title,photo) VALUES (\'TempFile\',$1);",[Base64.encode64(test.read)])
+    erb :photoupload
+end
+get "/photo/:id" do
+    test= Base64.decode64(conn.exec("SELECT photo FROM photos WHERE id=#{params[:id][0]};")[0]["photo"])
+    f = File.open('temp.png', 'wb')
+    f.write(test)
+    f.close()
+    send_file 'temp.png'
 end
 get "/contact" do
     erb :contact
