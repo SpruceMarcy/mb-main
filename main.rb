@@ -23,6 +23,7 @@ include ERB::Util
 enable :sessions
 set :session_secret, 'key goes here'
 
+puts `mkdir imgcache`
 imgcachelog=Hash.new
 
 get '*' do
