@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/SpruceMarcy/ImageResize-ruby.git
-  revision: 8ffc7cb67a5ae2d50d24f4e03cda39bfea337ac8
+  revision: eb417c5764a2729e8a590d15cfd8bd6d9f8790e0
   specs:
     ImageResize (0.0.6)
 
@@ -32,7 +32,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  ImageResize (~> 0.0.6)!
+  ImageResize!
   httparty!
   pg!
   rack-ssl-enforcer (~> 0.2.9)
