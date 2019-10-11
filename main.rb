@@ -266,7 +266,7 @@ post "/admin/todo/:id" do
     end
     redirect "/admin/todo"
 end   
-get "/admin/photoview/:id.png" do
+get "/admin/photoview/:id.jpg" do
     erb :photoview
 end
 get "/admin/photoupload" do
@@ -274,21 +274,21 @@ get "/admin/photoupload" do
 end
 post "/admin/photoupload" do
     testr = params[:photo][:tempfile].read
-    f = File.open('tempi.png', 'wb')
+    f = File.open('tempi.jpg', 'wb')
     f.write(testr)
     f.close()
     puts Base64.encode64(testr)
     result=conn.exec("INSERT INTO photos(title,photo) VALUES (\'TempFile\',decode(encode($1,'escape'),'escape'));",[Base64.encode64(testr)])
     erb :photoupload
 end
-get "/photo/:id.png" do
+get "/photo/:id.jpg" do
     if conn.exec("SELECT 1 FROM photos WHERE id = #{params[:id]};").values.length>0
         test= conn.exec("SELECT encode(photo,'escape') FROM photos WHERE id=#{params[:id]};")[0]["encode"]
-        f = File.open('tempo.png', 'wb')
+        f = File.open('tempo.jpg', 'wb')
         f.write(Base64.decode64(test.to_s))
         f.close()
-        Image.resize("#{__dir__}/tempo.png", "#{__dir__}/tempo2.png", 944, 40,"bicubic")
-        send_file 'tempo2.png'
+        Image.resize("#{__dir__}/tempo.jpg", "#{__dir__}/tempo2.jpg", 944, 40,"bicubic")
+        send_file 'tempo2.jpg'
     else
         status 404
     end
