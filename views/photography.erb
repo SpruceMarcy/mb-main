@@ -1,0 +1,14 @@
+<%@pagetitle="Photography"%>
+<%@pagedesc="Photos taken by Marcy Brook"%>
+<%=erb :header%>
+		<article>
+			<h1>Photography</h1>
+        </article>
+        <article>
+            <%@photos.each do |photo|%>
+            <h1><%=photo[1]%></h1>
+            <p class="note adj">Taken <%=photo[2]%> UTC</p>
+            <img src="/photo/<%=photo[0]%>.png"/>
+            <%end%>
+        </article>
+<%=erb :footer%>

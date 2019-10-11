@@ -1,7 +1,8 @@
 require 'net/smtp'
-require "base64"
+require 'base64'
 require 'zip'
 require 'httparty'
+require 'ImageResize'
 require 'pg'
 require 'sinatra'
     set :bind, '0.0.0.0'
@@ -161,6 +162,10 @@ end
 get "/tools/css-streamliner" do
     erb :cssstreamline
 end
+get "/photography" do
+    @photos=conn.exec("SELECT id, title, date FROM photos;").values
+    erb :photography
+end
 get "/blog" do
     @entries=conn.exec("SELECT * FROM Blog;")
     erb :blog
@@ -261,23 +266,32 @@ post "/admin/todo/:id" do
     end
     redirect "/admin/todo"
 end   
-get "/admin/photoview/:id" do
+get "/admin/photoview/:id.png" do
     erb :photoview
 end
 get "/admin/photoupload" do
     erb :photoupload
 end
 post "/admin/photoupload" do
-    test = params[:photo][:tempfile]
-    result=conn.exec("INSERT INTO photos(title,photo) VALUES (\'TempFile\',$1);",[Base64.encode64(test.read)])
+    testr = params[:photo][:tempfile].read
+    f = File.open('tempi.png', 'wb')
+    f.write(testr)
+    f.close()
+    puts Base64.encode64(testr)
+    result=conn.exec("INSERT INTO photos(title,photo) VALUES (\'TempFile\',decode(encode($1,'escape'),'escape'));",[Base64.encode64(testr)])
     erb :photoupload
 end
-get "/photo/:id" do
-    test= Base64.decode64(conn.exec("SELECT photo FROM photos WHERE id=#{params[:id][0]};")[0]["photo"])
-    f = File.open('temp.png', 'wb')
-    f.write(test)
-    f.close()
-    send_file 'temp.png'
+get "/photo/:id.png" do
+    if conn.exec("SELECT 1 FROM photos WHERE id = #{params[:id]};").values.length>0
+        test= conn.exec("SELECT encode(photo,'escape') FROM photos WHERE id=#{params[:id]};")[0]["encode"]
+        f = File.open('tempo.png', 'wb')
+        f.write(Base64.decode64(test.to_s))
+        f.close()
+        Image.resize('tempo.jpg', 'tempo2.jpg', 944, 40,"bicubic")
+        send_file 'tempo2.png'
+    else
+        status 404
+    end
 end
 get "/contact" do
     erb :contact
