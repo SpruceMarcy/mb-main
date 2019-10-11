@@ -17,14 +17,9 @@ config = {
     :consumer_secret => ENV["consumer_secret"],
     }
 #connectinfo=ENV["DATABASE_URL"]
-conndomain=ENV["data_dom"]
-connport=ENV["data_port"].to_i
-conndata=ENV["data_data"]
-connuser=ENV["data_user"]
-connpass=ENV["data_pass"]
+
 
 include ERB::Util
-conn = PG.connect(conndomain, connport,"","",conndata, connuser, connpass)
 
 enable :sessions
 set :session_secret, 'key goes here'
@@ -75,7 +70,7 @@ get "/logout" do
 end
 
 get "/" do
-    @entry=conn.exec("SELECT * FROM Blog WHERE id=#{getindex(conn)};")[0]
+    @entry=query("SELECT * FROM Blog WHERE id=#{getindex()};")[0]
     erb :index
 end
 get "/tools/abc" do
@@ -163,16 +158,16 @@ get "/tools/css-streamliner" do
     erb :cssstreamline
 end
 get "/photography" do
-    @photos=conn.exec("SELECT id, title, date FROM photos;").values
+    @photos=query("SELECT id, title, date FROM photos;").values
     erb :photography
 end
 get "/blog" do
-    @entries=conn.exec("SELECT * FROM Blog;")
+    @entries=query("SELECT * FROM Blog;")
     erb :blog
 end
 get "/blog/edit" do
     if session[:uid]==adminuid
-        @entry=conn.exec("SELECT * FROM Blog WHERE id=#{params[:id]};")[0]
+        @entry=query("SELECT * FROM Blog WHERE id=#{params[:id]};")[0]
         erb :blogedit
     else
         status 404
@@ -181,7 +176,7 @@ end
 post "/blog/edit" do
     if session[:uid]==adminuid
         puts params[:content].gsub("'","''")
-        result=conn.exec("UPDATE Blog SET content='#{params[:content].gsub("'","''")}' WHERE id=#{params[:id].to_i};")
+        result=query("UPDATE Blog SET content='#{params[:content].gsub("'","''")}' WHERE id=#{params[:id].to_i};")
         redirect "/blog"
     else
         status 404
@@ -189,7 +184,7 @@ post "/blog/edit" do
 end
 get "/blog/delete" do
     if session[:uid]==adminuid
-        result=conn.exec("DELETE FROM Blog WHERE id=#{params["id"]};")
+        result=query("DELETE FROM Blog WHERE id=#{params["id"]};")
         redirect "/blog"
     else
         status 404
@@ -205,17 +200,17 @@ end
 post "/blog/add" do
     if session[:uid]==adminuid
         puts params[:content].gsub("'","''")
-        result=conn.exec("INSERT INTO Blog(id, date, title, content) VALUES (#{getindex(conn)+1}, TIMESTAMP \'#{conn.exec("SELECT NOW();")[0]["now"]}\', \'#{params[:title]}\', \'#{params[:content].gsub("'","''")}\');")
+        result=query("INSERT INTO Blog(id, date, title, content) VALUES (#{getindex()+1}, TIMESTAMP \'#{query("SELECT NOW();")[0]["now"]}\', \'#{params[:title]}\', \'#{params[:content].gsub("'","''")}\');")
         redirect "/blog"
     else
         status 404
     end
 end
 get "/blog/:id" do
-    redirect "/blog/#{params[:id]}/#{url_encode(conn.exec("SELECT title FROM Blog WHERE id=#{params[:id]};")[0]["title"])}"
+    redirect "/blog/#{params[:id]}/#{url_encode(query("SELECT title FROM Blog WHERE id=#{params[:id]};")[0]["title"])}"
 end
 get "/blog/:id/:name" do
-    @entry=conn.exec("SELECT * FROM Blog WHERE id=#{params[:id]};")[0]
+    @entry=query("SELECT * FROM Blog WHERE id=#{params[:id]};")[0]
     erb :blogpost
 end
 get "/admin*" do
@@ -238,31 +233,31 @@ get "/admin" do
     erb :admin
 end
 get "/admin/database" do
-    @entries=getTables(conn)
+    @entries=getTables()
     erb :database
 end
 post "/admin/database" do
-    @entries=getTables(conn)
-    @result=conn.exec(params["input"])
+    @entries=getTables()
+    @result=query(params["input"])
     erb :database
 end
 get "/admin/todo" do
-    @entries=conn.exec("SELECT * FROM TodoList;")
+    @entries=query("SELECT * FROM TodoList;")
     erb :todo
 end
 post "/admin/todo" do
-    result=conn.exec("INSERT INTO TodoList(task, color, notes, importance, notif) VALUES (\'#{params[:task].gsub("'","''")}\', \'#{params[:color]}\', \'#{params[:notes].gsub("'","''")}\', \'#{params[:importance].gsub("'","''")}\', \'#{params[:notif]}\');")
+    result=query("INSERT INTO TodoList(task, color, notes, importance, notif) VALUES (\'#{params[:task].gsub("'","''")}\', \'#{params[:color]}\', \'#{params[:notes].gsub("'","''")}\', \'#{params[:importance].gsub("'","''")}\', \'#{params[:notif]}\');")
     redirect "/admin/todo"
 end
 get "/admin/todo/:id" do
-    @entry=conn.exec("SELECT * FROM TodoList WHERE id=#{params[:id]};")[0]
+    @entry=query("SELECT * FROM TodoList WHERE id=#{params[:id]};")[0]
     erb :todopost
 end
 post "/admin/todo/:id" do
     if !params["setstatus"].nil? then
-        result=conn.exec("UPDATE TodoList SET status='#{params["setstatus"]}' WHERE id=#{params[:id].to_i};")
+        result=query("UPDATE TodoList SET status='#{params["setstatus"]}' WHERE id=#{params[:id].to_i};")
     else
-        result=conn.exec("UPDATE TodoList SET task='#{params[:task].gsub("'","''")}', color='#{params[:color]}', notes='#{params[:notes].gsub("'","''")}',importance='#{params[:importance].gsub("'","''")}',notif='#{params[:notif]}' WHERE id=#{params[:id].to_i};")
+        result=query("UPDATE TodoList SET task='#{params[:task].gsub("'","''")}', color='#{params[:color]}', notes='#{params[:notes].gsub("'","''")}',importance='#{params[:importance].gsub("'","''")}',notif='#{params[:notif]}' WHERE id=#{params[:id].to_i};")
     end
     redirect "/admin/todo"
 end   
@@ -278,17 +273,21 @@ post "/admin/photoupload" do
     f.write(testr)
     f.close()
     puts Base64.encode64(testr)
-    result=conn.exec("INSERT INTO photos(title,photo) VALUES (\'TempFile\',decode(encode($1,'escape'),'escape'));",[Base64.encode64(testr)])
+    result=query("INSERT INTO photos(title,photo) VALUES (\'TempFile\',decode(encode($1,'escape'),'escape'));",[Base64.encode64(testr)])
     erb :photoupload
 end
 get "/photo/:id.jpg" do
-    if conn.exec("SELECT 1 FROM photos WHERE id = #{params[:id]};").values.length>0
-        test= conn.exec("SELECT encode(photo,'escape') FROM photos WHERE id=#{params[:id]};")[0]["encode"]
+    if query("SELECT count(id) FROM photos WHERE id = #{params[:id]};")[0]["count"].to_i>0
+        test = query("SELECT encode(photo,'escape') FROM photos WHERE id=#{params[:id]};")[0]["encode"]
         f = File.open('tempo.jpg', 'wb')
         f.write(Base64.decode64(test.to_s))
         f.close()
-        Image.resize("#{__dir__}/tempo.jpg", "#{__dir__}/tempo2.jpg", 944, 40,"bicubic")
-        send_file 'tempo2.jpg'
+        if !params[:width].nil?
+            Image.resize("#{__dir__}/tempo.jpg", "#{__dir__}/tempo2.jpg", params[:width], 0)
+            send_file 'tempo2.jpg'
+        else
+            send_file 'tempo.jpg' 
+        end
     else
         status 404
     end
@@ -328,9 +327,9 @@ end
 not_found do
     erb :"404"
 end
-def getindex(conn)
+def getindex()
     highest=0
-    conn.exec("SELECT id FROM Blog;").each do |entry|
+    query("SELECT id FROM Blog;").each do |entry|
         testhigh=entry["id"].to_i
         if testhigh>highest
             highest=testhigh
@@ -345,10 +344,21 @@ def randword()
         content.split("\n").sample
     end
 end
-def getTables(conn)
+def getTables()
     returnval=Hash.new
-    conn.exec("SELECT table_name FROM information_schema.tables WHERE table_schema='public' ORDER BY table_name;").each do |table_name|
-        returnval[table_name["table_name"]]=conn.exec("SELECT * FROM #{table_name["table_name"]};")
+    query("SELECT table_name FROM information_schema.tables WHERE table_schema='public' ORDER BY table_name;").each do |table_name|
+        returnval[table_name["table_name"]]=query("SELECT * FROM #{table_name["table_name"]};")
     end
+    return returnval
+end
+def query(q)
+    conndomain=ENV["data_dom"]
+    connport=ENV["data_port"].to_i
+    conndata=ENV["data_data"]
+    connuser=ENV["data_user"]
+    connpass=ENV["data_pass"]
+    conn=PG.connect(conndomain, connport,"","",conndata, connuser, connpass)
+    returnval = conn.exec(q)
+    conn.finish
     return returnval
 end

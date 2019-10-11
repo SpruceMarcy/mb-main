@@ -1,8 +1,8 @@
 GIT
   remote: git://github.com/SpruceMarcy/ImageResize-ruby.git
-  revision: d6dfe9b2799669d61798e3e453df1a9e7b15e1a7
+  revision: 54c6f85472b851c54a2f6cf8afd2dc8a1c4250c2
   specs:
-    ImageResize (0.0.7)
+    ImageResize (0.1.1)
 
 GEM
   remote: https://rubygems.org/
