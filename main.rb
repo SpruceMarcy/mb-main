@@ -287,7 +287,7 @@ get "/photo/:id.png" do
         f = File.open('tempo.png', 'wb')
         f.write(Base64.decode64(test.to_s))
         f.close()
-        Image.resize('tempo.jpg', 'tempo2.jpg', 944, 40,"bicubic")
+        Image.resize("#{__dir__}/tempo.png", "#{__dir__}/tempo2.png", 944, 40,"bicubic")
         send_file 'tempo2.png'
     else
         status 404
