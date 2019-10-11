@@ -18,11 +18,12 @@ config = {
     }
 #connectinfo=ENV["DATABASE_URL"]
 
-
 include ERB::Util
 
 enable :sessions
 set :session_secret, 'key goes here'
+
+imgcachelog=Hash.new
 
 get '*' do
     @isadmin=session[:uid]==adminuid
@@ -277,16 +278,23 @@ post "/admin/photoupload" do
     erb :photoupload
 end
 get "/photo/:id.jpg" do
+    imgcachebalance(imgcachelog)
+    cachename="img#{params[:id]}-#{params[:width]}-0.jpg"
+    if File.file?("imgcache/#{cachename}")
+        imgcheckout(imgcachelog,cachename)
+        send_file "imgcache/#{cachename}"
+    end
     if query("SELECT count(id) FROM photos WHERE id = #{params[:id]};")[0]["count"].to_i>0
         test = query("SELECT encode(photo,'escape') FROM photos WHERE id=#{params[:id]};")[0]["encode"]
-        f = File.open('tempo.jpg', 'wb')
+        f = File.open('imgcache/temp.jpg', 'wb')
         f.write(Base64.decode64(test.to_s))
         f.close()
         if !params[:width].nil?
-            Image.resize("#{__dir__}/tempo.jpg", "#{__dir__}/tempo2.jpg", params[:width], 0)
-            send_file 'tempo2.jpg'
+            Image.resize("#{__dir__}/imgcache/temp.jpg", "#{__dir__}/imgcache/#{cachename}", params[:width], 0)
+            imgcheckout(imgcachelog,cachename)
+            send_file "imgcache/#{cachename}"
         else
-            send_file 'tempo.jpg' 
+            send_file 'imgcache/temp.jpg'
         end
     else
         status 404
@@ -361,4 +369,24 @@ def query(q)
     returnval = conn.exec(q)
     conn.finish
     return returnval
+end
+def imgcheckout(imgcachelog,filename)
+    if !imgcachelog.key?(filename)
+        imgcachelog[filename]=0
+    else
+        imgcachelog[filename]+=1
+    end
+end
+def imgcachebalance(imgcachelog)
+    while `du -s imgcache`.to_i>256000 do
+        if imgcachelog.length>0 then
+            delfilename=imgcachelog.sort{|a,b| a[1] <=> b[1]}[0][0]
+            puts "deleting imgcache/#{delfilename}"
+            puts `rm imgcache/#{delfilename}`
+            imgcachelog.delete(delfilename)
+        else
+            puts "!!!!!clearing cache!!!!!"
+            puts `rm imgcache/*`
+        end
+    end
 end
