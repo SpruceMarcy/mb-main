@@ -234,6 +234,9 @@ end
 get "/admin" do
     erb :admin
 end
+get "/admin/cv" do
+    erb :cv
+end
 get "/admin/database" do
     @entries=getTables()
     erb :database
