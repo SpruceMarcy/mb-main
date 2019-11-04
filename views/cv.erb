@@ -39,7 +39,7 @@
                 background-image: linear-gradient(10deg, purple, blue);
                 border-radius:15px;
                 padding:7.5px;
-                width:80%;
+                width:90%;
                 margin:auto;
                 margin-top:1rem;
             }
@@ -58,12 +58,13 @@
                 height:2rem;
             }
             article{
-                width:80%;
+                width:90%;
                 margin:auto;
             }
             h2{
                 font-size:1.75rem;
                 margin:1rem;
+                margin-top:0.8rem;
             }
             div.timeline>div *{
                 vertical-align:top;
@@ -108,6 +109,10 @@
             }
             p~*{
               margin-top:3px;
+            }
+            div.indent{
+                width:90%;
+                margin:auto;
             }
         </style>
 		<header>
@@ -167,29 +172,55 @@
                 
             </div>
             <h2>Experience</h2>
-            <p><strong>Volunteer Work</strong></p>
-            <p>St. Micheal's Hospice</p>
-            <p>Nomination for award</p>
-            <p>Oxfam</p>
-            <br/>
-            <h2>Individual Projects</h2>
-            <p><strong>mxmbrook.co.uk</strong></p>
-            <br/>
+            <div class="indent">
+                <p><strong>Volunteer Work</strong></p>
+                <p>Jul 2017 - Sep 2018 St. Michael's Hospice</p>
+                <p>I was a weekly volunteer at a charity retail store. I held many responsibilities throughout my time there, such as serving and helping customers, sorting donated stock, managing the displays of the shop, and handling IT issues.</p>
+                <br/>
+                <p>Oct 2017 My work at this St. Michael's Hospice shop was Highly Commended under the "Young Volunteer of the Year" category at the Harrogate & District Volunteering Awards</p>
+                <br/>
+                <p>Oct 2018 - Jun 2019 Oxfam</p>
+                <p>I served customers in an Oxfam bookshop on weekends. I was also responsible for sorting and handling books of all categories and genres.</p>
+                <br/>
+            </div>
+            <h2>Projects</h2>
+            <div class="indent">
+                <p><strong>mxmbrook.co.uk</strong></p>
+                <p>Since March I (individually) have been creating a personal website for myself using the Rack-based Ruby framework Sinatra.</p>
+                <p>I undertook this project to gain direct experience in many aspects of web development. To this end, I have written all of the HTML, CSS, and Javascript for the site, and in the backend I have written the controller and multiple non-ruby tools that it uses, such as a word generator in Java.</p>
+                <p>I hosted the site via a cloud hosting provider, and connected it to a PostgreSQL database for storing content.</p>
+                <p>Using this setup rather than a static site, such as those provided by GitHub pages, has given me much more control over the functionality of the site, and as a result has allowed me to heavily experiment with web technology.</p>
+                <br/>
+            </div>
+            <div class="indent">
+                <p><strong>HackSheffield5 Project</strong></p>
+                <p>During a 24 hour hackathon, two other team members and I worked on a Python application designed to determine whether an email was fraudulent or not.</p>
+                <p>In order to make the determination, our program used Machine Learning models trained on datasets of example phishing and scam emails.</p>
+                <p>As part of implementing this solution, the program can also retrieve emails from IMAP servers and parse .eml files; and is operated through a web interface we made using the Python micro web framework Flask.</p>
+                <br/>
+            </div>
+            
             <h2>Interests</h2>
-            <p>Computing</p>
-            <p>Cycling</p>
-            <p>Photography</p>
-            <br/>
+            <div class="indent">
+                <p><strong>Computing</strong></p>
+                <p>I chose to go into the field of computing because I am passionate about it. In my spare time I particularly enjoy learning about Video Game design and development, and Web and Internet technology. I actively participate in discourse surrounding these topics.</p>
+                <p><strong>Linguistics</strong></p>
+                <p>After completing the subject of English in an academic setting, I found that it was useful to continue learning about syntax and language on my own as a basis for understanding Natural Language Processing. </p>
+                <p><strong>Photography</strong></p>
+                <p>I am particularly interested in the mechanisms behind cameras and the many elements of picture quality. Even though I'm not actively building a portfolio, I still enjoy experimentation with camera technology and photo manipulation.</p>
+                <br/>
+            </div>
             <h2>Skills</h2>
-            <p><strong>Web Development</strong></p>
-            <p>HTML5, CSS3, Javascript, Ruby on Rails, eRuby, using HTTP-based APIs, REST, SVGs, JSON, XML</p>
-            <p><strong>Conventional Programming</strong></p>
-            <p>Object-Oriented Programming: Java, C#, C++, Python, Ruby, Javascript, Visual Basic</p>
-            <p>Functional Programming: Haskell</p>
-            <p>Procedural Programming: BASIC</p>
-            <p>SQL: PostgreSQL, SQLite3, MySQL</p>
-            <p><strong>Other Skills</strong></p>
-            <p>Git, Heroku, Linux (Ubuntu), MonoGame, Unity, Agile Development e.g. Scrum, Microsoft Office</p>
+            <div class="indent">
+                <p><strong>Web Development</strong></p>
+                <p>HTML5, CSS3, Javascript, Ruby on Rails, Rack, Sinatra, eRuby, Flask, Jinja2, HTTP-based APIs, REST, SVGs, JSON, XML</p>
+                <p><strong>Conventional Programming</strong></p>
+                <p>Object-Oriented Programming: Java, C#, C++, Python, Ruby, Javascript, Visual Basic</p>
+                <p>Functional Programming: Haskell;  Procedural Programming: BASIC</p>
+                <p>SQL: PostgreSQL, SQLite3, MySQL</p>
+                <p><strong>Other Skills</strong></p>
+                <p>Git, Heroku, Linux (Ubuntu), MonoGame, Unity, Agile Development e.g. Scrum</p>
+            </div>
         </article>
         <footer>
 		</footer>

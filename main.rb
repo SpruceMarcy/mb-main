@@ -144,6 +144,9 @@ end
 get "/tools/lavalamp" do
     erb :lavalamp
 end
+get "/tools/soundvisualiser" do
+    erb :sound
+end
 get "/tools/vic" do
     erb :vic
 end

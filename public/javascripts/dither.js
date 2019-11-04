@@ -41,6 +41,5 @@ resetValues()
 drawCanvas()
 
 document.getElementById("input").addEventListener("input",function(){
-	//A check needs to be made so that the animal can't stop mid-air to sit
 	drawCanvas()
 })
