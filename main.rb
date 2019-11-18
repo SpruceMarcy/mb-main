@@ -147,6 +147,9 @@ end
 get "/tools/soundvisualiser" do
     erb :sound
 end
+get "/tools/replayer" do
+    erb :replayer
+end
 get "/tools/vic" do
     erb :vic
 end

@@ -1,47 +1,25 @@
 //Written by Marcy Brook
 
-//This gives every global variable its starting value
-function resetValues(){
-	canvas1=document.getElementById("canvas1");
-	gcontext=canvas1.getContext("2d");
-	canvasHeight=canvas1.height
-	canvasWidth=canvas1.width
+class easyAudio{
+    constructor(func){
+        this.func=func;
+    }
+    start(){
+        if (!!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia)){
+            mediaStreamPromise=navigator.mediaDevices.getUserMedia({audio: true})
+            mediaStreamPromise.then(this.promiseFulfilled);
+        }
+        else {
+            alert('getUserMedia() is not supported by your browser');
+        }
+    }
+    promiseFulfilled(mediaStreamMain){
+        
+    }
 }
-
-//Clears the output canvas
-function drawCanvas(){
-	gcontext.beginPath()
-	gcontext.fillStyle="#000000"
-	gcontext.rect(0,0,canvasWidth,canvasHeight)
-	gcontext.fill()
-}
-    
-//Declaration of all global variables for drawing
-var canvas1			//The canvas element
-var gcontext		//The context of the canvas element
-var canvasHeight	//The height of the canvas element
-var canvasWidth		//The width of the canvas element
-resetValues()
-drawCanvas()
 
 //MAKES THE MAGICAL THING CALLED AN AudioContext. WHO KNOWS WHAT THIS DOES
 const context = new AudioContext();
-
-function hasGetUserMedia() {//CHECKS IF AUDIO CAN BE INPUTTED
-  return !!(navigator.mediaDevices &&
-    navigator.mediaDevices.getUserMedia);
-}
-
-//KICKS OFF THE CHAIN OF FUNCTIONS
-if (hasGetUserMedia()) {
-    //produces a promise of a MediaStream with tracks containing audio
-    mediaStreamMain=navigator.mediaDevices.getUserMedia({audio: true})
-    
-    //Once this promise is fulfilled, it then passes the mediaStream object to "start_microphone"
-    mediaStreamMain.then(start_microphone);
-} else {
-  alert('getUserMedia() is not supported by your browser');
-}
 
 function process_microphone_buffer(event) {
 
