@@ -153,6 +153,9 @@ end
 get "/tools/vic" do
     erb :vic
 end
+get "/tools/bean" do
+    erb :bean
+end
 get "/tools/uwu" do
     erb :uwu
 end
