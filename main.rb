@@ -78,6 +78,9 @@ end
 get "/tools/abc" do
    redirect "https://www.youtube.com/watch?v=j9jbdgZidu8" 
 end
+get "/tools/abcd" do
+   redirect "https://www.youtube.com/watch?v=dQw4w9WgXcQ" 
+end
 get "/tools/?" do
     erb :toolsdirectory
 end
