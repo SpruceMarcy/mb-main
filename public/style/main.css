@@ -16,7 +16,7 @@ div.content{
 header{
     display:flex;
     font-size: 1.1rem;
-    box-shadow:1px 1px 7px #d7d7d7;
+    box-shadow:0 0 2px #d7d7d7;
     top:0;
 	position: sticky;
 	margin: 0 auto;
@@ -51,20 +51,41 @@ nav{
     position:relative;
     margin-left:auto;
     margin-right:0;
-    max-width:442px;
-    min-width:442px;
+    max-width:452px;
+    min-width:452px;
     height:42px;
     max-height:42px;
 	text-align: center;
     display:flex;
 }
-nav>a{
+nav > a, .button{
+    color:#6666d7;
+    background-color:transparent;
+    cursor:pointer;
     vertical-align:middle;
     display:inline-block;
-    width:15%;
-    padding:0.2rem 0;
+    width:auto;
+    padding:0.3rem 0.5rem;
+    margin:auto 0.2rem;
     margin-top:auto;
     margin-bottom:auto;
+    border:0.07rem solid #6666d7;
+    border-radius:0.4rem;
+}
+header a:hover{
+    background-color:#DDF;
+    text-decoration:none;
+}
+nav > a:hover, .button:hover{
+    background-color:#6666d7;
+    border-color:#fff;
+    color:#fff;
+}
+nav > a * ~ *{
+    padding-left:4px;
+}
+nav > a:active, .button:active{
+    box-shadow: inset 1px 1px 5px #303030
 }
 a.tight{
     padding:0;
@@ -72,7 +93,7 @@ a.tight{
 }
                                             
 article{
-    box-shadow:1px 1px 5px #e7e7e7;
+    box-shadow:0 0 3px #e7e7e7;
 	background-color:white;
 	margin:8px 25px;
 	padding:15px;
@@ -226,17 +247,9 @@ a{
 a:hover{
 	color:darkblue;
     text-decoration:underline;
-
 }
 a:active{
 	background-color:#EEF;
-}
-header a{
-    color:black;
-}
-header a:hover{
-    background-color:#DDF;
-    text-decoration:none;
 }
 ul *{
     margin-left:1em;
@@ -271,15 +284,13 @@ textarea.invisible{
     font-family: "helvetica neue", helvetica, arial, sans-serif;
 }
 input[type="submit"], .mocsubmit{
-    font-size: 1.4em;
-    padding: 0.6rem 1.4rem;
     cursor:pointer;
-    height:100%;
+    /*height:100%;
     border-width:2px;
-    border-radius:1rem;
+    border-radius:1rem;*/
+    font-size:1.2rem;
     background-color:white;
     outline:0;
-    font-family: "helvetica neue", helvetica, arial, sans-serif;
     line-height:normal;
 }
 article.blog form>input[type="submit"], article.blog form>span{
@@ -349,21 +360,12 @@ button.centered{
     color:darkgrey;
 }
 .rec{
-    border-radius:7px;
-    box-shadow:1px 1px 5px #303030;
-    padding:3px;
-    padding-top:4px;
     display:flex;
-}
-.rec:active{
-    box-shadow: inset 1px 1px 5px #303030
 }
 a.rec *{
     display:inline-block;
 }
-a.rec * ~ *{
-    padding-left:2px;
-}
+
 .shadowed{
     border-style:solid;
     border-color:white;

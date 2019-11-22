@@ -45,7 +45,21 @@ nav{
 nav>a{
     display:block;
     font-size:1.25rem;
-    width:100%;
+    border-radius:0;
+    border-style:none;
+    border-bottom-style:solid;
+    height:2rem;
+    width:80%;
+    margin:auto;
+    line-height:2rem;
+}
+nav a:last-child{
+    border-style:none;
+}
+nav svg{
+    height:1.5rem;
+    margin:auto;
+    padding-left:5px;
 }
 article.tool{
     width:initial;

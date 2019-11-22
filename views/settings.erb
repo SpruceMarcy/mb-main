@@ -9,7 +9,7 @@
                 <p>Get tester</p>
                 <p type="text" id="editable_p"contenteditable>content here</p>
                 <textarea id="editable_hta" class="hidden" name="editable"></textarea>
-                <input type="submit"  class="shadowed"/>
+                <input type="submit"  class="button"/>
                 <script>
                     function copyContent () {
                         document.getElementById("editable_hta").innerHTML=document.getElementById("editable_p").innerHTML;
@@ -21,14 +21,19 @@
 		<article>
 			<h1>Session Settings</h1>
 			<form method="post" action="/tools/settings/session/debug">
-                <p>Debug mode enabled?</p>
-                <input type="checkbox" name="debug" value="true" <%if session[:debug]%>checked<%end%>/>
-                <input type="submit"  class="shadowed"/>
+                <p>Debug mode (deprecated)</p>
+                <%if session[:debug]%>
+                <input type="hidden" name="debug" value="true"/>
+                <input type="submit" value="Disable" class="button">
+                <%else%>
+                <input type="hidden" name="debug" value="false"/>
+                <input type="submit" value="Enable" class="button">
+                <%end%>
             </form>
             <form method="post" action="/tools/settings/session/dyslexic">
                 <p>Use OpenDyslexic font?</p>
                 <input type="checkbox" name="dyslexic" value="true" <%if session[:dyslexic]%>checked<%end%>/>
-                <input type="submit"  class="shadowed"/>
+                <input type="submit"  class="button"/>
             </form>
 		</article>
 		<article>
@@ -64,7 +69,8 @@
                     <input type="radio" name="selected" id="cssmake" value="molay" <%if @maincss=="molay"%>checked<%end%>/>
                     <label for="cssmake">"I make stuff"</label>
                 </div>
-                <input type="submit" class="shadowed"/>
+                <br/>
+                <input type="submit" value="Change Style" class="button"/>
             </form>
 
 		</article>

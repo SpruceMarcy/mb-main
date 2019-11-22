@@ -92,7 +92,7 @@ get "/tools/settings" do
     erb :settings
 end
 post "/tools/settings/session/debug" do
-    session[:debug]=!params[:debug].nil?
+    session[:debug]=!(params[:debug]=="true")
     redirect "/tools/settings"
 end
 post "/tools/settings/session/dyslexic" do
