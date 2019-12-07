@@ -214,14 +214,14 @@ end
 post "/blog/add" do
     if session[:uid]==adminuid
         puts params[:content].gsub("'","''")
-        result=query("INSERT INTO Blog(id, date, title, content) VALUES (#{getindex()+1}, TIMESTAMP \'#{query("SELECT NOW();")[0]["now"]}\', \'#{params[:title]}\', \'#{params[:content].gsub("'","''")}\');")
+        result=query("INSERT INTO Blog(id, date, title, content) VALUES (#{getindex()+1}, TIMESTAMP \'#{query("SELECT NOW();")[0]["now"]}\', \'#{params[:title].gsub("'","''")}\', \'#{params[:content].gsub("'","''")}\');")
         redirect "/blog"
     else
         status 404
     end
 end
 get "/blog/:id" do
-    redirect "/blog/#{params[:id]}/#{url_encode(query("SELECT title FROM Blog WHERE id=#{params[:id]};")[0]["title"])}"
+    redirect "/blog/#{params[:id]}/#{url_encode(query("SELECT title FROM Blog WHERE id=#{params[:id]};")[0]["title"]).gsub("%20","_")}"
 end
 get "/blog/:id/:name" do
     @entry=query("SELECT * FROM Blog WHERE id=#{params[:id]};")[0]
