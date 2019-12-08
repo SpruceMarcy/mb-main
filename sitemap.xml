@@ -8,83 +8,128 @@
 
 
 <url>
-  <loc>http://mxmbrook.co.uk/</loc>
-  <lastmod>2019-07-08T22:16:27+00:00</lastmod>
+  <loc>https://mxmbrook.co.uk/</loc>
+  <lastmod>2019-12-08T02:38:40+00:00</lastmod>
   <priority>1.00</priority>
 </url>
 <url>
-  <loc>http://mxmbrook.co.uk/tools</loc>
-  <lastmod>2019-07-08T22:16:27+00:00</lastmod>
+  <loc>https://mxmbrook.co.uk/tools</loc>
+  <lastmod>2019-12-08T02:38:40+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>http://mxmbrook.co.uk/blog</loc>
-  <lastmod>2019-07-08T22:16:27+00:00</lastmod>
+  <loc>https://mxmbrook.co.uk/blog</loc>
+  <lastmod>2019-12-08T02:38:40+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>http://mxmbrook.co.uk/projects</loc>
-  <lastmod>2019-07-08T22:16:27+00:00</lastmod>
+  <loc>https://mxmbrook.co.uk/projects</loc>
+  <lastmod>2019-12-08T02:38:40+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>http://mxmbrook.co.uk/about</loc>
-  <lastmod>2019-07-08T22:16:27+00:00</lastmod>
+  <loc>https://mxmbrook.co.uk/about</loc>
+  <lastmod>2019-12-08T02:38:40+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>http://mxmbrook.co.uk/contact</loc>
-  <lastmod>2019-07-08T22:16:27+00:00</lastmod>
+  <loc>https://mxmbrook.co.uk/contact</loc>
+  <lastmod>2019-12-08T02:38:40+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>http://mxmbrook.co.uk/tools/wordrand</loc>
-  <lastmod>2019-07-08T22:16:27+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>http://mxmbrook.co.uk/projects/</loc>
-  <lastmod>2019-07-08T22:16:27+00:00</lastmod>
+  <loc>https://mxmbrook.co.uk/projects/</loc>
+  <lastmod>2019-12-08T02:38:40+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://mxmbrook.co.uk/tools/settings</loc>
-  <lastmod>2019-07-08T22:16:27+00:00</lastmod>
+  <loc>https://mxmbrook.co.uk/tools/settings</loc>
+  <lastmod>2019-12-08T02:38:40+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://mxmbrook.co.uk/tools/wordgen</loc>
-  <lastmod>2019-07-08T22:16:27+00:00</lastmod>
+  <loc>https://mxmbrook.co.uk/tools/wordrand</loc>
+  <lastmod>2019-12-08T02:38:40+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://mxmbrook.co.uk/tools/uwu</loc>
-  <lastmod>2019-07-08T22:16:27+00:00</lastmod>
+  <loc>https://mxmbrook.co.uk/tools/wordgen</loc>
+  <lastmod>2019-12-08T02:38:40+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://mxmbrook.co.uk/tools/redrand</loc>
-  <lastmod>2019-07-08T22:16:27+00:00</lastmod>
+  <loc>https://mxmbrook.co.uk/tools/uwu</loc>
+  <lastmod>2019-12-08T02:38:40+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://mxmbrook.co.uk/tools/alpaca</loc>
-  <lastmod>2019-07-08T22:16:27+00:00</lastmod>
+  <loc>https://mxmbrook.co.uk/tools/crytyper</loc>
+  <lastmod>2019-12-08T02:38:40+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://mxmbrook.co.uk/tools/cells</loc>
-  <lastmod>2019-07-08T22:16:27+00:00</lastmod>
+  <loc>https://mxmbrook.co.uk/tools/sarcasm</loc>
+  <lastmod>2019-12-08T02:38:40+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://mxmbrook.co.uk/tools/vic</loc>
-  <lastmod>2019-07-08T22:16:27+00:00</lastmod>
+  <loc>https://mxmbrook.co.uk/tools/redrand</loc>
+  <lastmod>2019-12-08T02:38:40+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://mxmbrook.co.uk/blog/1/Metaneologophilia</loc>
-  <lastmod>2019-07-08T22:16:27+00:00</lastmod>
+  <loc>https://mxmbrook.co.uk/tools/dither</loc>
+  <lastmod>2019-12-08T02:38:40+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://mxmbrook.co.uk/tools/lavalamp</loc>
+  <lastmod>2019-12-08T02:38:40+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://mxmbrook.co.uk/tools/alpaca</loc>
+  <lastmod>2019-12-08T02:38:40+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://mxmbrook.co.uk/tools/cells</loc>
+  <lastmod>2019-12-08T02:38:40+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://mxmbrook.co.uk/tools/vic</loc>
+  <lastmod>2019-12-08T02:38:40+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://mxmbrook.co.uk/tools/css-streamliner</loc>
+  <lastmod>2019-12-08T02:38:40+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://mxmbrook.co.uk/tools/bean</loc>
+  <lastmod>2019-12-08T02:38:40+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://mxmbrook.co.uk/blog/4/Sheffield_Central_GE2019_Candidates%27_policies_on_transgender_healthcare</loc>
+  <lastmod>2019-12-08T02:38:40+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://mxmbrook.co.uk/blog/3/Denouements</loc>
+  <lastmod>2019-12-08T02:38:40+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://mxmbrook.co.uk/blog/2/Sandwiches</loc>
+  <lastmod>2019-12-08T02:38:40+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://mxmbrook.co.uk/blog/1/Metaneologophilia</loc>
+  <lastmod>2019-12-08T02:38:40+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 
