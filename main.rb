@@ -75,12 +75,6 @@ get "/" do
     @entry=query("SELECT * FROM Blog WHERE id=#{getindex()};")[0]
     erb :index
 end
-get "/tools/abc" do
-   redirect "https://www.youtube.com/watch?v=j9jbdgZidu8" 
-end
-get "/tools/abcd" do
-   redirect "https://www.youtube.com/watch?v=dQw4w9WgXcQ" 
-end
 get "/tools/?" do
     erb :toolsdirectory
 end
@@ -222,6 +216,18 @@ post "/blog/add" do
 end
 get "/blog/:id" do
     redirect "/blog/#{params[:id]}/#{url_encode(query("SELECT title FROM Blog WHERE id=#{params[:id]};")[0]["title"]).gsub("%20","_")}"
+end
+get "/blogs/:id/:name" do
+    if params[:id]=="5"
+        redirect "https://www.youtube.com/watch?v=dQw4w9WgXcQ" 
+    end
+    if params[:id]=="6"
+        redirect "https://www.youtube.com/watch?v=j9jbdgZidu8" 
+    end
+    if params[:id]=="7"
+        redirect "https://www.youtube.com/watch?v=E8gmARGvPlI" 
+    end
+    status 404
 end
 get "/blog/:id/:name" do
     @entry=query("SELECT * FROM Blog WHERE id=#{params[:id]};")[0]
