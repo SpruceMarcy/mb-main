@@ -99,8 +99,38 @@ article{
 	padding:15px;
 }
 article.tool{
-    width:68%;
+    margin-right:5%;
+    width:auto;
     margin-left:5%;
+    display:grid; 
+    grid-template-columns:calc(100% - 6rem) 6rem;
+}
+article.tool div:nth-child(1){
+    margin-right:1rem;
+}
+article.tool div:nth-child(2){
+    max-height:6rem;
+    border-radius:0.4rem;
+    text-align:center;
+    display:flex;
+}
+article.tool div:nth-child(2) p{
+    font-size:1rem;
+    color:whitesmoke;
+    font-weight: bold;
+    margin:auto; 
+}
+article.tool.searchLinguistics div:nth-child(2){
+    background-color:#060;
+}
+article.tool.searchWebContent div:nth-child(2){
+    background-color:#066;
+}
+article.tool.searchCanvases div:nth-child(2){
+    background-color:#660;
+}
+article.tool.searchUniques div:nth-child(2){
+    background-color:#666;
 }
 div.blogfeed{
     text-align:center;
@@ -194,6 +224,9 @@ input[type=radio], input[type=checkbox]{
     border: 0px;
     width: 1rem;
     height: 1rem;
+}
+.collapse{
+    transition: all 0.3s ease-out;
 }
 .expand:not(:checked) ~ .collapse{
     display:none;
@@ -300,6 +333,12 @@ input[type="submit"], .mocsubmit{
     outline:0;
     line-height:normal;
 }
+input[type="text"]{
+    font-size:1.25rem;
+    font-family:inherit;
+    border-radius:0.3rem;
+    border-width:1.4px;
+}
 article.blog form>input[type="submit"], article.blog form>span{
     margin:1rem;
     display: block;
@@ -326,7 +365,9 @@ img.redimg{
 .shaded{
     background-color:#F9F9FB;
 }
-
+span.level *{
+    vertical-align:middle;
+}
 span.centered{
     text-align:center;
     width:100%;
