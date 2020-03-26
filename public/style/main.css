@@ -287,6 +287,16 @@ a:active{
 ul *{
     margin-left:1em;
 }
+p.code{
+    padding:0.5rem;
+    background-color:#EEEEEE;
+    border-radius:0.2rem;
+    box-shadow:inset 0px 0px 4px #404040;
+    overflow:auto;
+    font-size:1.1rem;
+    font-family:monospace;
+    white-space: pre;
+}
 span.code {
     background-color:grey;
     box-shadow: inset 0px 0px 20px #202020;
