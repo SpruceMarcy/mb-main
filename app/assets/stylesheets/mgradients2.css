@@ -386,10 +386,10 @@ button.centered{
     background-color:black;
     background-blend-mode:difference;
     background-image:
-        radial-gradient(farthest-side at 0 0, rgba(255,0,0),#00000000),
-        radial-gradient(farthest-side at 100% 0, rgba(0,255,0),#00000000),
-        radial-gradient(farthest-side at 0% 100%, rgba(0,0,255),#00000000 ),
-        radial-gradient(farthest-side at 100% 100%, rgba(0,0,0),#00000000)
+        radial-gradient(farthest-side at 0 0, rgb(255,0,0),#00000000),
+        radial-gradient(farthest-side at 100% 0, rgb(0,255,0),#00000000),
+        radial-gradient(farthest-side at 0% 100%, rgb(0,0,255),#00000000 ),
+        radial-gradient(farthest-side at 100% 100%, rgb(0,0,0),#00000000)
 }
 * h1{
     -webkit-text-fill-color:transparent;
