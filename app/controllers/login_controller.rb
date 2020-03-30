@@ -19,6 +19,7 @@ class LoginController < ApplicationController
         })
     session[:uid]=userinformation["login"]
     session[:logo]=userinformation["avatar_url"]
+    puts userinformation
     session[:logged_in]=true
     redirect_to("/")
   end
