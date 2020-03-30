@@ -1,5 +1,0 @@
-User-agent: *
-Disallow: 
-Disallow: /tools/yourand
-Disallow: /login
-Sitemap: http://mxmbrook.co.uk/sitemap.xml

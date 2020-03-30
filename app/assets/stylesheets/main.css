@@ -1,0 +1,450 @@
+html{
+    text-align:center;
+}
+body{
+	font-family: "helvetica neue", helvetica, arial, sans-serif;
+	background-color:whitesmoke;
+    font-size:16px;
+    margin:auto;
+    text-align:left;
+}
+div.content{
+    max-width:1024px;
+    min-width:1024px;
+    margin:auto;
+}
+header{
+    display:flex;
+    font-size: 1.1rem;
+    box-shadow:0 0 2px #d7d7d7;
+    top:0;
+    position: sticky;
+    margin: 0 auto;
+    padding:1.2rem 1%;
+    width:98%;
+    min-width:983px;
+    max-width:2048px;
+}
+@supports (backdrop-filter:blur(5px)){
+    header{
+        backdrop-filter:blur(5px);
+        background-color:rgba(255,255,255,0.25);
+    }
+}
+@supports not (backdrop-filter:blur(5px)){
+    header{
+        background-color:white;
+    }
+}
+header img{
+    vertical-align:top;
+	width:2rem;
+    height:2rem;
+    margin:5px;
+}
+header>h1{
+    font-size: 2rem;
+    font-weight:bold;
+}
+header>*{
+    margin: auto 0;
+    display:inline-block;
+    vertical-align:middle;
+}
+
+nav>*{
+    display:inline-block;
+    vertical-align:middle;
+}
+
+nav{
+    position:relative;
+    margin-left:auto;
+    margin-right:0;
+    max-width:452px;
+    min-width:452px;
+    height:42px;
+    max-height:42px;
+	text-align: center;
+    display:flex;
+}
+nav > a, .button{
+    color:#6666d7;
+    background-color:transparent;
+    cursor:pointer;
+    vertical-align:middle;
+    display:inline-block;
+    width:auto;
+    padding:0.3rem 0.5rem;
+    margin:auto 0.2rem;
+    margin-top:auto;
+    margin-bottom:auto;
+    border:0.07rem solid #6666d7;
+    border-radius:0.4rem;
+}
+header a:hover{
+    background-color:#DDF;
+    text-decoration:none;
+}
+nav > a:hover, .button:hover{
+    background-color:#6666d7;
+    border-color:#fff;
+    color:#fff;
+}
+nav > a * ~ *{
+    padding-left:4px;
+}
+nav > a:active, .button:active{
+    box-shadow: inset 1px 1px 5px #303030
+}
+a.tight{
+    padding:0;
+    width:auto;
+}
+                                            
+article{
+    box-shadow:0 0 3px #e7e7e7;
+    background-color:white;
+    margin:8px 0px;
+    padding:15px;
+}
+article.tool{
+    margin-right:5%;
+    width:auto;
+    margin-left:5%;
+    display:grid; 
+    grid-template-columns:calc(100% - 6rem) 6rem;
+}
+article.tool div:nth-child(1){
+    margin-right:1rem;
+}
+article.tool div:nth-child(2){
+    max-height:6rem;
+    border-radius:0.4rem;
+    text-align:center;
+    display:flex;
+}
+article.tool div:nth-child(2) p{
+    font-size:1rem;
+    color:whitesmoke;
+    font-weight: bold;
+    margin:auto; 
+}
+article.tool.searchLinguistics div:nth-child(2){
+    background-color:#060;
+}
+article.tool.searchWebContent div:nth-child(2){
+    background-color:#066;
+}
+article.tool.searchCanvases div:nth-child(2){
+    background-color:#660;
+}
+article.tool.searchUniques div:nth-child(2){
+    background-color:#666;
+}
+div.blogfeed{
+    text-align:center;
+}
+article.blog{
+    margin:8px;
+    text-align:left;
+}
+article.project{
+    margin:8px;
+    text-align:left;
+    min-height:128px;
+}
+article.project img{
+    width:128px;
+    float:left;
+}
+.stick {
+    top:88px;
+    margin:0px 8px;
+}
+footer{
+    color : #585860;
+    padding: 2vh 2%;
+    margin-top:2.5rem;
+    border-top-color:#585860;
+    border-top:1px;
+    border-top-style:solid;
+    font-size:1rem;
+    left: 0;
+    width: 96%;
+}
+span > *{
+    display: inline-block;
+    vertical-align:top;
+}
+span textarea.centered{
+    min-width:48%;
+    max-width:48%;
+    height:30rem;
+}
+
+span article{
+    margin-top:0;
+}
+article figure{
+    margin-top:0.5em;
+    margin-bottom:0.5em;    
+}
+article figure figcaption{
+    margin-top:0.2em;
+}
+article h1{
+    font-size:1.7em;
+    font-weight:bold;
+}
+article h2{
+    font-size:1.2em;
+    font-weight:bold;
+}
+table.pixelart{
+    border-collapse: collapse;
+    border:1px solid black;
+}
+table.pixelart tr{
+    line-height:16px;
+    height:16px
+}
+table.pixelart td{
+    line-height:16px;
+    height:16px;
+    border:1px solid black;
+
+}
+table.pixelart td input{
+    margin:0px;
+    -webkit-appearance:none;
+    background-color:lightgray;
+    width:1rem;
+    height:1rem;
+    outline:0;
+    display:block;
+}
+table.pixelart td input:checked{
+    background-color:black;
+}
+input[type=radio], input[type=checkbox]{
+    border: 0px;
+    width: 1rem;
+    height: 1rem;
+}
+.collapse{
+    transition: all 0.3s ease-out;
+}
+.expand:not(:checked) ~ .collapse{
+    display:none;
+}
+input[type=checkbox].expand{
+    display:inline-block;
+    border-radius:7px;
+    -webkit-appearance:none;
+    background-color:lightgray;
+    width:5rem;
+    height: 1rem;
+    outline:0;
+}
+.expand:not(:active):hover{
+    background-color:whitesmoke;
+}
+.expand:not(:checked):before{
+    content:'expand ▼';
+    padding-left:12px;
+}
+.expand:checked:after{
+    content:'hide ▲';
+    padding-left:20px;
+}
+.br{
+    font-size:0.2em;
+}
+.br::after{
+    color:transparent;
+    content:"lorem ipsum";
+}
+p, label{
+    line-height:1.25rem;
+    font-size:1.2rem;
+    margin:0.3em 0;
+}
+p ~ p, li{
+    margin-top:1.2rem;
+}
+p.adj{
+    margin-top:0;
+}
+p.quote{
+    padding:0.6em 4em;
+    font-style:italic;
+}
+a{
+	text-decoration: none;
+	color:blue;
+}
+a:hover{
+	color:darkblue;
+    text-decoration:underline;
+}
+a:active{
+	background-color:#EEF;
+}
+ul *{
+    margin-left:1em;
+}
+p.code{
+    padding:0.5rem;
+    background-color:#EEEEEE;
+    border-radius:0.2rem;
+    box-shadow:inset 0px 0px 4px #404040;
+    overflow:auto;
+    font-size:1.1rem;
+    font-family:monospace;
+    white-space: pre;
+}
+span.code {
+    background-color:grey;
+    box-shadow: inset 0px 0px 20px #202020;
+}
+span.code *{
+    font-family:monospace;
+    color:white;
+    vertical-align:top;
+}
+form textarea{
+    min-width:97.5%;
+    max-width:97.5%;
+    min-height:10em;
+}
+form.contact textarea{
+    font-size:1.25rem;
+    margin-top:1rem;
+    font-family:inherit;
+    border-radius:0.6rem;
+    padding:0.7rem;
+}
+form.contact textarea:focus{
+    outline:none;
+    box-shadow: inset 0 0 5px #00F;
+}
+form.contact input[type="submit"]{
+    margin-top:0.5rem;
+}
+textarea.invisible{
+    background-color:transparent;
+    min-height:5rem;
+    border:none;
+    font-size:1.2rem;
+    outline:0;
+    font-family: "helvetica neue", helvetica, arial, sans-serif;
+}
+input[type="submit"], .mocsubmit{
+    cursor:pointer;
+    /*height:100%;
+    border-width:2px;
+    border-radius:1rem;*/
+    font-size:1.2rem;
+    background-color:white;
+    outline:0;
+    line-height:normal;
+}
+input[type="text"]{
+    font-size:1.25rem;
+    font-family:inherit;
+    border-radius:0.3rem;
+    border-width:1.4px;
+}
+article.blog form>input[type="submit"], article.blog form>span{
+    margin:1rem;
+    display: block;
+}
+em.important{
+    font-weight:bold;
+    color:red;
+}
+ol{ 
+    margin-left:2rem;
+    list-style-type:decimal;
+}
+.third{
+    width:33%;
+}
+figure.third img{
+    width:50%
+}
+img.redimg{
+    width:512px;
+    border-width:5px;
+    border-style:solid;
+}
+.shaded{
+    background-color:#F9F9FB;
+}
+span.level *{
+    vertical-align:middle;
+}
+span.centered{
+    text-align:center;
+    width:100%;
+}
+span.checkboxes{
+    margin-top:0.4rem;
+    margin-bottom:0.8rem;
+    display:inline-block;
+}
+span.checkboxes label~label{
+    margin-left:4rem;
+}
+textarea.centered{
+    min-width:99%;
+    max-width:99%;
+    min-height:4rem;
+    text-align:left;
+}
+button.centered{
+    width:15rem;
+    height:3rem;
+    margin:auto auto;
+}
+.mobonly{
+    display:none;
+}
+.hidden{
+    display:none;
+}
+.transparent{
+    background-color:lightgrey;
+}
+.fullradius{
+    border-radius:100%;
+}
+.note{
+    font-size:0.6em;
+    color:darkgrey;
+}
+.rec{
+    display:flex;
+}
+a.rec *{
+    display:inline-block;
+}
+
+.shadowed{
+    border-style:solid;
+    border-color:white;
+}
+.shadowed:hover{
+    border-style:solid;
+    border-color:lightgrey;
+}
+.shadowed:active{
+    box-shadow: inset 1px 1px 20px #303030;
+}
+.unround{
+    border-radius:0;
+}
+.black{
+    color:black;
+}

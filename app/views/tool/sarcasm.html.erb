@@ -1,0 +1,15 @@
+<%- content_for(:page_title, "Sarcastic Case Converter")%>
+<%- content_for(:page_description, "Convert text into Mocking Case.")%>
+<article>
+  <h1>Sarcastic Case Converter</h1>
+  <p>Enter text into the top box, then press "Translate" to convert it.</p>
+  <div class="br"></div>
+  <textarea id="input" class="centered"></textarea>
+  <div class="br"></div>
+  <span class="centered" style="display:inline-block">
+    <button id="translate" class="centered button">Translate</button>
+  </span>
+  <div class="br"></div>
+  <textarea id="output" class="centered"></textarea>
+  <script src="/javascripts/sarcasm.js"></script>
+</article>

@@ -1,0 +1,41 @@
+// Place all the styles related to the admin controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+input[type=text]{
+    height:1rem;
+    font-size:1rem;
+    padding:3px 0;
+}
+input.adminquery{
+    width:93%;
+}
+.adminbutton, input.adminbutton{
+    font-size:1rem;
+    color:black;
+    text-decoration:none;
+    text-shadow:0 0 2px white;
+    padding:3px;
+    border:1px grey solid;
+    border-radius:0.3em;
+    background-image:linear-gradient(180deg, #EEEEFF, #AACCCC);
+    outline:0;
+    cursor:pointer;
+    margin-bottom:20px;
+}
+.adminbutton:hover{
+    background-image:linear-gradient(180deg, #BBCCDD, #88AAFF);
+    color:black;
+    text-decoration:none;
+}
+.adminbutton:active{
+    text-shadow:none;
+    background-image:none;
+    background-color:#88AAFF;
+}
+td{
+    border:1px solid darkblue;
+    padding:3px
+}
+form.discrete > input[type="submit"].adminbutton{
+    margin:0;
+}

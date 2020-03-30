@@ -1,0 +1,56 @@
+<%- content_for(:page_title, "To-do list")%>
+<%- content_for(:page_description, "You should not be able to see this. For admin use only.")%>
+<article>
+  <h1>To do</h1>
+</article>
+<%@entries.each do |entry|%>
+<%if entry["status"]!="completed"%>
+<article class="blog" style="background-image: linear-gradient(180deg,<%=entry["color"]%>,<%=entry["color"]%> calc(100% - 15px), #0000FF88)">
+  <h2><%=entry["task"]%></h2>
+  <p class="note adj black">Deadline: <%=entry["notif"]%> UTC</p>
+  <p class="adj"><%=entry["notes"]%></p>
+  <br/>
+  <span>
+    <a href="/admin/todo/<%=entry["id"]%>" class="adminbutton">View ─></a>
+    <form action="/admin/todo/<%=entry["id"]%>" method="post" class="discrete">
+      <input type="hidden" name="setstatus" value="completed">
+      <input type="submit" class="adminbutton" value="Mark as completed"/>
+    </form>
+  </span>
+</article>
+<%end%>
+<%end%>
+<p class="br"/>
+<article class="blog">
+  <h2>Add New Entry</h2>
+  <form method="post">
+    <label for="task"><p>Task (Title)</p></label>
+    <textarea type="text" name="task" placeholder="Enter Task Here" required></textarea>
+    <label for="notes"><p>Additional Information</p></label>
+    <textarea type="text" name="notes" placeholder="Enter Notes Here" required></textarea>
+    <label for="importance"><p>Goal/Importance of task</p></label>
+    <textarea type="text" name="importance" placeholder="Enter Importance Here" required></textarea>
+    <label for="notif"><p>Date of next update</p></label>
+    <input type="date" name="notif" placeholder="Enter Deadline Here" required/>
+    <label for="color"><p>Colour</p></label>
+    <input type="color" name="color" placeholder="Enter Colour Here" required/>
+    <input type="submit" class="shadowed"/>
+  </form>
+</article>
+<%@entries.each do |entry|%>
+<%if entry["status"]=="completed"%>
+<article class="blog" style="background-image: linear-gradient(180deg,<%=entry["color"]%>,#888888 15px, #888888)">
+  <h2><%=entry["task"]%></h2>
+  <p class="note adj black">Deadline: <%=entry["notif"]%> UTC</p>
+  <p class="adj"><%=entry["notes"]%></p>
+  <br/>
+  <span>
+    <a href="/admin/todo/<%=entry["id"]%>" class="adminbutton">View ─></a>
+    <form action="/admin/todo/<%=entry["id"]%>" method="post" class="discrete">
+      <input type="hidden" name="setstatus" value="active">
+      <input type="submit" class="adminbutton" value="Reactivate"/>
+    </form>
+  </span>
+</article>
+<%end%>
+<%end%>

@@ -1,0 +1,18 @@
+<%- content_for(:page_title, "Blog")%>
+<%- content_for(:page_description, @entry["content"])%>
+<article>
+  <h1>Blog</h1>
+</article>
+<div class="blogfeed">
+  <article class="blog">
+    <h1><%=@entry["title"]%></h1>
+    <%if @isadmin%>
+    <span>
+      <p class="adj"><a href="/blog/delete?id=<%=@entry["id"]%>">Delete(!)</a></p>
+      <p class="adj"><a href="/blog/edit?id=<%=@entry["id"]%>">[--Edit--]</a></p>
+    </span>
+    <%end%>
+    <p class="note adj">Published <%=@entry["date"]%> UTC</p>
+    <p class="adj"><%=raw(@entry["content"])%></p>
+  </article>
+</div>

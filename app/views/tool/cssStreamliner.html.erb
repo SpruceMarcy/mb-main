@@ -1,0 +1,33 @@
+<%- content_for(:page_title, "CSS Comparer")%>
+<%- content_for(:page_description, "This is a tool to help remove duplicate CSS rules across multiple style sheets.")%>
+<article>
+  <h1>CSS Comparer</h1>
+  <p>Enter a style sheet into each of the boxes below, then make a selection using the checkboxes and click "compare". The box beneath that button will then show all rules that fit the criteria of the checkboxes.</p>
+  <p class="adj">Selecting multiple checkboxes will combine their individual results.</p>
+  <p>Show me rules that are:</p>
+  <span class="centered checkboxes">
+    <label for="c1">
+      <input type="checkbox" value="true" id="c1">Only in the first sheet.
+    </label>
+    <label for="intersection">
+      <input type="checkbox" value="true" id="intersection" checked>In both sheets.
+    </label>
+    <label for="c2">
+      <input type="checkbox" value="true" id="c2">Only in the second sheet.
+    </label>
+  </span>
+  <span>
+    <textarea id="input1" placeholder="First CSS" class="centered"></textarea>
+    <textarea id="input2" placeholder="Second CSS" class="centered"></textarea>
+  </span>
+  <div class="br"></div>
+  <span class="centered" style="display:inline-block">
+    <button id="compare" class="centered">Compare</button>
+  </span>
+  <div class="br"></div>
+  <span>
+    <textarea id="output" placeholder="Output CSS" class="centered"></textarea>
+  </span>
+  <p>Note: This uses a primative CSS parser that I wrote, and as a result it cannot handle media queries and anything else more complicated than selectors and rule declarations. It also separates comma-separated lists of selectors into their own set of rules in order to compare rules that are declared differently, but are empirically the same. On the bright side, if you enter the same css text into both boxes it will auto-format it for you.</p>
+  <script src="/javascripts/cssstreamline.js"></script>
+</article>
