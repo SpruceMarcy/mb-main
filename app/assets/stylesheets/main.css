@@ -1,12 +1,33 @@
+:root{
+  --text-color: #000000;
+  --subtle-text-color: #585860;
+  --top-color: #fcfcfc;
+  --top-color-transparent: rgba(255,255,255,0.75);
+  --medium-color: whitesmoke;
+  --bottom-color: #eeeeee;
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --text-color: #ffffff;
+    --subtle-text-color: #585860;
+    --top-color: #333333;
+    --top-color-transparent: rgba(40,40,40,0.75);
+    --medium-color: #222222;
+    --bottom-color: #111111;
+  }
+}
+
+
 html{
     text-align:center;
 }
 body{
-	font-family: "helvetica neue", helvetica, arial, sans-serif;
-	background-color:whitesmoke;
+    font-family: "helvetica neue", helvetica, arial, sans-serif;
+    background-color:var(--medium-color);
     font-size:16px;
     margin:auto;
     text-align:left;
+    color:var(--text-color);
 }
 div.content{
     max-width:1024px;
@@ -28,12 +49,12 @@ header{
 @supports (backdrop-filter:blur(5px)){
     header{
         backdrop-filter:blur(5px);
-        background-color:rgba(255,255,255,0.75);
+        background-color:var(--top-color-transparent);
     }
 }
 @supports not (backdrop-filter:blur(5px)){
     header{
-        background-color:#FCFCFC;
+        background-color:var(--top-color);
     }
 }
 header img{
@@ -104,7 +125,7 @@ a.tight{
                                             
 article{
     box-shadow:0 0 3px #e7e7e7;
-    background-color:#FCFCFC;
+    background-color:var(--top-color);
     margin:8px 0px;
     padding:15px;
 }
@@ -163,10 +184,10 @@ article.project img{
     margin:0px 8px;
 }
 footer{
-    color : #585860;
+    color: var(--subtle-text-color);
     padding: 2vh 2%;
     margin-top:2.5rem;
-    border-top-color:#585860;
+    border-top-color:var(--subtle-text-color);
     border-top:1px;
     border-top-style:solid;
     font-size:1rem;
@@ -296,7 +317,7 @@ ul *{
 }
 p.code{
     padding:0.5rem;
-    background-color:#EEEEEE;
+    background-color:var(--bottom-color);
     border-radius:0.2rem;
     box-shadow:inset 0px 0px 4px #404040;
     overflow:auto;
