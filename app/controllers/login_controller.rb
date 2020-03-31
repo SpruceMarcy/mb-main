@@ -7,13 +7,15 @@ class LoginController < ApplicationController
   end  
 
   def callback
-    accesstoken=HTTParty.post('https://github.com/login/oauth/access_token',:query => {
+    accesstoken1=HTTParty.post('https://github.com/login/oauth/access_token',:query => {
         :client_id=>ENV["consumer_key"],
         :client_secret=>ENV["consumer_secret"],
         :code=>params[:code],
         }, :headers=>{
         "Accept" => "application/json"
-        })["access_token"]
+        })
+    puts accesstoken1
+    accesstoken=accesstoken1["access_token"]
     userinformation = HTTParty.get('https://api.github.com/user',:headers=>{
         "Authorization" => accesstoken,
         })
