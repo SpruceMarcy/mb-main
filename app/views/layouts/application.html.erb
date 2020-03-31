@@ -10,11 +10,14 @@
     <meta name="description" content="<%=html_escape(content_for(:page_description) || "No description for this page.")%>">
     <%= stylesheet_link_tag "application", media: "all"%>
     <%= stylesheet_link_tag "mobile", media: "(max-width:768px)"%>
+    <%if !@seasonal_style.nil?%>
+    <%= stylesheet_link_tag "special/"+@seasonal_style, media: "all"%>
+    <%end%>
     <link rel="icon" href="/images/mco.png">
   </head>
 
   <body>
-    <header>
+    <header<%if !@seasonal_text.nil?%> title="<%=@seasonal_text%>"<%end%>>
       <a href="/" class="fullradius"><img src="/images/mco.png" alt="logo"/></a>
       <h1>Marcy Brook</h1>
       <input type="checkbox" class="nav mobonly">

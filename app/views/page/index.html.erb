@@ -21,6 +21,11 @@
     </article>
     <article>
       <h1>What's New?</h1>
+      <%if !@seasonal_text.nil?%>
+      <h2>Today's Theme</h2>
+      <p><%= @seasonal_text%></p>
+      <br/>
+      <%end%>
       <h2>Latest Tool</h2>
       <p class="adj"><a href="/tools/bean">Jellybean Identifier</a></p>
     </article>

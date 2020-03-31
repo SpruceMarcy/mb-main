@@ -1,0 +1,7 @@
+header{
+  background: linear-gradient(5deg, rgba(150,255,255,0.75) 20%, rgba(255,150,255,0.75) 21%, rgba(255,150,255,0.75) 39%, rgba(255,255,255,0.75) 40%, rgba(255,255,255,0.75) 60%, rgba(255,150,255,0.75) 61%, rgba(255,150,255,0.75) 79%, rgba(150,255,255,0.75) 80%);
+}
+nav a{
+  backdrop-filter:blur(5px);
+  background: rgba(255,255,255,0.75);
+}
