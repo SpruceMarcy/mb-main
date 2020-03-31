@@ -14,14 +14,12 @@ class LoginController < ApplicationController
         }, :headers=>{
         "Accept" => "application/json"
         })
-    puts accesstoken1
     accesstoken=accesstoken1["access_token"]
     userinformation = HTTParty.get('https://api.github.com/user',:headers=>{
         "Authorization" => " token "+accesstoken,
         })
     session[:uid]=userinformation["login"]
     session[:logo]=userinformation["avatar_url"]
-    puts userinformation
     session[:logged_in]=true
     redirect_to("/")
   end
