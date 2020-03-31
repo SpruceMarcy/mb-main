@@ -15,7 +15,7 @@ class LoginController < ApplicationController
         "Accept" => "application/json"
         })["access_token"]
     userinformation = HTTParty.get('https://api.github.com/user',:headers=>{
-        "access_token" => accesstoken,
+        "Authorization" => accesstoken,
         })
     session[:uid]=userinformation["login"]
     session[:logo]=userinformation["avatar_url"]
