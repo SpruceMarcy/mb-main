@@ -473,5 +473,5 @@ a.rec *{
     transition-property: background-color, color, box-shadow;
     transition-duration: 1s, 1s, 1s;
     transition-delay: 0s, 0s, 0s;
-    transition-timing-funtion: linear, linear, linear;
+    transition-timing-function: linear, linear, linear;
 }
