@@ -469,9 +469,9 @@ a.rec *{
 .black{
     color:black;
 }
-*{
+header, article, html{
     transition-property: background-color, color, box-shadow;
-    transition-duration: 1s, 1s, 1s;
-    transition-delay: 0s, 0s, 0s;
-    transition-timing-function: linear, linear, linear;
+    transition-duration: 1s;
+    transition-delay: 0s;
+    transition-timing-function: linear;
 }
