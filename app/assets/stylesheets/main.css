@@ -20,6 +20,9 @@
 
 html{
     text-align:center;
+    transition: background-color 1s linear;
+    transition: color 1s linear;
+    transition: box-shadow 1s linear;
 }
 body{
     font-family: "helvetica neue", helvetica, arial, sans-serif;
