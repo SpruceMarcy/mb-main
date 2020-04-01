@@ -56,14 +56,14 @@ class BlogController < ApplicationController
   end
 
   def aprilfools
-    if params[:id]=="5"
-      redirect "https://www.youtube.com/watch?v=dQw4w9WgXcQ" 
+    if params[:id]=="7"
+      redirect_to("https://www.youtube.com/watch?v=dQw4w9WgXcQ")
     end
     if params[:id]=="6"
-      redirect "https://www.youtube.com/watch?v=j9jbdgZidu8" 
+      redirect_to("https://www.youtube.com/watch?v=j9jbdgZidu8")
     end
-    if params[:id]=="7"
-      redirect "https://www.youtube.com/watch?v=E8gmARGvPlI" 
+    if params[:id]=="8"
+      redirect_to("https://www.youtube.com/watch?v=E8gmARGvPlI")
     end
   end
 end
