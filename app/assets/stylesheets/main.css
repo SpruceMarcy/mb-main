@@ -470,5 +470,8 @@ a.rec *{
     color:black;
 }
 html *{
-    transition: background-color 1s linear, color 1s linear, box-shadow 1s linear;
+    transition-property: background-color, color, box-shadow;
+    transition-duration: 1s, 1s, 1s;
+    transition-delay: 0s, 0s, 0s;
+    transition-timing-funtion: linear, linear, linear;
 }
