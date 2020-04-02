@@ -1,22 +1,29 @@
 :root{
   --text-color: #000000;
+  --link-blue:blue;
+  --link-hover:darkblue;
   --subtle-text-color: #585860;
   --top-color: #fcfcfc;
   --top-color-transparent: rgba(255,255,255,0.75);
   --medium-color: whitesmoke;
   --bottom-color: #eeeeee;
+  --shadow:#cacaca;
+  --shadow-transparent:#cacaca80;
 }
 @media (prefers-color-scheme:dark){
   :root{
-    --text-color: #ffffff;
+    --text-color: #dddddd;
+    --link-blue:#4c4cff;
+    --link-hover:#8888ff;
     --subtle-text-color: #585860;
-    --top-color: #333333;
-    --top-color-transparent: rgba(40,40,40,0.75);
-    --medium-color: #222222;
+    --top-color: #232323;
+    --top-color-transparent: rgba(39,39,39,0.75);
+    --medium-color: #1a1a1a;
     --bottom-color: #111111;
+    --shadow:#080808;
+    --shadow-transparent:#08080880;
   }
 }
-
 
 html{
     text-align:center;
@@ -34,10 +41,14 @@ div.content{
     min-width:1024px;
     margin:auto;
 }
+div.indexlayout{
+    grid-template-columns:17rem calc(100% - 17rem);
+    display:grid;
+}
 header{
     display:flex;
     font-size: 1.1rem;
-    box-shadow:0 0 2px #d7d7d7;
+    box-shadow:0 0 2px var(--shadow);
     top:0;
     position: sticky;
     margin: 0 auto;
@@ -124,7 +135,7 @@ a.tight{
 }
                                             
 article{
-    box-shadow:0 0 3px #e7e7e7;
+    box-shadow:0 0 3px var(--shadow);
     background-color:var(--top-color);
     margin:8px 0px;
     padding:15px;
@@ -302,11 +313,11 @@ p.quote{
     font-style:italic;
 }
 a{
-	text-decoration: none;
-	color:blue;
+    text-decoration: none;
+    color:var(--link-blue);
 }
 a:hover{
-	color:darkblue;
+    color:var(--link-hover);
     text-decoration:underline;
 }
 a:active{
@@ -469,7 +480,7 @@ a.rec *{
 .black{
     color:black;
 }
-header, article, html{
+header, article, body, div~*{
     transition-property: background-color, color, box-shadow;
     transition-duration: 1s;
     transition-delay: 0s;

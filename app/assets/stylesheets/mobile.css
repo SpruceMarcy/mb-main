@@ -9,9 +9,12 @@ div.content{
     max-width:100%;
     min-width:0px;
 }
+div.indexlayout{
+    grid-template-columns:100%;
+}
 header{
     padding:0 5%;
-	width:90%;
+    width:90%;
     min-width:0;
     max-width:none;
 }
@@ -27,8 +30,9 @@ header input:not(:checked)~nav{
     display:none;
 }
 nav{
-    background-color:white;
-    box-shadow:1px 0.4rem 7px #d7d7d7;    
+    background-color:var(--top-color);
+    border:1px solid var(--shadow-transparent);
+    border-top:none;
     border-bottom-left-radius:10px;
     border-bottom-right-radius:10px;
     position:absolute;
@@ -61,6 +65,10 @@ nav svg{
     margin:auto;
     padding-left:5px;
 }
+article{
+    box-sizing:border-box;
+    max-width:100%;
+}
 article.tool{
     width:initial;
     margin:8px 25px;
@@ -74,8 +82,11 @@ article.blog, article.project{
     margin-left:auto;
     margin-right:auto;
 }
-article.stick {
+.stick {
     display:none;
+}
+canvas{
+    max-width:100%;
 }
 span textarea.centered{
     min-width:96%;
@@ -99,7 +110,7 @@ input[type=checkbox].nav{
     font-size:1.6rem;
     border-radius:7px;
     -webkit-appearance:none;
-    background-color:white;
+    background-color:var(--medium-color);
     width:1.8rem;
     height:1.8rem;
     outline:0;
@@ -119,7 +130,7 @@ input[type=checkbox].nav:checked{
 }
 input[type=checkbox].nav:not(:checked):before{
     content:'☰';
-    padding-left:0.2rem;
+    padding-left:0.35rem;
 }
 input[type=checkbox].nav:checked:after{
     content:'X';
@@ -132,7 +143,13 @@ ul *{
     margin-left:0.1rem;
 }
 form.contact textarea{
+
     font-size:1rem;
+    min-width:100%;
+}
+textarea{
+    box-sizing:border-box;
+    max-width:100%;
 }
 .third{
     width:30%;
