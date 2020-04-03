@@ -83,6 +83,9 @@ class ToolController < ApplicationController
   end
 
   def chat
+    #puts "run"
+    #puts query("CREATE TABLE messages (content text);")
+    #puts "ran"
     if !params[:key].nil? && params[:key]=="redboat"
       @messages=Message.all
       @message=Message.new
