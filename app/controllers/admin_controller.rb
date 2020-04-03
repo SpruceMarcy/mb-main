@@ -3,6 +3,7 @@ class AdminController < ApplicationController
   end
 
   def cv
+    render :layout=>nil
   end
 
   def database

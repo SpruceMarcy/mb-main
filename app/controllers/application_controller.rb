@@ -16,11 +16,11 @@ class ApplicationController < ActionController::Base
   end
 
   def query(q)
-    conndomain=ENV["data_dom"]
-    connport=ENV["data_port"].to_i
-    conndata=ENV["data_data"]
-    connuser=ENV["data_user"]
-    connpass=ENV["data_pass"]
+    conndomain=ENV["mdata_dom"]
+    connport=ENV["mdata_port"].to_i
+    conndata=ENV["mdata_data"]
+    connuser=ENV["mdata_user"]
+    connpass=ENV["mdata_pass"]
     conn=PG.connect(conndomain, connport,"","",conndata, connuser, connpass)
     returnval = conn.exec(q)
     conn.finish

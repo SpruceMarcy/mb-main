@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  mount ActionCable.server => '/cable'
+
   root to: "page#index"
   get "/projects", to: "page#project"
   get "/about", to: "page#about"
@@ -27,6 +29,8 @@ Rails.application.routes.draw do
   get "/tools/crytyper", to: "tool#crytyper"
   get "/tools/sarcasm", to: "tool#sarcasm"
   get "/tools/css-streamliner", to: "tool#cssStreamliner"
+  resources :messages, only: [:new, :create]
+  get "/tools/chat", to: "tool#chat"
 
   get "/blog", to: "blog#index"
   get "/blog/edit", to: "blog#edit"

@@ -81,4 +81,13 @@ class ToolController < ApplicationController
 
   def cssStreamliner
   end
+
+  def chat
+    if !params[:key].nil? && params[:key]=="redboat"
+      @messages=Message.all
+      @message=Message.new
+    else
+      redirect_to("/tools")
+    end
+  end
 end
