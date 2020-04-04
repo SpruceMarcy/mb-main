@@ -7,6 +7,9 @@ class AdminController < ApplicationController
   end
 
   def database
+    if !params[:input].nil?
+      @result=query(params[:input])
+    end
   end
 
   def todo

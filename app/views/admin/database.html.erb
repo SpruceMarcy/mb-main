@@ -18,18 +18,4 @@
   <%=html_escape(@result.to_s)%>
   <%end%>
   <%end%>
-  <%@entries.each do |name, entry|%>
-  <h2><%=name%></h2>
-  <table>
-    <%entry.each do |record|%>
-    <tr>
-      <%record.each do |field|%>
-      <td>
-        <%=html_escape(field[1])%>
-      </td>
-      <%end%>
-    </tr>
-    <%end%>
-  </table>
-  <%end%>
 </article>
