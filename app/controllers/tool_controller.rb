@@ -95,7 +95,7 @@ class ToolController < ApplicationController
             @chats << hmessage["chat"]
           end
         rescue JSON::ParserError => e
-          message.destroy
+          message.delete
         end
       end
       if @chats==[]
@@ -128,7 +128,7 @@ class ToolController < ApplicationController
       begin
         @messages << JSON.parse(message.content)
       rescue JSON::ParserError => e
-        message.destroy
+        message.delete
       end
     end
     @message=Message.new
