@@ -3,7 +3,16 @@ class MessagesController < ApplicationController
     @message = Message.new
   end
   def create
-    @message = Message.create(msg_params)
+    if params[:type].nil?
+      @message = Message.create(msg_params)
+    elsif params[:type]=="message"
+      jmessage=Hash.new
+      jmessage["type"]="message"
+      jmessage["message"]=params["message"]["content"]
+      jmessage["author"]=params["author"]
+      jmessage["chat"]=params["chat"]
+      @message = Message.create(content: jmessage.to_json)
+    end
     if @message.save
       ActionCable.server.broadcast 'room_channel', content: @message.content
     end
@@ -15,3 +24,4 @@ class MessagesController < ApplicationController
     params.require(:message).permit(:content)
   end
 end
+

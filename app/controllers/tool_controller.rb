@@ -1,5 +1,6 @@
 require 'zip'
 require 'httparty'
+require 'json'
 class ToolController < ApplicationController
   def index
   end
@@ -82,15 +83,54 @@ class ToolController < ApplicationController
   def cssStreamliner
   end
 
-  def chat
-    #puts "run"
-    #puts query("CREATE TABLE messages (content text);")
-    #puts "ran"
-    if !params[:key].nil? && params[:key]=="redboat"
-      @messages=Message.all
-      @message=Message.new
+  def chatindex
+    if session[:nickname].nil?
+      @chats=nil
     else
-      redirect_to("/tools")
+      @chats=[]
+      Message.all.each do |message|
+        begin
+          hmessage=JSON.parse(message.content)
+          if !hmessage["chat"].nil? && !(@chats.include? hmessage["chat"])
+            @chats << hmessage["chat"]
+          end
+        rescue JSON::ParserError => e
+          message.destroy
+        end
+      end
+      if @chats==[]
+        @chats=nil
+      end
     end
+  end
+
+  def chatsetnickname
+    if params[:nickname] =~ /^\w*$/
+      session[:nickname]=params[:nickname]
+    end
+    redirect_to("/tools/chat")
+  end
+  def chatnew
+    if params[:name] =~ /^\w*$/
+      content=Hash.new
+      content["type"]="create"
+      content["author"]=session[:nickname]
+      content["chat"]=params[:name]
+      puts "YOOOOOOOOOOOOOOOOOOOOOOO"
+      puts content
+      @m=Message.create(content: content.to_json)
+    end
+    redirect_to("/tools/chat")
+  end
+  def chat
+    @messages=[]
+    Message.all.each do |message|
+      begin
+        @messages << JSON.parse(message.content)
+      rescue JSON::ParserError => e
+        message.destroy
+      end
+    end
+    @message=Message.new
   end
 end

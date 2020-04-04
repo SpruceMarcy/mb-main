@@ -30,7 +30,10 @@ Rails.application.routes.draw do
   get "/tools/sarcasm", to: "tool#sarcasm"
   get "/tools/css-streamliner", to: "tool#cssStreamliner"
   resources :messages, only: [:new, :create]
-  get "/tools/chat", to: "tool#chat"
+  get "/tools/chat", to: "tool#chatindex"
+  post "/tools/chat/nickname", to: "tool#chatsetnickname"
+  post "/tools/chat/new", to: "tool#chatnew"
+  get "/tools/chat/:roomno", to: "tool#chat"
 
   get "/blog", to: "blog#index"
   get "/blog/edit", to: "blog#edit"

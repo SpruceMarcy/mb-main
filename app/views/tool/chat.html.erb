@@ -2,17 +2,29 @@
 <%- content_for(:page_description, "Go ahead. Chat.")%>
 <article>
   <%= javascript_pack_tag 'application'%>
-  <h1>Chat</h1>
-  <p class="adj">Messages:</p>
+  <h1>Chat <%=params[:roomno]%></h1>
+  <p class="adj"><a href="/tools/chat">Back</a></p>
   <div id="messages">
     <%@messages.each do |message|%>
-    <div class="message">
-      <p><%=message.content%></p>
+    <%if message["chat"]==params[:roomno]%>
+    <%if message["type"]=="create"%>
+    <div class="notif">
+      <p>Chat <%=message["chat"]%> was created by <%=message["author"]%></p>
     </div>
+    <%end%>
+    <%if message["type"]=="message"%>
+    <div class="message">
+      <p><%=message["author"]%></p><p><%=message["message"]%></p>
+    </div>
+    <%end%>
+    <%end%>
     <%end%>
   </div>
   <%= form_for @message, remote: true do |f|%>
-    <%= f.text_field :content%>
+    <input type="hidden" name="type" value="message"/>
+    <input type="hidden" id="nickname" name="author" value="<%=session[:nickname]%>"/>
+    <input type="hidden" id="roomno" name="chat" value="<%=params[:roomno]%>"/>
+    <%= f.text_field :content, required: true%>
     <%= f.submit%>
   <%end%>
   <style>
@@ -26,8 +38,7 @@
       box-shadow:0 0 3px var(--shadow) inset;
       border-radius:0.3rem;
     }
-    div.message p{
-      display:inline-flex;
+    div.message p, div.notif p{
       box-sizing:border-box;
       background-color:var(--top-color);
       padding:0.5rem 0.8rem;
@@ -35,6 +46,20 @@
       margin: 0.4rem;
       border-radius:0.3rem;
       box-shadow:0 0 3px var(--shadow);
+    }
+    div.message p{
+      display:inline-flex;
+    }
+    div.message p:first-child{
+      background-color:var(--medium-color);
+      margin-right:0;
+      border-top-right-radius:0;
+      border-bottom-right-radius:0;
+    }
+    div.message p:last-child{
+      margin-left:0;
+      border-top-left-radius:0;
+      border-bottom-left-radius:0;
     }
   </style>
 </article>
