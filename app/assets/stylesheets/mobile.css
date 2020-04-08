@@ -110,17 +110,18 @@ input[type=checkbox].nav{
     font-size:1.6rem;
     border-radius:7px;
     -webkit-appearance:none;
-    background-color:var(--medium-color);
+    background-color: transparent;
+    color: var(--text-color);
     width:1.8rem;
     height:1.8rem;
     outline:0;
     vertical-align:middle;
 }
 input[type=checkbox].nav:hover{
-    background-color:whitesmoke;
+    background-color:var(--medium-color);
 }
 input[type=checkbox].nav:active{
-    background-color:grey;
+    background-color:var(--bottom-color);
 }
 input[type=checkbox].nav:not(:checked){
     line-height:1.8rem;
@@ -128,13 +129,18 @@ input[type=checkbox].nav:not(:checked){
 input[type=checkbox].nav:checked{
     line-height:1.8rem;
 }
-input[type=checkbox].nav:not(:checked):before{
+input[type=checkbox].nav:after{
+    padding-left:0.275em;
+    font-family:monospace;
+    display:inline-block;
+    vertical-align: middle;
+    line-height: 0;
+}
+input[type=checkbox].nav:not(:checked):after{
     content:'☰';
-    padding-left:0.35rem;
 }
 input[type=checkbox].nav:checked:after{
-    content:'X';
-    padding-left:0.35rem;
+    content:'x';
 }
 p.quote{
     padding:0.6em 1em;
