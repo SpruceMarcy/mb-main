@@ -29,6 +29,8 @@ Rails.application.routes.draw do
   get "/tools/crytyper", to: "tool#crytyper"
   get "/tools/sarcasm", to: "tool#sarcasm"
   get "/tools/css-streamliner", to: "tool#cssStreamliner"
+  get "/tools/divvy", to: "tool#divCounter"
+  post "/tools/divvy", to: "tool#divCounter"
   resources :messages, only: [:new, :create]
   get "/tools/chat", to: "tool#chatindex"
   post "/tools/chat/nickname", to: "tool#chatsetnickname"

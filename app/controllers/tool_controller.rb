@@ -83,6 +83,32 @@ class ToolController < ApplicationController
   def cssStreamliner
   end
 
+  def divCounter
+    @hide=true
+    if request.method=="GET"
+      @errmessage=""
+    elsif request.method=="POST"
+      newsite=HTTParty.get(params["url"],headers=>{"User-Agent" => params["agent"]})
+      if newsite.code==200
+        @errmessage=""
+        @hide=false
+        divsearch=newsite.body.scan(/[ \t]*<div.*?>[ \t]*/)
+        @divcount=divsearch.length.to_s
+        @tagcount=(newsite.body.scan(/<.*?>/).length - newsite.body.scan(/<\/.*?>/).length).to_s
+        @tagratio='%.2f' % (100.0*divsearch.length/@tagcount.to_i) + "%"
+        @htmlsize="#{newsite.body.length.to_s} Bytes"
+        divsize=0
+        divsearch.each do |thisdiv|
+          divsize+=thisdiv.length
+        end
+        @divsize="#{divsize} Bytes"
+        @divratio='%.2f' % (100.0*divsize/newsite.body.length) + "%"
+      else
+        @errmessage="Error: #{newsite.code} #{newsite.message}"
+      end
+    end
+  end
+
   def chatindex
     if session[:nickname].nil?
       @chats=nil

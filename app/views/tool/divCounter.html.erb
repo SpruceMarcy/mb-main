@@ -1,0 +1,36 @@
+<%- content_for(:page_title, "Div Counter")%>
+<%- content_for(:page_description, "How many divs do you really need?")%>
+<article>
+  <h1>Div Counter</h1>
+  <p>Enter a url in the box below, then click "Count the Divs" to count the divs on that page.</p>
+  <br/>
+  <span>
+      <form method="post">
+        <input type="hidden" name="agent" id="agent" value=""/>
+        <script>document.getElementById("agent").value=navigator.userAgent</script>
+     	<input type="url" name="url" <%if params["url"] %>value="<%=params["url"]%>" <%end%>required/>
+      	<input type="submit" value="Count the Divs"/>
+      </form>
+  </span>
+  <p class="adj"><%=@errmessage%></p>
+  <br/>
+  <%if !@hide%>
+  <h2>Number of Divs</h2>
+  <h2><%=@divcount%></h2>
+  <br/>
+  <h2>Total Number of Tags</h2>
+  <h2><%=@tagcount%></h2>
+  <br/>
+  <h2>Proportion of tags that are Divs</h2>
+  <h2 ><%=@tagratio%></h2>
+  <br/>
+  <h2>Size of HTML</h2>
+  <h2><%=@htmlsize%></h2>
+  <br/>
+  <h2>Size of Divs</h2>
+  <h2><%=@divsize%></h2>
+  <br/>
+  <h2>Proportion of memory taken up by Divs</h2>
+  <h2><%=@divratio%></h2>
+  <%end%>
+</article>
