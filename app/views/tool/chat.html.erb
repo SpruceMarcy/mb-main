@@ -9,22 +9,23 @@
     <%if message["chat"]==params[:roomno]%>
     <%if message["type"]=="create"%>
     <div class="notif">
-      <p>Chat <%=message["chat"]%> was created by <%=message["author"]%></p>
+      <p>Chat <%=message["chat"].sub(/ .*/,"")%> was created by <%=message["author"]%></p><%@admin=message["author"]%>
     </div>
     <%end%>
     <%if message["type"]=="message"%>
     <div class="message">
-      <p><%=message["author"]%></p><p><%=message["message"]%></p>
+      <p<%if message["author"]==@admin%> class="admin"<%elsif message["author"]==session[:nickname]%> class="self"<%end%>><%=message["author"]%></p><p><%=message["message"]%></p>
     </div>
     <%end%>
     <%end%>
     <%end%>
   </div>
+  <meta id="admin" content="<%=@admin%>">
   <%= form_for @message, remote: true do |f|%>
     <input type="hidden" name="type" value="message"/>
     <input type="hidden" id="nickname" name="author" value="<%=session[:nickname]%>"/>
     <input type="hidden" id="roomno" name="chat" value="<%=params[:roomno]%>"/>
-    <%= f.text_field :content, required: true%>
+    <%= f.text_field :content, required: true, autocomplete: "off"%>
     <%= f.submit%>
   <%end%>
   <style>
@@ -47,19 +48,32 @@
       border-radius:0.3rem;
       box-shadow:0 0 3px var(--shadow);
     }
-    div.message p{
+    div.message{
       display:inline-flex;
+      width:100%;
     }
     div.message p:first-child{
       background-color:var(--medium-color);
       margin-right:0;
       border-top-right-radius:0;
       border-bottom-right-radius:0;
+      overflow:hidden;
+      display:inline-table;
     }
     div.message p:last-child{
       margin-left:0;
       border-top-left-radius:0;
       border-bottom-left-radius:0;
+    }
+    div.message p.self{
+      background-color:blue;
+    }
+    div.message p.admin{
+      background-color:green;
+    }
+    div.message p.admin:after{
+      font-family:"arial unicode ms","Lucidia Sans Unicode",sans-serif;
+      content:"\10026"
     }
   </style>
 </article>

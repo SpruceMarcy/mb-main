@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="msvalidate.01" content="7BFAB72892EDD0271CC0CC7B89664F3B" />
+    <meta name="google-site-verification" content="UOouO-FLDXINpgkCqGnVZtDeWC7nNwW6GEq6n9fWFhA" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=1.0, maximum-scale=10, minimum-scale=0">
+    <title><%= content_for(:page_title) || "mxmbrook.co.uk"%></title>
+    <meta name="description" content="<%=html_escape(content_for(:page_description) || "No description for this page.")%>">
+    <%= stylesheet_link_tag "application", media: "all"%>
+    <%= stylesheet_link_tag "mobile", media: "(max-width:768px)"%>
+    <link rel="icon" href="/images/ass.png">
+  </head>
+
+  <body>
+    <header>
+      <a href="/tools/chat" class="fullradius"><img src="/images/ass.png" alt="logo"/></a>
+      <h1>Sheffield Assassins</h1>
+      <nav style="min-width:0;display:flex;position:relative;top:initial;border:none;padding:0;">
+        <a href="/tools/chat" style="border:1px #6666d7 solid;margin:auto 0.2rem;height:17.6px;line-height:17.6px;border-radius:0.4rem;">Menu</a>
+      </nav>
+    </header>
+    <div class="content">
+      <%= yield %>
+      <footer>
+        <p>This page was made by Marcy Brook. <a href="/contact">Contact.</a> This site uses authentication cookies, but no tracking cookies.</p>
+        <script> </script>
+      </footer>
+    </div>
+  </body>
+</html>

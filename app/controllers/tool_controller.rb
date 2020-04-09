@@ -128,6 +128,7 @@ class ToolController < ApplicationController
         @chats=nil
       end
     end
+    render layout: "chat"
   end
 
   def chatsetnickname
@@ -141,7 +142,7 @@ class ToolController < ApplicationController
       content=Hash.new
       content["type"]="create"
       content["author"]=session[:nickname]
-      content["chat"]=params[:name]
+      content["chat"]=params[:name]+" - Admin: "+session[:nickname]
       puts "YOOOOOOOOOOOOOOOOOOOOOOO"
       puts content
       @m=Message.create(content: content.to_json)
@@ -158,5 +159,6 @@ class ToolController < ApplicationController
       end
     end
     @message=Message.new
+    render layout: "chat"
   end
 end
