@@ -1,6 +1,8 @@
 import consumer from "./consumer"
 
 function $(e){return document.getElementById(e)}
+window.onload=function(){var mt=document.getElementsByClassName("message");
+    mt[mt.length-1].scrollIntoView(false);}
 
 consumer.subscriptions.create("RoomChannel", {
   connected() {
@@ -21,7 +23,7 @@ consumer.subscriptions.create("RoomChannel", {
         $("new_message").reset()
         classtext=" class=\"self\""
       }
-      if($("nickname").value==$("admin").content){
+      if(jdata["author"]==$("admin").content){
         classtext=" class=\"admin\""
       }
       $("messages").innerHTML+="<div class=\"message\"><p"+classtext+">"+jdata["author"]+"</p><p>"+jdata["message"]+"</p></div>";
