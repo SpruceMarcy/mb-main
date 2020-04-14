@@ -34,7 +34,10 @@ class BlogController < ApplicationController
   end
 
   def add
-    redirect_to("/"+session[:uid]+"/"+@adminuid)
+    puts "session"
+    puts session[:uid]
+    puts "adminuid"
+    puts @adminuid
     if session[:uid]!=@adminuid
       redirect_to("/404",status: 404)
     end
