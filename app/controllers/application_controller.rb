@@ -2,12 +2,11 @@ require 'date'
 class ApplicationController < ActionController::Base
   skip_forgery_protection
   before_action :before
-  adminuid=ENV["master_name"]
-
-
   private
 
   def before
+    adminuid=ENV["master_name"]
+    @adminuid=ENV["master_name"]
     today=Date.today
     if today==Date.new(2020,3,31)
       @seasonal_style="tdov"

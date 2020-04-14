@@ -1,7 +1,6 @@
 require "erb"
 include ERB::Util
 class BlogController < ApplicationController
-  @adminuid=ENV["master_name"]
   def index
     @entries=query("SELECT * FROM Blog;")
   end
