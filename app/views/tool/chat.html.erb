@@ -17,6 +17,17 @@
       <p<%if message["author"]==@admin%> class="admin"<%elsif message["author"]==session[:nickname]%> class="self"<%end%>><%=message["author"]%></p><p><%=message["message"]%></p>
     </div>
     <%end%>
+    <%if message["type"]=="whisper"%>
+    <%if session[:nickname]==message["author"] or session[:nickname]==message["recipient"]%>
+    <div class="message">
+      <p<%if message["author"]==session[:nickname]%> class="self"<%end%>>(whisper) <%=message["author"]%></p><p class="whisper"><%=message["message"]%></p>
+    </div>
+    <%else%>
+    <div class="hint">
+      <p>You hear a whisper.</p>
+    </div>
+    <%end%>
+    <%end%>
     <%end%>
     <%end%>
   </div>

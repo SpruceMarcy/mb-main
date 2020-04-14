@@ -1,12 +1,13 @@
 require "erb"
 include ERB::Util
 class BlogController < ApplicationController
+  @adminuid=ENV["master_name"]
   def index
     @entries=query("SELECT * FROM Blog;")
   end
 
   def edit
-    if session[:uid]==adminuid
+    if session[:uid]==@adminuid
       @entry=query("SELECT * FROM Blog WHERE id=#{params[:id]};")[0]
     else
       redirect_to("/404",status: 404)
@@ -14,7 +15,7 @@ class BlogController < ApplicationController
   end
 
   def submitedit
-    if session[:uid]==adminuid
+    if session[:uid]==@adminuid
       puts params[:content].gsub("'","''")
       result=query("UPDATE Blog SET content='#{params[:content].gsub("'","''")}' WHERE id=#{params[:id].to_i};")
       redirect_to("/blog")
@@ -24,7 +25,7 @@ class BlogController < ApplicationController
   end
 
   def delete
-    if session[:uid]==adminuid
+    if session[:uid]==@adminuid
       result=query("DELETE FROM Blog WHERE id=#{params["id"]};")
       redirect_to("/blog")
     else
@@ -33,13 +34,13 @@ class BlogController < ApplicationController
   end
 
   def add
-    if session[:uid]!=adminuid
+    if session[:uid]!=@adminuid
       redirect_to("/404",status: 404)
     end
   end
 
   def submitadd
-    if session[:uid]==adminuid
+    if session[:uid]==@adminuid
       result=query("INSERT INTO Blog(id, date, title, content) VALUES (#{getindex()+1}, TIMESTAMP \'#{query("SELECT NOW();")[0]["now"]}\', \'#{params[:title].gsub("'","''")}\', \'#{params[:content].gsub("'","''")}\');")
       redirect_to("/blog")
     else

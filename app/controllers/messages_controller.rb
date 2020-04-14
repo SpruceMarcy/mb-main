@@ -6,11 +6,21 @@ class MessagesController < ApplicationController
     if params[:type].nil?
       @message = Message.create(msg_params)
     elsif params[:type]=="message"
-      jmessage=Hash.new
-      jmessage["type"]="message"
-      jmessage["message"]=params["message"]["content"]
-      jmessage["author"]=params["author"]
-      jmessage["chat"]=params["chat"]
+      if params["message"]["content"]=~/\\w/ or params["message"]["content"]=~/\\W/
+        jmessage=Hash.new
+        jmessage["type"]="whisper"
+        removedcommand=params["message"]["content"].sub(/^\\w.*? /,"").sub(/^\\W.*? /,"")
+        jmessage["recipient"]=removedcommand.split.first
+        jmessage["message"]=removedcommand.sub(/[^ ]+? /,"")
+        jmessage["author"]=params["author"]
+        jmessage["chat"]=params["chat"]
+      else
+        jmessage=Hash.new
+        jmessage["type"]="message"
+        jmessage["message"]=params["message"]["content"]
+        jmessage["author"]=params["author"]
+        jmessage["chat"]=params["chat"]
+      end
       @message = Message.create(content: jmessage.to_json)
     end
     if @message.save

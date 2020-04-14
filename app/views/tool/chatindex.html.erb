@@ -12,14 +12,14 @@
   <%if session[:nickname].nil?%>
   <p class="adh">Set a nickname (Only A-Z, 0-9, or _):</p>
   <form method="post" action="/tools/chat/nickname">
-    <input type="text" name="nickname" placeholder="<%=session[:nickname]%>" required/>
+    <input type="text" name="nickname" placeholder="<%=session[:nickname]%>" title="A-Z, 0-9, or _ only" patten="[A-Za-z0-9_]+" required/>
     <input type="submit" value="Set Nickname"/>
   </form>
   <%else%>
   <br/>
   <p class="adh">Create a chat room (Only A-Z, 0-9, or _):</p>
   <form method="post" action="/tools/chat/new">
-    <input type="text" name="name" placeholder="Enter chat name here" required/>
+    <input type="text" name="name" placeholder="Enter chat name here" title="A-Z, 0-9, or _ only" patten="[A-Za-z0-9_]+" required/>
     <input type="submit" value="Create Room"/>
   </form>
   <%end%>
