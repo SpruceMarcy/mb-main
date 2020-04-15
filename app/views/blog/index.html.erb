@@ -3,7 +3,7 @@
 <article>
   <h1>Blog</h1>
 </article>
-<%@entries.reverse_each do |entry|%>
+<%@entries.each do |entry|%>
 <article class="blog">
   <h1><%=entry["title"]%></h1>
   <%if @isadmin%>
