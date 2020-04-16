@@ -11,7 +11,7 @@
 <main class="indexlayout">
   <div>
     <aside>
-      <h1>Quick Access</h1>
+      <h2>Quick Access</h2>
       <p><a href="/">Home</a></p>
       <p class="adj"><a href="/tools">Tools</a></p>
       <p class="adj"><a href="/blog">Blog</a></p>
@@ -20,24 +20,24 @@
       <p class="adj"><a href="/contact">Contact</a></p>
     </aside>
     <aside>
-      <h1>What's New?</h1>
+      <h2>What's New?</h2>
       <%if !@seasonal_text.nil?%>
       <h2>Today's Theme</h2>
       <p><%= @seasonal_text%></p>
       <br/>
       <%end%>
-      <h2>Dark Mode!</h2>
+      <h3>Dark Mode!</h3>
       <p class="adj" style="font-size:1rem;">This site is now responsive to your system's colour theme! You can emulate this in firefox by adding the property ui.systemUsesDarkTheme to about:config with a value of 1. On chrome, you can emulate it by pressing Ctrl+Shift+I, then F1, and setting Preferences -> Rendering -> "Emulate CSS media feature prefers-color-scheme" to prefers-color-scheme:dark.</p>
       <br/>
-      <h2>Latest Tool</h2>
+      <h3>Latest Tool</h3>
       <p class="adj" style="font-size:1rem;">Ever wondered how many Divs were on a page? Now you can find out!</p>
       <p class="adj"><a href="/tools/divvy">Div Counter</a></p>
     </aside>
   </div>
   <article class="blog">
-    <h1>Latest Blog Post:</h1>
-    <div class="br"></div>
-    <h1><%=@entry["title"]%></h1>
+    <h2>Latest Blog Post:</h2>
+    <br/>
+    <h2><%=@entry["title"]%></h2>
     <p class="note">Published <%=@entry["date"]%> UTC</p>
     <p class="adj"><%=raw(@entry["content"])%></p>
   </article>

@@ -74,6 +74,10 @@ header{
         background-color:var(--top-color-transparent);
     }
 }
+/*Makes the logo highlight round*/
+header>a{
+    border-radius:100%;
+}
 /*Site Logo size & position*/
 header img{
     vertical-align:top;
@@ -177,6 +181,10 @@ article.tool.searchCanvases div:nth-child(2){
 article.tool.searchUniques div:nth-child(2){
     background-color:#666;
 }
+/*Animations for searchable tool cards*/
+article.collapse{
+    transition: all 0.3s ease-out;
+}
 /*Makes blog and project cards a bit thinner*/
 article.blog,article.project{
     margin:8px;
@@ -213,6 +221,7 @@ span.checkboxes label~label{
 }
 /*Allows the displaying of code (Used in blog)*/
 code{
+    display:block;
     padding:0.5rem;
     background-color:var(--bottom-color);
     border-radius:0.2rem;
@@ -222,105 +231,64 @@ code{
     font-family:monospace;
     white-space: pre;
 }
-article figure{
+/*Figures, only used in about*/
+figure{
+    text-align:center;
     margin-top:0.5em;
     margin-bottom:0.5em;    
 }
-article figure figcaption{
+figure figcaption{
     margin-top:0.2em;
 }
-article h1{
+figure img{
+    width:60%
+}
+img.logfig{
+    background-color:var(--medium-color);
+    border-radius:100%;
+}
+/*Titles that actually matter*/
+h1{
     font-size:1.7em;
     font-weight:bold;
 }
-article h2{
+/*Titles that don't matter*/
+h2{
+    font-size:1.5em;
+    font-weight:bold;
+}
+/*Subtitles*/
+h3, b{
     font-size:1.2em;
     font-weight:bold;
 }
-table.pixelart{
-    border-collapse: collapse;
-    border:1px solid black;
-}
-table.pixelart tr{
-    line-height:16px;
-    height:16px
-}
-table.pixelart td{
-    line-height:16px;
-    height:16px;
-    border:1px solid black;
-
-}
-table.pixelart td input{
-    margin:0px;
-    -webkit-appearance:none;
-    background-color:lightgray;
-    width:1rem;
-    height:1rem;
-    outline:0;
-    display:block;
-}
-table.pixelart td input:checked{
-    background-color:black;
-}
-input[type=radio], input[type=checkbox]{
+/*Stops checkboxes being awkwardly positioned*/
+input[type=checkbox]{
     border: 0px;
     width: 1rem;
     height: 1rem;
-}
-.collapse{
-    transition: all 0.3s ease-out;
-}
-.expand:not(:checked) ~ .collapse{
-    display:none;
-}
-/*Stops checkboxes being awkwardly positioned*/
-input[type=checkbox]{
     vertical-align:middle;
 }
-
-input[type=checkbox].expand{
-    display:inline-block;
-    border-radius:7px;
-    -webkit-appearance:none;
-    background-color:lightgray;
-    width:5rem;
-    height: 1rem;
-    outline:0;
-}
-.expand:not(:active):hover{
-    background-color:whitesmoke;
-}
-.expand:not(:checked):before{
-    content:'expand ▼';
-    padding-left:12px;
-}
-.expand:checked:after{
-    content:'hide ▲';
-    padding-left:20px;
-}
-.br{
-    font-size:0.2em;
-}
-.br::after{
-    color:transparent;
-    content:"lorem ipsum";
-}
+/*Most text accross the site*/
 p, label{
     line-height:1.25rem;
     font-size:1.2rem;
     margin:0.3em 0;
 }
+/*Default adjacency gap*/
 p ~ p, li{
     margin-top:1.2rem;
 }
+/*Adjacency hack*/
 p.adj{
     margin-top:0;
 }
+/*Avoid q tag content*/
 p.quote{
     padding:0.6em 4em;
     font-style:italic;
 }
+/*Standard inline link styles*/
 a{
     text-decoration: none;
     color:var(--link-blue);
@@ -332,10 +300,11 @@ a:hover{
 a:active{
 	background-color:#EEF;
 }
+/*Only used in about page*/
 ul *{
     margin-left:1em;
 }
-
+/*Contact form styles*/
 form textarea{
     min-width:97.5%;
     max-width:97.5%;
@@ -355,15 +324,7 @@ form.contact textarea:focus{
 form.contact input[type="submit"]{
     margin-top:0.5rem;
 }
-textarea.invisible{
-    background-color:transparent;
-    min-height:5rem;
-    border:none;
-    font-size:1.2rem;
-    outline:0;
-    font-family: "helvetica neue", helvetica, arial, sans-serif;
-}
-input[type="submit"], .mocsubmit{
+input[type="submit"]{
     cursor:pointer;
     /*height:100%;
     border-width:2px;
@@ -391,12 +352,7 @@ ol{
     margin-left:2rem;
     list-style-type:decimal;
 }
-.third{
-    width:33%;
-}
-figure.third img{
-    width:50%
-}
+
 img.redimg{
     width:512px;
     border-width:5px;
@@ -425,12 +381,6 @@ button.centered{
 }
 .hidden{
     display:none;
-}
-.transparent{
-    background-color:lightgrey;
-}
-.fullradius{
-    border-radius:100%;
 }
 .note{
     font-size:0.6em;

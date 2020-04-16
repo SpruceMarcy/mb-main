@@ -6,7 +6,7 @@
 </article>
 <%@entries.each do |entry|%>
 <article class="blog">
-  <h1><%=entry["title"]%></h1>
+  <h2><%=entry["title"]%></h2>
   <%if @isadmin%>
   <span>
     <p class="adj"><a href="/blog/delete?id=<%=entry["id"]%>">Delete(!)</a></p>
