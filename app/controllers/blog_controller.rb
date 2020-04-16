@@ -2,7 +2,7 @@ require "erb"
 include ERB::Util
 class BlogController < ApplicationController
   def index
-    @entries=query("SELECT * FROM Blog;")
+    @entries=query("SELECT * FROM Blog ORDER BY id DESC;")
   end
 
   def edit
