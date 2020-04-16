@@ -8,9 +8,9 @@
   <p class="adj">You are logged in as an admin. <a href="/admin">Click here for admin pages</a></p>
   <%end%>
 </article>
-<div class="indexlayout">
-  <div class="stick">
-    <article>
+<main class="indexlayout">
+  <div>
+    <aside>
       <h1>Quick Access</h1>
       <p><a href="/">Home</a></p>
       <p class="adj"><a href="/tools">Tools</a></p>
@@ -18,8 +18,8 @@
       <p class="adj"><a href="/projects">Projects</a></p>
       <p class="adj"><a href="/about">About</a></p>
       <p class="adj"><a href="/contact">Contact</a></p>
-    </article>
-    <article>
+    </aside>
+    <aside>
       <h1>What's New?</h1>
       <%if !@seasonal_text.nil?%>
       <h2>Today's Theme</h2>
@@ -32,7 +32,7 @@
       <h2>Latest Tool</h2>
       <p class="adj" style="font-size:1rem;">Ever wondered how many Divs were on a page? Now you can find out!</p>
       <p class="adj"><a href="/tools/divvy">Div Counter</a></p>
-    </article>
+    </aside>
   </div>
   <article class="blog">
     <h1>Latest Blog Post:</h1>
@@ -41,5 +41,5 @@
     <p class="note">Published <%=@entry["date"]%> UTC</p>
     <p class="adj"><%=raw(@entry["content"])%></p>
   </article>
-</div>
+</main>
 

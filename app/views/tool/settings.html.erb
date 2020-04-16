@@ -11,16 +11,16 @@
     <p>Debug mode (deprecated)</p>
     <%if session[:debug]%>
     <input type="hidden" name="debug" value="true"/>
-    <input type="submit" value="Disable" class="button">
+    <input type="submit" value="Disable">
     <%else%>
     <input type="hidden" name="debug" value="false"/>
-    <input type="submit" value="Enable" class="button">
+    <input type="submit" value="Enable">
     <%end%>
   </form>
   <form method="post" action="/tools/settings/session/dyslexic">
     <p>Use OpenDyslexic font?</p>
     <input type="checkbox" name="dyslexic" value="true" <%if session[:dyslexic]%>checked<%end%>/>
-    <input type="submit"  class="button"/>
+    <input type="submit"/>
   </form>
 </article>
 <article>
@@ -57,7 +57,7 @@
       <label for="cssmake">"I make stuff"</label>
     </div>
     <br/>
-    <input type="submit" value="Change Style" class="button"/>
+    <input type="submit" value="Change Style"/>
   </form>
 </article>
 </div>

@@ -1,167 +1,170 @@
+/*Written by Marcy Brook*/
+
+/*Default Colour variables*/
 :root{
   --text-color: #000000;
-  --link-blue:blue;
-  --link-hover:darkblue;
+  --link-blue: blue;
+  --link-hover: darkblue;
   --subtle-text-color: #585860;
   --top-color: #fcfcfc;
-  --top-color-transparent: rgba(255,255,255,0.75);
+  --top-color-transparent: #ffffffbd;
   --medium-color: whitesmoke;
   --bottom-color: #eeeeee;
-  --shadow:#cacaca;
-  --shadow-transparent:#cacaca80;
+  --shadow: #cacaca;
+  --shadow-transparent: #cacaca80;
 }
+/*Dark mode Colour variables*/
 @media (prefers-color-scheme:dark){
   :root{
-    --text-color: #dddddd;
-    --link-blue:#4c4cff;
-    --link-hover:#8888ff;
+    --text-color: #ddd;
+    --link-blue: #4c4cff;
+    --link-hover: #8888ff;
     --subtle-text-color: #585860;
     --top-color: #232323;
-    --top-color-transparent: rgba(39,39,39,0.75);
+    --top-color-transparent: #272727bd;
     --medium-color: #1a1a1a;
     --bottom-color: #111111;
-    --shadow:#080808;
-    --shadow-transparent:#08080880;
+    --shadow: #080808;
+    --shadow-transparent: #08080880;
   }
 }
 
-html{
-    text-align:center;
-}
+/*Controls font, text colour, and text align for whole document*/
+/*Sets Background colour*/
 body{
     font-family: "helvetica neue", helvetica, arial, sans-serif;
     background-color:var(--medium-color);
-    font-size:16px;
-    margin:auto;
     text-align:left;
     color:var(--text-color);
 }
-div.content{
+/*Centers content in middle of page*/
+section.content{
     max-width:1024px;
     min-width:1024px;
     margin:auto;
 }
-div.indexlayout{
+/*Index page only*/
+main.indexlayout{
     grid-template-columns:17rem calc(100% - 17rem);
     display:grid;
 }
+/*Styles of bar at top of screen*/
 header{
+    /*Keeps title and navbar at same height*/
     display:flex;
+    /*Font size of navbar buttons*/
     font-size: 1.1rem;
+    /*Shadow*/
     box-shadow:0 0 2px var(--shadow);
+    /*Keeps header at top of screen*/
     top:0;
     position: sticky;
-    margin: 0 auto;
-    padding:1.2rem 1%;
-    width:98%;
+    /*Whitespace around header content*/
+    padding:1.2rem 1rem;
+    /*Size*/
     min-width:983px;
     max-width:2048px;
+    /*Default colour*/
+    background-color:var(--top-color);
 }
+/*If blurred backgrounds are supported, make the header transparent*/
 @supports (backdrop-filter:blur(5px)){
     header{
         backdrop-filter:blur(5px);
         background-color:var(--top-color-transparent);
     }
 }
-@supports not (backdrop-filter:blur(5px)){
-    header{
-        background-color:var(--top-color);
-    }
-}
+/*Site Logo size & position*/
 header img{
     vertical-align:top;
-    width:2rem;
     height:2rem;
     margin:5px;
 }
-header>h1{
+/*The Site title text*/
+header>span{
     font-size: 2rem;
     font-weight:bold;
-}
-header>*{
     margin: auto 0;
-    display:inline-block;
-    vertical-align:middle;
 }
-
-nav>*{
-    display:inline-block;
-    vertical-align:middle;
-}
-
+/*Positions the navbar*/
 nav{
-    position:relative;
     margin-left:auto;
-    margin-right:0;
-    max-width:452px;
-    min-width:452px;
-    height:42px;
-    max-height:42px;
-	text-align: center;
     display:flex;
 }
-nav > a, .button{
+/*Styles links in navbar and buttons*/
+nav > a, button{
+    outline:none;
     color:#6666d7;
     background-color:transparent;
-    cursor:pointer;
-    vertical-align:middle;
-    display:inline-block;
-    width:auto;
     padding:0.3rem 0.5rem;
     margin:auto 0.2rem;
-    margin-top:auto;
-    margin-bottom:auto;
     border:0.07rem solid #6666d7;
     border-radius:0.4rem;
 }
-header a:hover{
-    background-color:#DDF;
-    text-decoration:none;
-}
-nav > a:hover, .button:hover{
+/*Style when hovering over header links or buttons*/
+header a:hover, button:hover{
     background-color:#6666d7;
     border-color:#fff;
     color:#fff;
+    text-decoration:none;
 }
+/*Inset shadow when buttons clicked*/
+nav a:active, button:active{
+    box-shadow: inset 1px 1px 5px #303030
+}
+/*Space between "login" and github svg*/
 nav > a * ~ *{
     padding-left:4px;
 }
-nav > a:active, .button:active{
-    box-shadow: inset 1px 1px 5px #303030
-}
-a.tight{
+/*Neatens the github profile pic*/
+nav a.img{
     padding:0;
     width:auto;
 }
-                                            
-article{
+/*Change cursor so buttons look clickable*/
+button{
+    cursor:pointer;
+}
+/*Remove mozilla button click outlines*/
+*::-moz-focus-inner{
+    border:0;
+}
+/*The look of a card*/
+article, aside{
     box-shadow:0 0 3px var(--shadow);
     background-color:var(--top-color);
     margin:8px 0px;
     padding:15px;
 }
+/*Maintains the gap between aside and articles*/
+aside{
+    margin:8px;
+}
+/*Setting the layout of tool cards*/
 article.tool{
-    margin-right:5%;
-    width:auto;
-    margin-left:5%;
+    margin:8px 5%;
     display:grid; 
     grid-template-columns:calc(100% - 6rem) 6rem;
 }
+/*Stops text getting too close to the tool category marker*/
 article.tool div:nth-child(1){
     margin-right:1rem;
 }
+/*Sets the tool category marker shape*/
 article.tool div:nth-child(2){
     max-height:6rem;
     border-radius:0.4rem;
     text-align:center;
     display:flex;
 }
+/*Positions and styles the text in the marker*/
 article.tool div:nth-child(2) p{
     font-size:1rem;
     color:whitesmoke;
     font-weight: bold;
     margin:auto; 
 }
+/*Sets the tool marker category colours*/
 article.tool.searchLinguistics div:nth-child(2){
     background-color:#060;
 }
@@ -174,49 +177,50 @@ article.tool.searchCanvases div:nth-child(2){
 article.tool.searchUniques div:nth-child(2){
     background-color:#666;
 }
-div.blogfeed{
-    text-align:center;
-}
-article.blog{
+/*Makes blog and project cards a bit thinner*/
+article.blog,article.project{
     margin:8px;
-    text-align:left;
-}
-article.project{
-    margin:8px;
-    text-align:left;
     min-height:128px;
 }
+/*Project card image sizing and positioning*/
 article.project img{
-    width:128px;
+    width:100px;
     float:left;
+    margin:14px;
 }
-.stick {
-    top:88px;
-    margin:0px 8px;
-}
+/*The footer at the bottom of the page*/
 footer{
     color: var(--subtle-text-color);
     padding: 2vh 2%;
     margin-top:2.5rem;
-    border-top-color:var(--subtle-text-color);
-    border-top:1px;
-    border-top-style:solid;
-    font-size:1rem;
-    left: 0;
+    border-top:1px currentcolor solid;
     width: 96%;
 }
-span > *{
-    display: inline-block;
-    vertical-align:top;
+/*Allows centering of span contents*/
+span.centered{
+    display:inline-block;
+    text-align:center;
+    width:100%;
 }
-span textarea.centered{
-    min-width:48%;
-    max-width:48%;
-    height:30rem;
+/*Spaces out checkboxes in a span*/
+span.checkboxes{
+    margin-top:0.4rem;
+    margin-bottom:0.8rem;
+    display:inline-block;
 }
-
-span article{
-    margin-top:0;
+span.checkboxes label~label{
+    margin-left:4rem;
+}
+/*Allows the displaying of code (Used in blog)*/
+code{
+    padding:0.5rem;
+    background-color:var(--bottom-color);
+    border-radius:0.2rem;
+    box-shadow:inset 0px 0px 4px #404040;
+    overflow:auto;
+    font-size:1.1rem;
+    font-family:monospace;
+    white-space: pre;
 }
 article figure{
     margin-top:0.5em;
@@ -270,6 +274,11 @@ input[type=radio], input[type=checkbox]{
 .expand:not(:checked) ~ .collapse{
     display:none;
 }
+/*Stops checkboxes being awkwardly positioned*/
+input[type=checkbox]{
+    vertical-align:middle;
+}
+
 input[type=checkbox].expand{
     display:inline-block;
     border-radius:7px;
@@ -326,25 +335,7 @@ a:active{
 ul *{
     margin-left:1em;
 }
-p.code{
-    padding:0.5rem;
-    background-color:var(--bottom-color);
-    border-radius:0.2rem;
-    box-shadow:inset 0px 0px 4px #404040;
-    overflow:auto;
-    font-size:1.1rem;
-    font-family:monospace;
-    white-space: pre;
-}
-span.code {
-    background-color:grey;
-    box-shadow: inset 0px 0px 20px #202020;
-}
-span.code *{
-    font-family:monospace;
-    color:white;
-    vertical-align:top;
-}
+
 form textarea{
     min-width:97.5%;
     max-width:97.5%;
@@ -414,26 +405,15 @@ img.redimg{
 .shaded{
     background-color:#F9F9FB;
 }
-span.level *{
-    vertical-align:middle;
-}
-span.centered{
-    text-align:center;
-    width:100%;
-}
-span.checkboxes{
-    margin-top:0.4rem;
-    margin-bottom:0.8rem;
-    display:inline-block;
-}
-span.checkboxes label~label{
-    margin-left:4rem;
-}
+
 textarea.centered{
     min-width:99%;
     max-width:99%;
     min-height:4rem;
     text-align:left;
+}
+textarea.long{
+    min-height:15rem;
 }
 button.centered{
     width:15rem;

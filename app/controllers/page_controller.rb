@@ -10,6 +10,7 @@ class PageController < ApplicationController
   end
 
   def contact
+    @includerecaptcha=true
   end
 
   def submitcontact

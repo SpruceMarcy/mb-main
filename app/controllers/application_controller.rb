@@ -6,7 +6,10 @@ class ApplicationController < ActionController::Base
 
   def before
     adminuid=ENV["master_name"]
-    @adminuid=ENV["master_name"]
+    puts "DEBUG               !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+    @isadmin=adminuid==session[:name]
+    @adminuid=adminuid
+    @includerecaptcha=false
     today=Date.today
     if today==Date.new(2020,3,31)
       @seasonal_style="tdov"
