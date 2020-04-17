@@ -383,8 +383,8 @@ button.centered{
     display:none;
 }
 .note{
-    font-size:0.6em;
-    color:darkgrey;
+    font-size:0.8em;
+    color:var(--text-color);
 }
 .rec{
     display:flex;
