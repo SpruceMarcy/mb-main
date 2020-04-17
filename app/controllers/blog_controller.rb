@@ -9,7 +9,7 @@ class BlogController < ApplicationController
     if session[:uid]==@adminuid
       @entry=query("SELECT * FROM Blog WHERE id=#{params[:id]};")[0]
     else
-      redirect_to("/404",status: 404)
+      render(file: "#{Rails.root}/public/404.html",status: 404,:layout=>false)
     end
   end
 
@@ -19,7 +19,7 @@ class BlogController < ApplicationController
       result=query("UPDATE Blog SET content='#{params[:content].gsub("'","''")}' WHERE id=#{params[:id].to_i};")
       redirect_to("/blog")
     else
-      redirect_to("/404",status: 404)
+      render(file: "#{Rails.root}/public/404.html",status: 404,:layout=>false)
     end
   end
 
@@ -28,17 +28,13 @@ class BlogController < ApplicationController
       result=query("DELETE FROM Blog WHERE id=#{params["id"]};")
       redirect_to("/blog")
     else
-      redirect_to("/404",status: 404)
+      render(file: "#{Rails.root}/public/404.html",status: 404,:layout=>false)
     end
   end
 
   def add
-    puts "session"
-    puts session[:uid]
-    puts "adminuid"
-    puts @adminuid
     if session[:uid]!=@adminuid
-      redirect_to("/404",status: 404)
+      render(file: "#{Rails.root}/public/404.html",status: 404,:layout=>false)
     end
   end
 
@@ -47,7 +43,7 @@ class BlogController < ApplicationController
       result=query("INSERT INTO Blog(id, date, title, content) VALUES (#{getindex()+1}, TIMESTAMP \'#{query("SELECT NOW();")[0]["now"]}\', \'#{params[:title].gsub("'","''")}\', \'#{params[:content].gsub("'","''")}\');")
       redirect_to("/blog")
     else
-      redirect_to("/404",status: 404)
+      render(file: "#{Rails.root}/public/404.html",status: 404,:layout=>false)
     end
   end
 

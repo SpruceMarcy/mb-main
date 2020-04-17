@@ -61,8 +61,4 @@ Rails.application.routes.draw do
   post "/admin/todo", to: "admin#todo"
   get "/admin/todo/:id", to: "admin#todo"
   post "/admin/todo/:id", to: "admin#todo"
-
-  get "/photo/:id.jpg", to: "file#image"
-  get "/sitemap.xml", to: "file#sitemap"
-  get "/robots.txt", to: "file#robots"
 end
