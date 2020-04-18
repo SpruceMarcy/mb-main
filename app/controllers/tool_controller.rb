@@ -201,18 +201,6 @@ class ToolController < ApplicationController
     render layout: "chat"
   end
   def chatperm
-    Message.all.each do |message|
-      begin
-        hmessage=JSON.parse(message.content)
-        if hmessage["type"]=="perm"
-          if hmessage["chat"]==params[:chat]
-            delmsg(message)
-          end
-        end
-      rescue JSON::ParserError => e
-        delmsg(message)
-      end
-    end
     content=Hash.new
     content["type"]="perm"
     content["author"]="Umpire"
@@ -223,19 +211,20 @@ class ToolController < ApplicationController
   end
   private
     def getperms(chat)
+      permset=Hash.new
       Message.all.each do |message|
         begin
           hmessage=JSON.parse(message.content)
           if hmessage["type"]=="perm"
             if hmessage["chat"]==chat
-              return hmessage["perm"] || Hash.new
+              permset = hmessage["perm"] || permset
             end
           end
         rescue JSON::ParserError => e
           delmsg(message)
         end
       end
-      return Hash.new
+      return permset
     end
     def delmsg(message)
       content=Hash.new
