@@ -32,14 +32,23 @@
     <%end%>
   </div>
   <meta id="admin" content="<%=@admin%>">
-  <%= form_for @message, remote: true do |f|%>
+  <%= form_for @message,:html =>{:class => 'send'}, remote: true do |f|%>
     <input type="hidden" name="type" value="message"/>
     <input type="hidden" id="nickname" name="author" value="<%=session[:nickname]%>"/>
     <input type="hidden" id="roomno" name="chat" value="<%=params[:roomno]%>"/>
-    <%= f.text_field :content, required: true, autocomplete: "off"%>
+    <%= f.text_area :content, required: true, autocomplete: "off"%>
     <%= f.submit%>
   <%end%>
   <style>
+    form.send>textarea{
+      min-width:100%;
+      max-width:100%;
+      width:100%;
+      min-height:1rem;
+      border-bottom-left-radius:0.3rem;
+      border-bottom-right-radius:0.3rem;
+      box-sizing:border-box;
+    }
     div#messages{
       box-sizing:border-box;
       background-color:var(--medium-color);
@@ -48,7 +57,8 @@
       max-height:60vh;
       overflow:auto;
       box-shadow:0 0 3px var(--shadow) inset;
-      border-radius:0.3rem;
+      border-top-left-radius:0.3rem;
+      border-top-right-radius:0.3rem;
     }
     div.message p, div.notif p{
       box-sizing:border-box;
@@ -91,3 +101,12 @@
     }
   </style>
 </article>
+
+<article>
+  <h2>Players in this chat</h2>
+  <%@here.keys.each do |pla|%>
+  <%if pla!="Umpire"%><p class="adj"><%=pla%></p><%end%>
+  <%end%>
+</article>
+
+

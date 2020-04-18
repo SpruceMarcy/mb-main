@@ -34,6 +34,7 @@ Rails.application.routes.draw do
   resources :messages, only: [:new, :create]
   get "/tools/chat", to: "tool#chatindex"
   get "/tools/chat/umpire", to: "tool#chatumpire"
+  post "/tools/chat/umpire", to: "tool#chatperm"
   post "/tools/chat/nickname", to: "tool#chatsetnickname"
   post "/tools/chat/new", to: "tool#chatnew"
   get "/tools/chat/:roomno", to: "tool#chat"

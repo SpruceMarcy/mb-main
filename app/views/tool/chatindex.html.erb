@@ -2,12 +2,8 @@
 <%- content_for(:page_description, "Go ahead. Chat.")%>
 <article>
   <h1>Lockdown Game Chat</h1>
-  <%if !@chats.nil?%>
-  <br/>
-  <p class="adj">Choose a chat room:</p>
-  <%@chats.each do |room|%>
-  <p class="adj"><a href="/tools/chat/<%=room%>"><%=room%></a></p>
-  <%end%>
+  <%if session[:nickname]=="Umpire"%>
+  <p><a href="/tools/chat/umpire">Click here for Umpire Controls</a></p>
   <%end%>
   <%if session[:nickname].nil?%>
   <p>Welcome! Begin by setting your nickname. This will be your psuedonym for the game, but without special characters and with spaces replaced with underscores.</p>
@@ -15,6 +11,15 @@
   <form method="post" action="/tools/chat/nickname">
     <input type="text" name="nickname" placeholder="<%=session[:nickname]%>" title="A-Z, 0-9, or _ only" patten="[A-Za-z0-9_]+" required/>
     <input type="submit" value="Set Nickname"/>
-  </form>
+  </form>  
+  <%elsif !@chats.nil?%>
+  <br/>
+  <h2>Choose a chat room:</h2>
+  <%@chats.each do |room|%>
+  <p class="adj"><a href="/tools/chat/<%=room%>"><%=room%></a></p>
+  <%end%>
+  <%else%>
+  <p>It doesn't look like you have access to any chats :'(</p>
+  <p>If you believe this to be a mistake, contact the umpire.</p>
   <%end%>
 </article>

@@ -118,7 +118,11 @@ class ToolController < ApplicationController
         begin
           hmessage=JSON.parse(message.content)
           if !hmessage["chat"].nil? && !(@chats.include? hmessage["chat"])
-            @chats << hmessage["chat"]
+            if hmessage["chat"]!="config"
+              if getperms(hmessage["chat"]).has_key?(session[:nickname])
+                @chats << hmessage["chat"]
+              end
+            end
           end
         rescue JSON::ParserError => e
           message.delete
@@ -162,6 +166,7 @@ class ToolController < ApplicationController
       end
     end
     @message=Message.new
+    @here=getperms(params[:roomno])
     render layout: "chat"
   end
   def chatumpire
@@ -176,6 +181,60 @@ class ToolController < ApplicationController
         message.delete
       end
     end
+    @chats=[]
+    Message.all.each do |message|
+      begin
+        hmessage=JSON.parse(message.content)
+        if !hmessage["chat"].nil? && !(@chats.include? hmessage["chat"])
+          if hmessage["chat"]!="config"
+            @chats << hmessage["chat"]
+          end
+        end
+      rescue JSON::ParserError => e
+        message.delete
+      end
+    end
+    @perms=Hash.new
+    @chats.each do |chat|
+      @perms[chat]=getperms(chat)
+    end
     render layout: "chat"
   end
+  def chatperm
+    Message.all.each do |message|
+      begin
+        hmessage=JSON.parse(message.content)
+        if hmessage["type"]=="perm"
+          if hmessage["chat"]==params[:chat]
+            message.delete
+          end
+        end
+      rescue JSON::ParserError => e
+        message.delete
+      end
+    end
+    content=Hash.new
+    content["type"]="perm"
+    content["author"]="Umpire"
+    content["chat"]=params[:chat]
+    content["perm"]=params[:perm]
+    @m=Message.create(content: content.to_json)
+    redirect_to("/tools/chat/umpire")
+  end
+  private
+    def getperms(chat)
+      Message.all.each do |message|
+        begin
+          hmessage=JSON.parse(message.content)
+          if hmessage["type"]=="perm"
+            if hmessage["chat"]==chat
+              return hmessage["perm"] || Hash.new
+            end
+          end
+        rescue JSON::ParserError => e
+          message.delete
+        end
+      end
+      return Hash.new
+    end
 end

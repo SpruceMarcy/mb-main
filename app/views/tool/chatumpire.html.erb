@@ -9,9 +9,43 @@
     <input type="submit" value="Create Room"/>
   </form>
   <br/>
-  <h2>Existing Players:</h2>
-  <%@players.each do |message|%>
-  <p class="adj"><%=message%></p>
-  <%end%>
-  
+  <h2>Access Control</h2>
+  <section style="overflow:auto;">
+  <table>
+    <tr>
+      <th>Chat name</th>
+      <%@players.each do |player|%>
+      <th>
+        <%=player%>
+      </th>
+      <%end%>
+      <th>Submit Changes</th>
+    </tr>
+    <%@chats.each do |chat|%>
+    <tr>
+        <td>
+          <form method="post" id="<%=chat%>" action="/tools/chat/umpire">
+            <input type="hidden" name="chat" value="<%=chat%>">
+          </form>
+          <%=chat%>
+        </td>
+        <%@players.each do |player|%>
+        <td>
+          <input type="checkbox" name="perm[<%=player%>]" form="<%=chat%>"<%if @perms[chat].has_key?(player)%> checked<%end%>>
+        </td>
+        <%end%>
+        <td><input type="submit" form="<%=chat%>"></td>
+    </tr>
+    <%end%>
+  </table>
+  </section>
+  <style>
+    th, td{
+      padding:0.5rem;
+      border:1px yellow solid;
+    }
+    th, td:first-child{
+      font-weight:bold;
+    }
+  </style>
 </article>
