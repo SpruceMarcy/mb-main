@@ -3,6 +3,7 @@
 <article>
   <%= javascript_pack_tag 'application'%>
   <h1>Chat <%=params[:roomno]%></h1>
+  <p class="adj">Hint: type \w [name] [message] to whisper</p>
   <p class="adj"><a href="/tools/chat">Back</a></p>
   <div id="messages">
     <%@messages.each do |message|%>
