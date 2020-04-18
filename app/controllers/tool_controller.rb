@@ -125,7 +125,7 @@ class ToolController < ApplicationController
             end
           end
         rescue JSON::ParserError => e
-          message.delete
+          delmsg(message)
         end
       end
       if @chats==[]
@@ -162,7 +162,7 @@ class ToolController < ApplicationController
       begin
         @messages << JSON.parse(message.content)
       rescue JSON::ParserError => e
-        message.delete
+        delmsg(message)
       end
     end
     @message=Message.new
@@ -178,7 +178,7 @@ class ToolController < ApplicationController
           @players << hmessage["author"]
         end
       rescue JSON::ParserError => e
-        message.delete
+        delmsg(message)
       end
     end
     @chats=[]
@@ -191,7 +191,7 @@ class ToolController < ApplicationController
           end
         end
       rescue JSON::ParserError => e
-        message.delete
+        delmsg(message)
       end
     end
     @perms=Hash.new
@@ -206,11 +206,11 @@ class ToolController < ApplicationController
         hmessage=JSON.parse(message.content)
         if hmessage["type"]=="perm"
           if hmessage["chat"]==params[:chat]
-            message.delete
+            delmsg(message)
           end
         end
       rescue JSON::ParserError => e
-        message.delete
+        delmsg(message)
       end
     end
     content=Hash.new
@@ -232,9 +232,14 @@ class ToolController < ApplicationController
             end
           end
         rescue JSON::ParserError => e
-          message.delete
+          delmsg(message)
         end
       end
       return Hash.new
+    end
+    def delmsg(message)
+      content=Hash.new
+      content["type"]="deleted"
+      message.update_attributes(:content=>content.to_json)
     end
 end
