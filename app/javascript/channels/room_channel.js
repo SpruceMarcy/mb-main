@@ -37,10 +37,10 @@ consumer.subscriptions.create("RoomChannel", {
             $("new_message").reset()
             classtext=" class=\"self\""
           } 
-          $("messages").innerHTML+="<div class=\"message\"><p"+classtext+">(Whisper)"+jdata["author"]+"</p><p class=\"whisper\">"+jdata["message"]+"</p></div>";
+          $("messages").innerHTML+="<div class=\"message\"><p"+classtext+">(whisper): "+jdata["author"]+"</p><p class=\"whisper\">"+jdata["message"]+"</p></div>";
         }
         else{
-          $("messages").innerHTML+="<div class=\"hint\"><p>You hear a quiet whisper.</p></div>";
+          $("messages").innerHTML+="<div class=\"hint\"><p>"+jdata["author"]+" whispered to "+jdata["recipient"]+"</p></div>";
         }
       }
       var m=document.getElementsByClassName("message");
