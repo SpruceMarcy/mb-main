@@ -33,6 +33,7 @@ Rails.application.routes.draw do
   post "/tools/divvy", to: "tool#divCounter"
   resources :messages, only: [:new, :create]
   get "/tools/chat", to: "tool#chatindex"
+  get "/tools/chat/umpire", to: "tool#chatumpire"
   post "/tools/chat/nickname", to: "tool#chatsetnickname"
   post "/tools/chat/new", to: "tool#chatnew"
   get "/tools/chat/:roomno", to: "tool#chat"

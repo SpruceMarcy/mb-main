@@ -1,0 +1,17 @@
+<%- content_for(:page_title, "Chat")%>
+<%- content_for(:page_description, "Go ahead. Chat.")%>
+<article>
+  <%= javascript_pack_tag 'application'%>
+  <h1>Umpire Control Page</h1>
+  <h2>Create a new chat room (Only A-Z, 0-9, or _):</h2>
+  <form method="post" action="/tools/chat/new">
+    <input type="text" name="name" placeholder="Enter chat name here" title="A-Z, 0-9, or _ only" patten="[A-Za-z0-9_]+" required/>
+    <input type="submit" value="Create Room"/>
+  </form>
+  <br/>
+  <h2>Existing Players:</h2>
+  <%@players.each do |message|%>
+  <p class="adj"><%=message%></p>
+  <%end%>
+  
+</article>

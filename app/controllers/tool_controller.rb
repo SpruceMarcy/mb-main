@@ -134,6 +134,11 @@ class ToolController < ApplicationController
   def chatsetnickname
     if params[:nickname] =~ /^\w*$/
       session[:nickname]=params[:nickname]
+      content=Hash.new
+      content["type"]="signup"
+      content["author"]=params[:nickname]
+      content["chat"]="config"
+      @m=Message.create(content: content.to_json)
     end
     redirect_to("/tools/chat")
   end
@@ -141,10 +146,8 @@ class ToolController < ApplicationController
     if params[:name] =~ /^\w*$/
       content=Hash.new
       content["type"]="create"
-      content["author"]=session[:nickname]
-      content["chat"]=params[:name]+" - Admin: "+session[:nickname]
-      puts "YOOOOOOOOOOOOOOOOOOOOOOO"
-      puts content
+      content["author"]="Umpire"
+      content["chat"]=params[:name]
       @m=Message.create(content: content.to_json)
     end
     redirect_to("/tools/chat")
@@ -159,6 +162,20 @@ class ToolController < ApplicationController
       end
     end
     @message=Message.new
+    render layout: "chat"
+  end
+  def chatumpire
+    @players=[]
+    Message.all.each do |message|
+      begin
+        hmessage=JSON.parse(message.content)
+        if !hmessage["author"].nil? && !(@players.include? hmessage["author"])
+          @players << hmessage["author"]
+        end
+      rescue JSON::ParserError => e
+        message.delete
+      end
+    end
     render layout: "chat"
   end
 end
