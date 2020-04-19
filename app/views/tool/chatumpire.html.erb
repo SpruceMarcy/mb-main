@@ -1,7 +1,6 @@
-<%- content_for(:page_title, "Chat")%>
-<%- content_for(:page_description, "Go ahead. Chat.")%>
+<%- content_for(:page_title, "Umpire Chat Controls")%>
+<%- content_for(:page_description, "A control set for the chat.")%>
 <article>
-  <%= javascript_pack_tag 'application'%>
   <h1>Umpire Control Page</h1>
   <h2>Create a new chat room (Only A-Z, 0-9, or _):</h2>
   <form method="post" action="/tools/chat/new">
@@ -9,13 +8,20 @@
     <input type="submit" value="Create Room"/>
   </form>
   <br/>
+  <h3>key</h3>
+  <table>
+    <tr><td class="hasperm">This player can access this chat</td></tr>
+    <tr><td class="dead">This player is dead</td></tr>
+    <tr><td class="muted">This player can read, but is muted</td></tr>
+  </table>
+  <br/>
   <h2>Access Control</h2>
   <section style="overflow:auto;">
   <table>
     <tr>
       <th>Chat name</th>
       <%@players.each do |player|%>
-      <th>
+      <th<%if @dead.has_key?(player)%> class="dead"<%end%>>
         <%=player%>
       </th>
       <%end%>
@@ -24,19 +30,131 @@
     <%@chats.each do |chat|%>
     <tr>
         <td>
-          <form method="post" id="<%=chat%>" action="/tools/chat/umpire">
+          <form method="post" id="p<%=chat%>" action="/tools/chat/umpire">
+            <input type="hidden" name="permtype" value="perm">
             <input type="hidden" name="chat" value="<%=chat%>">
           </form>
           <%=chat%>
         </td>
         <%@players.each do |player|%>
+        <%if @perms[chat].has_key?(player)%>
+        <td class="hasperm<%if @mutes[chat].has_key?(player)%> muted<%end%>">
+          <input type="checkbox" name="perm[<%=player%>]" form="p<%=chat%>" checked>
+        </td>
+        <%else%>
         <td>
-          <input type="checkbox" name="perm[<%=player%>]" form="<%=chat%>"<%if @perms[chat].has_key?(player)%> checked<%end%>>
+          <input type="checkbox" name="perm[<%=player%>]" form="p<%=chat%>">
         </td>
         <%end%>
-        <td><input type="submit" form="<%=chat%>"></td>
+        <%end%>
+        <td><input type="submit" form="p<%=chat%>"></td>
     </tr>
     <%end%>
+  </table>
+  </section>
+  </br>
+  <h2>Mute Control</h2>
+  <section style="overflow:auto;">
+  <table>
+    <tr>
+      <th>Chat name</th>
+      <%@players.each do |player|%>
+      <th<%if @dead.has_key?(player)%> class="dead"<%end%>>
+        <%=player%>
+      </th>
+      <%end%>
+      <th>Submit Changes</th>
+    </tr>
+    <%@chats.each do |chat|%>
+    <tr>
+        <td>
+          <form method="post" id="m<%=chat%>" action="/tools/chat/umpire">
+            <input type="hidden" name="permtype" value="mute">
+            <input type="hidden" name="chat" value="<%=chat%>">
+          </form>
+          <%=chat%>
+        </td>
+        <%@players.each do |player|%>
+        <%if @perms[chat].has_key?(player)%>
+        <td class="hasperm<%if @mutes[chat].has_key?(player)%> muted<%end%>">
+          <input type="checkbox" name="perm[<%=player%>]" form="m<%=chat%>" <%if @mutes[chat].has_key?(player)%> checked<%end%>>
+        </td>
+        <%else%>
+        <td>
+          <input type="checkbox" name="perm[<%=player%>]" form="m<%=chat%>" <%if @mutes[chat].has_key?(player)%> checked<%end%>>
+        </td>
+        <%end%>
+        <%end%>
+        <td><input type="submit" form="m<%=chat%>"></td>
+    </tr>
+    <%end%>
+  </table>
+  </section>
+  <br/>
+  <h2>Whisper Viewing Control</h2>
+  <section style="overflow:auto;">
+  <table>
+    <tr>
+      <th>Chat name</th>
+      <%@players.each do |player|%>
+      <th<%if @dead.has_key?(player)%> class="dead"<%end%>>
+        <%=player%>
+      </th>
+      <%end%>
+      <th>Submit Changes</th>
+    </tr>
+    <%@chats.each do |chat|%>
+    <tr>
+        <td>
+          <form method="post" id="w<%=chat%>" action="/tools/chat/umpire">
+            <input type="hidden" name="permtype" value="whis">
+            <input type="hidden" name="chat" value="<%=chat%>">
+          </form>
+          <%=chat%>
+        </td>
+        <%@players.each do |player|%>
+        <%if @perms[chat].has_key?(player)%>
+        <td class="hasperm<%if @mutes[chat].has_key?(player)%> muted<%end%>">
+          <input type="checkbox" name="perm[<%=player%>]" form="w<%=chat%>" <%if @whiss[chat].has_key?(player)%> checked<%end%>>
+        </td>
+        <%else%>
+        <td>
+          <input type="checkbox" name="perm[<%=player%>]" form="w<%=chat%>" <%if @whiss[chat].has_key?(player)%> checked<%end%>>
+        </td>
+        <%end%>
+        <%end%>
+        <td><input type="submit" form="w<%=chat%>"></td>
+    </tr>
+    <%end%>
+  </table>
+  </section>
+  <br/>
+  <h2>The Dead</h2>
+  <section style="overflow:auto;">
+  <table>
+    <tr>
+      <th> </th>
+      <%@players.each do |player|%>
+      <th<%if @dead.has_key?(player)%> class="dead"<%end%>>
+        <%=player%>
+      </th>
+      <%end%>
+      <th>Submit Changes</th>
+    </tr>
+    <tr>
+        <td>
+          <form method="post" id="d" action="/tools/chat/umpire">
+            <input type="hidden" name="permtype" value="dead">
+          </form>
+          Is Dead?
+        </td>
+        <%@players.each do |player|%>
+        <td>
+          <input type="checkbox" name="perm[<%=player%>]" form="d" <%if @dead.has_key?(player)%> checked<%end%>>
+        </td>
+        <%end%>
+        <td><input type="submit" form="d"></td>
+    </tr>
   </table>
   </section>
   <style>
@@ -46,6 +164,22 @@
     }
     th, td:first-child{
       font-weight:bold;
+    }
+    tr:nth-child(2n-1){
+      background-color:whitesmoke;
+      color:black;
+    }
+    td.hasperm{
+      background-color:lightgreen;
+      color:black;
+    }
+    td.dead, th.dead{
+      background-color:red;
+      color:black;
+    }
+    td.muted{
+      background-image:linear-gradient(to bottom right, lightgreen 49%, #66F 51%);
+      color:black;
     }
   </style>
 </article>

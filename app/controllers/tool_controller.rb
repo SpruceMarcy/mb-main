@@ -154,9 +154,12 @@ class ToolController < ApplicationController
       content["chat"]=params[:name]
       @m=Message.create(content: content.to_json)
     end
-    redirect_to("/tools/chat")
+    redirect_to("/tools/chat/umpire")
   end
   def chat
+    if !getperms(params[:roomno]).has_key?(session[:nickname])
+      redirect_to("/tools/chat") and return
+    end
     @messages=[]
     Message.all.each do |message|
       begin
@@ -167,6 +170,20 @@ class ToolController < ApplicationController
     end
     @message=Message.new
     @here=getperms(params[:roomno])
+    @mutelist=getmutes(params[:roomno])
+    @canwhisper=getwhiss(params[:roomno]).has_key?(session[:nickname])
+    @dead=getdead()
+    @players=[]
+    Message.all.each do |message|
+      begin
+        hmessage=JSON.parse(message.content)
+        if !hmessage["author"].nil? && !(@players.include? hmessage["author"])
+          @players << hmessage["author"]
+        end
+      rescue JSON::ParserError => e
+        delmsg(message)
+      end
+    end
     render layout: "chat"
   end
   def chatumpire
@@ -198,26 +215,53 @@ class ToolController < ApplicationController
     @chats.each do |chat|
       @perms[chat]=getperms(chat)
     end
+    @mutes=Hash.new
+    @chats.each do |chat|
+      @mutes[chat]=getmutes(chat)
+    end
+    @whiss=Hash.new
+    @chats.each do |chat|
+      @whiss[chat]=getwhiss(chat)
+    end
+    @dead=getdead()
     render layout: "chat"
   end
   def chatperm
-    Message.all.each do |message|
-      begin
-        hmessage=JSON.parse(message.content)
-        if hmessage["type"]=="perm"
-          if hmessage["chat"]==params[:chat]
+    typestring=params[:permtype]
+    content=Hash.new
+    if typestring=="dead"
+      Message.all.each do |message|
+        begin
+          hmessage=JSON.parse(message.content)
+          if hmessage["type"]==typestring
             delmsg(message)
           end
+        rescue JSON::ParserError => e
+          delmsg(message)
         end
-      rescue JSON::ParserError => e
-        delmsg(message)
       end
+      content["type"]=typestring
+      content["author"]="Umpire"
+      content["chat"]="config"
+      content["perm"]=params[:perm]
+    else
+      Message.all.each do |message|
+        begin
+          hmessage=JSON.parse(message.content)
+          if hmessage["type"]==typestring
+            if hmessage["chat"]==params[:chat]
+              delmsg(message)
+            end
+          end
+        rescue JSON::ParserError => e
+          delmsg(message)
+        end
+      end
+      content["type"]=typestring
+      content["author"]="Umpire"
+      content["chat"]=params[:chat]
+      content["perm"]=params[:perm]
     end
-    content=Hash.new
-    content["type"]="perm"
-    content["author"]="Umpire"
-    content["chat"]=params[:chat]
-    content["perm"]=params[:perm]
     @m=Message.create(content: content.to_json)
     redirect_to("/tools/chat/umpire")
   end
@@ -230,6 +274,49 @@ class ToolController < ApplicationController
             if hmessage["chat"]==chat
               return hmessage["perm"] || Hash.new
             end
+          end
+        rescue JSON::ParserError => e
+          delmsg(message)
+        end
+      end
+      return Hash.new
+    end
+    def getmutes(chat)
+      Message.all.each do |message|
+        begin
+          hmessage=JSON.parse(message.content)
+          if hmessage["type"]=="mute"
+            if hmessage["chat"]==chat
+              return hmessage["perm"] || Hash.new
+            end
+          end
+        rescue JSON::ParserError => e
+          delmsg(message)
+        end
+      end
+      return Hash.new
+    end
+    def getwhiss(chat)
+      Message.all.each do |message|
+        begin
+          hmessage=JSON.parse(message.content)
+          if hmessage["type"]=="whis"
+            if hmessage["chat"]==chat
+              return hmessage["perm"] || Hash.new
+            end
+          end
+        rescue JSON::ParserError => e
+          delmsg(message)
+        end
+      end
+      return Hash.new
+    end
+    def getdead()
+      Message.all.each do |message|
+        begin
+          hmessage=JSON.parse(message.content)
+          if hmessage["type"]=="dead"
+            return hmessage["perm"] || Hash.new
           end
         rescue JSON::ParserError => e
           delmsg(message)

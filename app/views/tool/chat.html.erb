@@ -3,6 +3,7 @@
 <article>
   <%= javascript_pack_tag 'application'%>
   <h1>Chat <%=params[:roomno]%></h1>
+  <h3 id="err" style="color:red;"></h3>
   <p class="adj">Hint: type \w [name] [message] to whisper</p>
   <p class="adj"><a href="/tools/chat">Back</a></p>
   <div id="messages">
@@ -19,9 +20,9 @@
     </div>
     <%end%>
     <%if message["type"]=="whisper"%>
-    <%if session[:nickname]==message["author"] or session[:nickname]==message["recipient"]%>
+    <%if @canwhisper or session[:nickname]==message["author"] or session[:nickname]==message["recipient"]%>
     <div class="message">
-      <p<%if message["author"]==session[:nickname]%> class="self"<%end%>>(whisper): <%=message["author"]%></p><p class="whisper"><%=message["message"]%></p>
+      <p<%if message["author"]==session[:nickname]%> class="self"<%end%>>(whisper to <%=message["recipient"]%>) <%=message["author"]%></p><p class="whisper"><%=message["message"]%></p>
     </div>
     <%else%>
     <div class="hint">
@@ -33,12 +34,14 @@
     <%end%>
   </div>
   <meta id="admin" content="<%=@admin%>">
+  <meta id="canwhisper" content="<%=@canwhisper%>">
   <%= form_for @message,:html =>{:class => 'send'}, remote: true do |f|%>
     <input type="hidden" name="type" value="message"/>
     <input type="hidden" id="nickname" name="author" value="<%=session[:nickname]%>"/>
     <input type="hidden" id="roomno" name="chat" value="<%=params[:roomno]%>"/>
-    <%= f.text_area :content, required: true, autocomplete: "off"%>
-    <%= f.submit%>
+    <%= f.text_area :content, disabled: @mutelist.has_key?(session[:nickname]), required: true, autocomplete: "off"%>
+    <%= f.submit "Send Message", id:"submitbutton", disabled: @mutelist.has_key?(session[:nickname])%>
+    <div/>
   <%end%>
   <style>
     form.send>textarea{
@@ -80,7 +83,8 @@
       border-top-right-radius:0;
       border-bottom-right-radius:0;
       overflow:hidden;
-      display:inline-table;
+      overflow-wrap:break-word;
+      max-width:15rem;
     }
     div.message p:last-child{
       margin-left:0;
@@ -104,14 +108,39 @@
       background-color:gray;
       box-shadow:0 0 5px yellow;
     }
+    input:disabled, textarea:disabled{
+      background-color:lightgray;
+      cursor:not-allowed;
+    }
+    input:disabled~div::after{
+      content:"You are Muted";
+      color:red;
+    }
+
   </style>
 </article>
 
-<article>
+<article style="display:grid; grid-template-columns: 50% 50%;">
+  <div style="overflow:auto;">
   <h2>Players in this chat</h2>
   <%@here.keys.each do |pla|%>
   <%if pla!="Umpire"%><p class="adj"><%=pla%></p><%end%>
   <%end%>
+  </div>
+  <div style="overflow:auto;">
+  <h2>Players in the game</h2>
+  <h2 style="color:green;">alive</h2>
+  <%@players.each do |pla|%>
+  <%if pla!="Umpire" and !@dead.has_key?(pla)%><p class="adj"><%=pla%></p><%end%>
+  <%end%>
+  <h2 style="color:red;">dead</h2>
+  <%@dead.keys.each do |pla|%>
+  <%if pla!="Umpire"%><p class="adj"><%=pla%></p><%end%>
+  <%end%>
+  </div>
 </article>
-
+<script>
+  var mone=document.getElementsByClassName("message");
+  mone[mone.length-1].scrollIntoView(false);
+</script>
 

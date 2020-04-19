@@ -2,6 +2,9 @@
 <%- content_for(:page_description, "Go ahead. Chat.")%>
 <article>
   <h1>Lockdown Game Chat</h1>
+  <%if !session[:nickname].nil?%>
+  <h3>Your name is: <%=session[:nickname]%></h3>
+  <%end%>
   <%if session[:nickname]=="Umpire"%>
   <p><a href="/tools/chat/umpire">Click here for Umpire Controls</a></p>
   <%end%>

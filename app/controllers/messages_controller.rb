@@ -23,9 +23,7 @@ class MessagesController < ApplicationController
       end
       @message = Message.create(content: jmessage.to_json)
     end
-    if @message.save
-      ActionCable.server.broadcast 'room_channel', content: @message.content
-    end
+    @message.save
   end
 
   private
