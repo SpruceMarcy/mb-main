@@ -243,7 +243,7 @@ class ToolController < ApplicationController
       content["type"]=typestring
       content["author"]="Umpire"
       content["chat"]="config"
-      content["perm"]=params[:perm]
+      content["perm"]=params[:perm] || Hash.new
     else
       Message.all.each do |message|
         begin
@@ -260,7 +260,7 @@ class ToolController < ApplicationController
       content["type"]=typestring
       content["author"]="Umpire"
       content["chat"]=params[:chat]
-      content["perm"]=params[:perm]
+      content["perm"]=params[:perm] || Hash.news
     end
     @m=Message.create(content: content.to_json)
     redirect_to("/tools/chat/umpire")
