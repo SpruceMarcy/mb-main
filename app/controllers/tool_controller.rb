@@ -260,7 +260,7 @@ class ToolController < ApplicationController
       content["type"]=typestring
       content["author"]="Umpire"
       content["chat"]=params[:chat]
-      content["perm"]=params[:perm] || Hash.news
+      content["perm"]=params[:perm] || Hash.new
     end
     @m=Message.create(content: content.to_json)
     redirect_to("/tools/chat/umpire")
