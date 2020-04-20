@@ -173,7 +173,7 @@ class ToolController < ApplicationController
       redirect_to("/tools/chat") and return
     end
     @messages=[]
-    Message.all.each do |message|
+    Message.all.order(:id).each do |message|
       begin
         @messages << JSON.parse(message.content)
       rescue JSON::ParserError => e
