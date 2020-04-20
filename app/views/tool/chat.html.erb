@@ -4,7 +4,7 @@
   <%= javascript_pack_tag 'application'%>
   <h1>Chat <%=params[:roomno]%></h1>
   <h3 id="err" style="color:red;"></h3>
-  <p class="adj">Hint: type \w [name] [message] to whisper</p>
+  <p class="adj">Hint: type \w [name] [message] to whisper. Names are case sensitive. You are: <%=session[:nickname]%></p>
   <p class="adj"><a href="/tools/chat">Back</a></p>
   <div id="messages">
     <%@messages.each do |message|%>
@@ -120,7 +120,8 @@
   </style>
 </article>
 
-<article style="display:grid; grid-template-columns: 50% 50%;">
+<article>
+  <div style="display:grid; grid-template-columns: 50% 50%;">
   <div style="overflow:auto;">
   <h2>Players in this chat</h2>
   <%@here.keys.each do |pla|%>
@@ -138,6 +139,9 @@
   <%if pla!="Umpire"%><p class="adj"><%=pla%></p><%end%>
   <%end%>
   </div>
+  </div>
+  <br/>
+  <h3>Refresh the page to update these lists.</h3>
 </article>
 <script>
   var mone=document.getElementsByClassName("message");

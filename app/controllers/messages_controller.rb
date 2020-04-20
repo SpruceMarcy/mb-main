@@ -10,7 +10,7 @@ class MessagesController < ApplicationController
         jmessage=Hash.new
         jmessage["type"]="whisper"
         removedcommand=params["message"]["content"].sub(/^\\w.*? /,"").sub(/^\\W.*? /,"")
-        jmessage["recipient"]=removedcommand.split.first
+        jmessage["recipient"]=removedcommand.split.first.sub("[","").sub("]","")
         jmessage["message"]=removedcommand.sub(/[^ ]+? /,"")
         jmessage["author"]=params["author"]
         jmessage["chat"]=params["chat"]

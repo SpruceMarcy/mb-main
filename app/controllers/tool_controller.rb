@@ -137,10 +137,22 @@ class ToolController < ApplicationController
 
   def chatsetnickname
     if params[:nickname] =~ /^\w*$/
-      session[:nickname]=params[:nickname]
+      newname=params[:nickname]
+      Message.all.each do |message|
+        begin
+          hauth=JSON.parse(message.content)["author"]
+          if hauth.downcase==newname.downcase
+            newname=hauth
+            break
+          end
+        rescue JSON::ParserError => e
+          delmsg(message)
+        end
+      end
+      session[:nickname]=newname
       content=Hash.new
       content["type"]="signup"
-      content["author"]=params[:nickname]
+      content["author"]=newname
       content["chat"]="config"
       @m=Message.create(content: content.to_json)
     end
