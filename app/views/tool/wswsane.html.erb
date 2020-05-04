@@ -1,0 +1,114 @@
+<%- content_for(:page_title, "WSWSANE")%>
+<%- content_for(:page_description, "What Star Wars Ships are Near Earth?")%>
+<article>
+  <h1>What Star Wars Ships are Near Earth?</h1>
+  <div style="position:absolute;"><div id="article"></div></div>
+  <canvas id="canvas1" width="800" height="1600"></canvas>
+  <script>
+  function $(id){return document.getElementById(id)}
+  function main(){
+  var neos = <%=raw(@neos.to_s)%>;
+  var canvas = $("canvas1");
+  var ctx = canvas.getContext("2d");
+  ctx.fillStyle = "#080818";
+  ctx.fillRect(0,0,canvas.width,canvas.height);
+  scalemax=40000
+  for(neo in neos){
+    neodist=neos[neo].close_approach_data[0].miss_distance.kilometers;
+    if(neodist>scalemax){
+      scalemax=neodist
+    }
+  }
+  ctx.fillStyle = "#008800"; 
+  ctx.beginPath();
+  ctx.arc(400,50,10,0,2*Math.PI);
+  ctx.font = "15px Sans-serif"
+  ctx.fillText("Earth",340,55)
+  ctx.fill()
+  ctx.fillStyle = "#666666"; 
+  ctx.beginPath();
+  ctx.arc(400,50+(1500*384400/scalemax),6,0,2*Math.PI);
+  ctx.font = "9px Sans-serif"
+  ctx.fillText("Moon",420,50+(1500*384400/scalemax)+5)
+  ctx.fill()
+  ctx.strokeStyle = "#FFFFFF"; 
+  ctx.beginPath();
+  ctx.moveTo(50,50)
+  ctx.lineTo(50,50+(1500*1000000/scalemax))
+  ctx.stroke();
+  ctx.font = "9px Sans-serif"
+  ctx.save();
+  ctx.translate(55,55)
+  ctx.rotate(Math.PI/2);
+  ctx.fillText("1000,000km = " + Math.round(1500*100000000/scalemax)/100 + "px",0,0);
+  ctx.restore();
+
+  keys=Object.keys(neos)
+  sortedneos=keys.map(function(v){return neos[v];})
+  sortedneos.sort(function(a,b){return parseFloat(a.close_approach_data[0].miss_distance.kilometers-b.close_approach_data[0].miss_distance.kilometers)})
+  parity=1
+  for(neo in sortedneos){
+    parity*=-1
+    neodist=sortedneos[neo].close_approach_data[0].miss_distance.kilometers;
+    ctx.beginPath();
+    ctx.arc(400,50+(1500*neodist/scalemax),3,0,2*Math.PI);
+    ctx.fill()
+    var div = document.createElement('div');
+    $("article").appendChild(div);
+    leftval=((canvas.clientWidth/800)*(400))+20
+    if(parity == -1){
+      leftval-=240
+    }
+    div.style.left = leftval+"px";
+    div.style.top = "calc("+((canvas.clientHeight/1600)*(50+(1500*neodist/scalemax)))+"px - 1.5rem)"
+    div.className = "neo"
+    var h3 = document.createElement('h3');
+    div.appendChild(h3);
+    h3.innerHTML="Name: "+sortedneos[neo]["name"]
+    if(parity == -1){
+      h3.style.textAlign="right";
+    }
+    var p = document.createElement('p');
+    div.appendChild(p);
+    p.innerHTML="Ship: "+sortedneos[neo]["star_wars_ship"]
+    if(parity == -1){
+      p.style.textAlign="right";
+    }
+  }
+  }
+  window.onload=main
+  </script>
+  <style>
+  #canvas1{
+    width:calc(100% - 4rem);
+    margin:2rem;
+    box-sizing:border-box;
+    background-color:#080818;
+    box-shadow:0 0 5px #080818;
+  }
+  #article{
+    position:absolute;
+    top:2rem;
+    left:2rem;
+  }
+  div.neo{
+    position:absolute;
+    width:200px;
+    background-color:#05050550;
+    color:whitesmoke;
+    padding:0.5rem;
+    border-radius:0.5rem;
+    transition:none !important;
+  }
+  div.neo>h3, div.neo>p{
+    color:grey;
+  }
+  div.neo:hover{
+    background-color:#050505;
+    z-index:1000;
+  }
+  div.neo:hover>h3, div.neo:hover>p{
+    color:whitesmoke;
+  }
+  </style>
+</article>

@@ -6,7 +6,6 @@ class ApplicationController < ActionController::Base
 
   def before
     adminuid=ENV["master_name"]
-    puts "DEBUG               !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
     @isadmin=adminuid==session[:uid]
     @adminuid=adminuid
     @includerecaptcha=false

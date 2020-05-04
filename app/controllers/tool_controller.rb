@@ -108,7 +108,16 @@ class ToolController < ApplicationController
       end
     end
   end
-
+  
+  def wswsane
+    require "WSWSANE"
+    if !params["date"].nil? and params["date"] =~ /[12][0-9][0-9][0-9]-[01][0-9]-[0-3][0-9]/
+      @neos=WSWSANE.get(ENV["NASA_API_KEY"],params["date"],params["date"])["near_earth_objects"].values[0].to_json
+    else
+      @neos=WSWSANE.getToday(ENV["NASA_API_KEY"])["near_earth_objects"].values[0].to_json
+    end
+  end
+  
   def chatindex
     if session[:nickname].nil?
       @chats=nil

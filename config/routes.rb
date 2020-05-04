@@ -31,6 +31,7 @@ Rails.application.routes.draw do
   get "/tools/css-streamliner", to: "tool#cssStreamliner"
   get "/tools/divvy", to: "tool#divCounter"
   post "/tools/divvy", to: "tool#divCounter"
+  get "/tools/wswsane", to: "tool#wswsane"
   resources :messages, only: [:new, :create]
   get "/tools/chat", to: "tool#chatindex"
   get "/tools/chat/umpire", to: "tool#chatumpire"

@@ -31,6 +31,7 @@ gem 'bootsnap', '>= 1.4.2', require: false
 gem 'httparty', source: 'https://rubygems.org'
 gem 'rubyzip', '>= 1.3.0', source: 'https://rubygems.org'
 gem 'pg', source: 'https://rubygems.org'
+gem 'WSWSANE', '~> 1.0', '>= 1.0.3', source: 'https://rubygems.org'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
