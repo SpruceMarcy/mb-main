@@ -19,10 +19,19 @@
   <br/>
   <h2>Choose a chat room:</h2>
   <%@chats.each do |room|%>
-  <p class="adj"><a href="/tools/chat/<%=room%>"><%=room%></a></p>
+  <p class="adj"><a href="/tools/chat/<%=room%>"><%=room%></a> (<%=(@counts[room]||0)-(session[:receipts][room]||0)%> unread)</p>
   <%end%>
   <%else%>
   <p>It doesn't look like you have access to any chats :'(</p>
   <p class="adj">If you believe this to be a mistake, contact the umpire.</p>
+  <%end%>
+  <%if session[:nickname]=="Umpire"%>
+  <h2>Chat with a specific player:</h2>
+  <%@players.each do |room|%>
+  <p class="adj"><a href="/tools/chat/<%=room%>"><%=room%></a> (<%=(@counts[room]||0)-(session[:receipts][room]||0)%> unread)</p>
+  <%end%>
+  <%elsif !session[:nickname].nil?%>
+  <h2>Chat with the Umpire:</h2>
+  <p class="adj"><a href="/tools/chat/<%=session[:nickname]%>">Message the Umpire</a> (<%=@counts[session[:nickname]]-session[:receipts][session[:nickname]]%> unread)</p>
   <%end%>
 </article>

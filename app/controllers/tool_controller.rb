@@ -123,6 +123,7 @@ class ToolController < ApplicationController
       @chats=nil
     else
       @chats=[]
+      @counts=Hash.new
       Message.all.each do |message|
         begin
           hmessage=JSON.parse(message.content)
@@ -133,14 +134,18 @@ class ToolController < ApplicationController
               end
             end
           end
+          @counts[hmessage["chat"]]=(@counts[hmessage["chat"]]||0)+1
         rescue JSON::ParserError => e
           delmsg(message)
         end
       end
+      @players=getplayers()
+      @chats=@chats-@players
       if @chats==[]
         @chats=nil
       end
     end
+    session[:receipts]=session[:receipts]||Hash.new
     render layout: "chat"
   end
 
@@ -194,31 +199,19 @@ class ToolController < ApplicationController
     @mutelist=getmutes(params[:roomno])
     @canwhisper=getwhiss(params[:roomno]).has_key?(session[:nickname])
     @dead=getdead()
-    @players=[]
-    Message.all.each do |message|
-      begin
-        hmessage=JSON.parse(message.content)
-        if !hmessage["author"].nil? && !(@players.include? hmessage["author"])
-          @players << hmessage["author"]
-        end
-      rescue JSON::ParserError => e
-        delmsg(message)
+    @players=getplayers()
+    counter=0
+    @messages.each do |mess|
+      if mess["chat"]==params[:roomno]
+        counter+=1
       end
     end
+    session[:receipts]=session[:receipts]||Hash.new
+    session[:receipts][params[:roomno]]=counter
     render layout: "chat"
   end
   def chatumpire
-    @players=[]
-    Message.all.each do |message|
-      begin
-        hmessage=JSON.parse(message.content)
-        if !hmessage["author"].nil? && !(@players.include? hmessage["author"])
-          @players << hmessage["author"]
-        end
-      rescue JSON::ParserError => e
-        delmsg(message)
-      end
-    end
+    @players=getplayers()
     @chats=[]
     Message.all.each do |message|
       begin
@@ -232,6 +225,7 @@ class ToolController < ApplicationController
         delmsg(message)
       end
     end
+    @chats=@chats-@players
     @perms=Hash.new
     @chats.each do |chat|
       @perms[chat]=getperms(chat)
@@ -300,7 +294,12 @@ class ToolController < ApplicationController
           delmsg(message)
         end
       end
-      return Hash.new
+      returnval=Hash.new
+      if getplayers().include?(chat)
+        returnval[chat]="on"
+        returnval["Umpire"]="on"
+      end
+      return returnval
     end
     def getmutes(chat)
       Message.all.each do |message|
@@ -347,5 +346,19 @@ class ToolController < ApplicationController
     end
     def delmsg(message)
       message.delete
+    end
+    def getplayers()
+      @players=[]
+      Message.all.each do |message|
+        begin
+          hmessage=JSON.parse(message.content)
+          if !hmessage["author"].nil? && !(@players.include? hmessage["author"])
+            @players << hmessage["author"]
+          end
+        rescue JSON::ParserError => e
+          delmsg(message)
+        end
+      end
+      return @players
     end
 end
