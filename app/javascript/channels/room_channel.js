@@ -1,6 +1,9 @@
 import consumer from "./consumer"
 function $(e){return document.getElementById(e)}
-
+var lasttimestamp=""
+if($("lasttimestamp")){
+  lasttimestamp=$("lasttimestamp").innerhtml
+}
 consumer.subscriptions.create("RoomChannel", {
   connected() {
     // Called when the subscription is ready for use on the server
@@ -14,9 +17,13 @@ consumer.subscriptions.create("RoomChannel", {
   received(data) {
     // Called when there's incoming data on the websocket for this channel
     var jdata=JSON.parse(data.content);
-    console.log()
-    console.log(jdata["type"]);
     if(jdata["chat"]==$("roomno").value){
+      if(jdata["type"]=="message" || jdata["type"]=="whisper"){
+        if(lasttimestamp!=jdata["timestamp"]){
+          $("messages").innerHTML+="<p class=\"adj timestamp\">"+jdata["timestamp"]+"</p>"
+          lasttimestamp=jdata["timestamp"]
+        }
+      }
       if(jdata["type"]=="perm"){
         if(!($("nickname").value in jdata["perm"])){
           alert("You no longer have access to this chat.")
@@ -24,15 +31,11 @@ consumer.subscriptions.create("RoomChannel", {
         }
       }
       else if(jdata["type"]=="mute"){
-        console.log("testing")
-        console.log(jdata)
         if(($("nickname").value in jdata["perm"])){
-          console.log("isin")
           $("message_content").disabled=true;
           $("submitbutton").disabled=true;
         }
         else{
-          console.log("isntin")
           $("message_content").removeAttribute('disabled');
           $("submitbutton").removeAttribute('disabled');
         }
@@ -46,7 +49,7 @@ consumer.subscriptions.create("RoomChannel", {
         if(jdata["author"]==$("admin").content){
           classtext=" class=\"admin\""
         }
-        $("messages").innerHTML+="<div class=\"message\"><p"+classtext+">"+jdata["author"]+"</p><p>"+jdata["message"]+"</p></div>";
+        $("messages").innerHTML+="<div class=\"message\" title=\""+jdata["timestamp"]+"\"><p"+classtext+">"+jdata["author"]+"</p><p>"+jdata["message"]+"</p></div>";
 
       }
       else if(jdata["type"]=="whisper"){
@@ -56,7 +59,7 @@ consumer.subscriptions.create("RoomChannel", {
             $("new_message").reset()
             classtext=" class=\"self\""
           } 
-          $("messages").innerHTML+="<div class=\"message\"><p"+classtext+">(whisper to "+jdata["recipient"]+") "+jdata["author"]+"</p><p class=\"whisper\">"+jdata["message"]+"</p></div>";
+          $("messages").innerHTML+="<div class=\"message\" title=\""+jdata["timestamp"]+"\"><p"+classtext+">(whisper to "+jdata["recipient"]+") "+jdata["author"]+"</p><p class=\"whisper\">"+jdata["message"]+"</p></div>";
         }
         else{
           $("messages").innerHTML+="<div class=\"hint\"><p>"+jdata["author"]+" whispered to "+jdata["recipient"]+"</p></div>";

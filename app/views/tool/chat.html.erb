@@ -7,6 +7,7 @@
   <p class="adj">Hint: type \w [name] [message] to whisper. Names are case sensitive. You are: <%=session[:nickname]%></p>
   <p class="adj"><a href="/tools/chat">Back</a></p>
   <div id="messages">
+    <%lasttimestamp=""%>
     <%@messages.each do |message|%>
     <%if message["chat"]==params[:roomno]%>
     <%if message["type"]=="create"%>
@@ -14,14 +15,20 @@
       <p>Chat <%=message["chat"].sub(/ .*/,"")%> was created by <%=message["author"]%></p><%@admin=message["author"]%>
     </div>
     <%end%>
+    <%if message["type"]=="message" or message["type"]=="whisper"%>
+    <%if message["timestamp"]!=lasttimestamp%>
+    <%lasttimestamp=message["timestamp"]%>
+    <p class="adj timestamp"><%=lasttimestamp%></p>
+    <%end%>
+    <%end%>
     <%if message["type"]=="message"%>
-    <div class="message">
+    <div class="message" title="<%=message["timestamp"]%>">
       <p<%if message["author"]==@admin%> class="admin"<%elsif message["author"]==session[:nickname]%> class="self"<%end%>><%=message["author"]%></p><p><%=message["message"]%></p>
     </div>
     <%end%>
     <%if message["type"]=="whisper"%>
     <%if @canwhisper or session[:nickname]==message["author"] or session[:nickname]==message["recipient"]%>
-    <div class="message">
+    <div class="message" title="<%=message["timestamp"]%>">
       <p<%if message["author"]==session[:nickname]%> class="self"<%end%>>(whisper to <%=message["recipient"]%>) <%=message["author"]%></p><p class="whisper"><%=message["message"]%></p>
     </div>
     <%else%>
@@ -107,6 +114,14 @@
     div.message p.whisper{
       background-color:gray;
       box-shadow:0 0 5px yellow;
+    }
+    p.timestamp{
+      width:100%;
+      font-size:0.8rem;
+      color:#777777;
+      text-align:center;
+      padding:0;
+      margin:0;
     }
     input:disabled, textarea:disabled{
       background-color:lightgray;

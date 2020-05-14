@@ -12,15 +12,14 @@ class MessagesController < ApplicationController
         removedcommand=params["message"]["content"].sub(/^\\w.*? /,"").sub(/^\\W.*? /,"")
         jmessage["recipient"]=removedcommand.split.first.sub("[","").sub("]","")
         jmessage["message"]=removedcommand.sub(/[^ ]+? /,"")
-        jmessage["author"]=params["author"]
-        jmessage["chat"]=params["chat"]
       else
         jmessage=Hash.new
         jmessage["type"]="message"
         jmessage["message"]=params["message"]["content"]
-        jmessage["author"]=params["author"]
-        jmessage["chat"]=params["chat"]
-      end
+      end       
+      jmessage["author"]=params["author"]
+      jmessage["chat"]=params["chat"]
+      jmessage["timestamp"]=Time.now.strftime("%d/%m %H:%M")
       @message = Message.create(content: jmessage.to_json)
     end
     @message.save
