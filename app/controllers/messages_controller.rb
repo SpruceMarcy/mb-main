@@ -19,7 +19,8 @@ class MessagesController < ApplicationController
       end       
       jmessage["author"]=params["author"]
       jmessage["chat"]=params["chat"]
-      jmessage["timestamp"]=Time.now.strftime("%d/%m %H:%M")
+      Time.zone="London"
+      jmessage["timestamp"]=Time.zone.now.strftime("%d/%m %H:%M")
       @message = Message.create(content: jmessage.to_json)
     end
     @message.save
