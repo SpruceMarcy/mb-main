@@ -32,6 +32,6 @@
   <%end%>
   <%elsif !session[:nickname].nil?%>
   <h2>Chat with the Umpire:</h2>
-  <p class="adj"><a href="/tools/chat/<%=session[:nickname]%>">Message the Umpire</a> (<%=@counts[session[:nickname]]-session[:receipts][session[:nickname]]%> unread)</p>
+  <p class="adj"><a href="/tools/chat/<%=session[:nickname]%>">Message the Umpire</a> (<%=(@counts[session[:nickname]]||0)-(session[:receipts][session[:nickname]]||0)%> unread)</p>
   <%end%>
 </article>
