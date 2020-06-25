@@ -83,6 +83,9 @@ class ToolController < ApplicationController
   def cssStreamliner
   end
 
+  def circle
+  end
+
   def divCounter
     @hide=true
     if request.method=="GET"

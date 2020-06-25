@@ -2,6 +2,7 @@ require 'date'
 class ApplicationController < ActionController::Base
   skip_forgery_protection
   before_action :before
+  layout :setLayout
   private
 
   def before
@@ -9,6 +10,7 @@ class ApplicationController < ActionController::Base
     @isadmin=adminuid==session[:uid]
     @adminuid=adminuid
     @includerecaptcha=false
+
     today=Date.today
     if today==Date.new(2020,3,31)
       @seasonal_style="tdov"
@@ -36,5 +38,11 @@ class ApplicationController < ActionController::Base
       end
     end
     return highest
+  end
+  def setLayout
+    if params["view"]=="content-only"
+      return "clean"
+    end
+    return "application"
   end
 end

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="msvalidate.01" content="7BFAB72892EDD0271CC0CC7B89664F3B" />
+    <meta name="google-site-verification" content="UOouO-FLDXINpgkCqGnVZtDeWC7nNwW6GEq6n9fWFhA" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=1.0, maximum-scale=10, minimum-scale=0">
+    <%if @includerecaptcha%>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <%end%>
+    <title><%= content_for(:page_title) || "mxmbrook.co.uk"%></title>
+    <meta name="description" content="<%=html_escape(content_for(:page_description) || "No description for this page.")%>">
+    <%= stylesheet_link_tag "application", media: "all"%>
+    <%= stylesheet_link_tag "mobile", media: "(max-width:768px)"%>
+    <%if !@seasonal_style.nil?%>
+    <%= stylesheet_link_tag "special/"+@seasonal_style, media: "all"%>
+    <%end%>
+    <link rel="icon" href="/images/mco.png">
+  </head>
+  <body>
+    <div style="height:3rem;disply:block"></div>
+    <section class="content">
+      <%= yield %>
+      <div style="height:3rem;disply:block"></div>
+      <footer>
+        <p>This page's content and template was written by Marcy Brook. <a href="/contact">Contact.</a> This site uses authentication cookies, but no tracking cookies.</p>
+        <script> </script>
+      </footer>
+    </section>
+  </body>
+</html>
