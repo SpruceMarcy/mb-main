@@ -263,7 +263,7 @@ function resetView(){
 }
 function handleScroll(event){
 	oldscale   = scale
-	scale     -= event.deltaY/20;
+	scale     -= (event.deltaY / Math.abs(event.deltaY)) * 0.2;
 	scale      = scale > 0.5 ? scale : 0.5;
 	scale      = scale < 20 ? scale : 20;
 	offset[0]  = (offset[0]-256)*(scale/oldscale)+256
