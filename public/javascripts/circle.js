@@ -1,4 +1,6 @@
 //Written by Marcy Brook
+//Copyright: the Unlicense
+
 //======HELPER FUNCTIONS======
 function $(e){return document.getElementById(e);}
 function drawLine(x1,y1,x2,y2,width,colour){
