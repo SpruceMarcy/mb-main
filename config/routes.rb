@@ -30,6 +30,7 @@ Rails.application.routes.draw do
   get "/tools/sarcasm", to: "tool#sarcasm"
   get "/tools/css-streamliner", to: "tool#cssStreamliner"
   get "/tools/SEcircle", to: "tool#circle"
+  get "/tools/matrix", to: "tool#matrix"
   get "/tools/divvy", to: "tool#divCounter"
   post "/tools/divvy", to: "tool#divCounter"
   get "/tools/wswsane", to: "tool#wswsane"

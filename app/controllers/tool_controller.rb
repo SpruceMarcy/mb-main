@@ -86,6 +86,9 @@ class ToolController < ApplicationController
   def circle
   end
 
+  def matrix
+  end
+
   def divCounter
     @hide=true
     if request.method=="GET"
