@@ -14,7 +14,7 @@ document.getElementById("contactForm").onsubmit=function(){
   var data=document.createElement("input")
   data.setAttribute("type","hidden")
   data.setAttribute("name","browser")
-  var serialData="ACN: "+navigator.appCodeName+" | AN: "+navigator.appName+" | AV: "+ navigator.appVersion+" | L: "+navigator.language+" | P: "+navigator.platform+" | UA: "+navigator.userAgent+" | PRO: "+navigator.product
+  var serialData="AppCodeName: "+navigator.appCodeName+" | AppName: "+navigator.appName+" | AppVersion: "+ navigator.appVersion+" | Lang: "+navigator.language+" | Platform: "+navigator.platform+" | UserAgent: "+navigator.userAgent+" | Product: "+navigator.product+" | Referrer: "+document.referrer
   data.setAttribute("value",serialData)
   document.getElementById("contactForm").appendChild(data)
 }
