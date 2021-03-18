@@ -119,16 +119,16 @@ function drawAll(){
 				//drawLine(20*generatedGrid[x][y][0][0],20*generatedGrid[x][y][0][1],
                                 //         20*generatedGrid[x][y][1][0],20*generatedGrid[x][y][1][1],1.5,"#0000ff")
 				var color = "#0000ff88"
-				if(Math.abs(generatedGrid[x][y][0][0]-generatedGrid[x][y][1][0])==0.5 && 					   Math.abs(generatedGrid[x][y][0][1]-generatedGrid[x][y][1][1])==0.5 &&
-				   weightedEDist((generatedGrid[x][y][0][0]+generatedGrid[x][y][1][0])/2,
-						 (generatedGrid[x][y][0][1]+generatedGrid[x][y][1][1])/2,
-						 generatedGrid.length/2,
-						 generatedGrid[0].length/2,1,1)>
-				   weightedEDist(x+0.5,y+0.5,
-						 generatedGrid.length/2,
-						 generatedGrid[0].length/2,1,1)){
-					color = "#ff000088"
-				}
+				//if(Math.abs(generatedGrid[x][y][0][0]-generatedGrid[x][y][1][0])==0.5 && 					   Math.abs(generatedGrid[x][y][0][1]-generatedGrid[x][y][1][1])==0.5 &&
+				//   weightedEDist((generatedGrid[x][y][0][0]+generatedGrid[x][y][1][0])/2,
+				//		 (generatedGrid[x][y][0][1]+generatedGrid[x][y][1][1])/2,
+				//		 generatedGrid.length/2,
+				//		 generatedGrid[0].length/2,1,1)>
+				//   weightedEDist(x+0.5,y+0.5,
+				//		 generatedGrid.length/2,
+				//		 generatedGrid[0].length/2,1,1)){
+				//	color = "#ff000088"
+				//}
 				drawPolygon(improvisePolygon(generatedGrid[x][y][0],
 						 generatedGrid[x][y][1],
 						 x,y,
